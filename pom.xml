@@ -19,6 +19,8 @@
         <module>128zhibo-common</module>
         <module>128zhibo-domain</module>
         <module>128zhibo-repository</module>
+        <module>128zhibo-admin-vue</module>
+
     </modules>
 <parent>
     <groupId>org.springframework.boot</groupId>
