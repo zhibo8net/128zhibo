@@ -1,0 +1,399 @@
+/*基础元素*/
+/*reset*/
+body,div,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,iframe,input,textarea,select,label,article,aside,footer,header,menu,nav,section,time,audio,video {
+    margin:0;
+    padding:0;
+  }
+  article,aside,footer,header,hgroup,nav,section,audio,canvas,video{
+      display: block;
+  }
+  img{display:inline;}
+  b{font-weight: normal;}
+  body {
+      font-size: 100%;
+      font-weight: bold;
+      font-family:Helvetica,STHeiti,Droid Sans Fallback;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+  }
+  textarea {
+      resize: none;
+  }
+  iframe,img {
+      border:0;
+  }
+  ul,ol {
+      list-style:none;
+  }
+  table{
+          width:100%;
+          word-break: break-all;
+  }
+  input,
+  select,
+  textarea {
+      outline: 0;
+      -webkit-user-modify: read-write-plaintext-only;
+  }
+  input {
+      -webkit-appearance: none;
+  }
+  a{
+      text-decoration: none;
+  }
+  body,.global{
+      background: #fafafa
+  }
+  .global{
+      min-width: 320px;
+  }
+  /********reset*****************
+  /*----iPhone ipad----*/
+  .addDesktop_iphone{z-index:1390; -webkit-transition-property:all; -webkit-transition-duration:0.2s; -webkit-transition-timing-function:linear; -webkit-transition-delay:initial;position:fixed; bottom:0px;left:10px;display:none;}
+  .addDesktop_ipad{display:none; }
+  .addDesktop_iphone .tipPanel{position:relative; z-index:1390; margin-top:0px; margin:0 auto 13px; width:220px; height:65px; background:#fff; padding:9px; color:#555; border:1px solid #bbb; font-size:14px; -webkit-box-shadow:0 3px 5px rgba(0,0,0,.5); box-shadow:0 3px 5px rgba(0,0,0,.5);}
+  .addDesktop_iphone .tipPanel::before{content:""; position:absolute; bottom:-8px; left:150px; margin-left:-8px; height:14px; width:14px; overflow:hidden; background:#fff; -webkit-transform:rotate(45deg); border:1px solid #afafaf; border-top:none; border-left:none; -webkit-box-shadow:0 3px 5px rgba(0,0,0,.5); box-shadow:0 3px 5px rgba(0,0,0,.5);}
+  .addDesktop_iphone .tipPanel::after{content:""; position:absolute; bottom:0; left:150px; margin-left:-15px; height:15px; width:30px; overflow:hidden; background:#fff;}
+  .addDesktop_iphone .webApp{float:left; margin-right:10px; width:64px; height:64px; background-image:url("//m.zhibo8.cc/images/icon120@2x.png"); -webkit-background-size:64px; background-size:64px;}
+  .addDesktop_iphone .btnClose{width:18px; height:18px; position:absolute; top:5px; right:5px; padding:5px;}
+  .addDesktop_iphone .tipCon{float:left; padding-top:5px; line-height:24px;}
+  .addDesktop_iphone .popCls{position:absolute; right:5px; top:12px; height:4px; width:18px; background:#c2c2c2; font:bold 3.25em/0 arial; -webkit-transform:rotate(45deg); border-radius:1px;}
+  .addDesktop_iphone .popCls::after{content:""; position:absolute; top:0; right:0; height:4px; width:18px; overflow:hidden; background:#c2c2c2; -webkit-transform:rotate(90deg); border-radius:1px; }
+  .addDesktop_iphone .ico_adddesktop_ios{background: url("//r1.ykimg.com/05100000528C6E346714C031CE066FC0");display: inline-block; height: 16px; width: 19px; margin-top: 2px; margin-right: 3px; margin-bottom: 0px; margin-left: 3px; -webkit-background-size: 19px 16px; vertical-align: top;}
+  .addDesktop_iphone .ico_adddesktop_ios7{background: url("//r3.ykimg.com/05100000528074156714C0316A06AC70");display: inline-block; height: 22px; width: 15px; margin-top: -2px; margin-right: 3px; margin-bottom: 0px; margin-left: 3px; -webkit-background-size: 15px 22px; vertical-align: top;}
+  /*----iPhone ipad----*/
+  /*---------------header logo--------------*/
+  .header{
+      width:100%;
+      height:44px;
+      position:relative;
+      background-color: #fff;
+      /*margin-bottom:8px;*/
+  }
+  .header .logo{
+      display: inline-block;
+      text-indent: -9999em;
+      width: 115px;
+      height: 40px;
+      background-image: url('https://www.zhibo8.net/image_1/logo.png');
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      -webkit-background-size: 100%;
+      -moz-background-size: 100%;
+      -o-background-size: 100%;
+      background-size: 100%;
+      margin: 2px 0 0 5px;position:relative;z-index:10;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 340px) {
+      .header .logo{
+          -webkit-background-size: 95%;
+      -moz-background-size: 95%;
+      -o-background-size: 95%;
+      background-size: 95%;
+      }
+  }
+  .logo a{display:block;}
+  .to_simple{position:absolute;right:75px;top:0;height:40px;width:36px;line-height:45px;}
+  .to_simple a{display:block;}
+  .to_simple img{max-width:100%;max-height:100%;vertical-align:middle;}
+  .global_line{position:absolute;top:0;height:44px;line-height:44px;width:68%;text-align:right;font-weight:normal;background: #fff;}
+  .global_sel{display:inline-block;width:auto;height:28px;padding:0 25px;line-height:28px;border-radius:28px;color:#4898e6;border:1px solid #4898e6;
+  background:url('https://static4style.qiumibao.com/m_images/updown.png') no-repeat 60px 8px;background-size:12px auto;}
+  .jump{
+          position:absolute;
+      bottom:3px;
+      margin:0 4px 0 0;
+      padding: 0 5px;
+      display: block;
+      color: #4898e6;
+      /*background: #4898e6;*/
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 30px;
+      /*border:1px solid #4898e6;*/
+      right:33px;width:30px;
+  }
+  .jump img{max-width:100%;max-height:100%;width:25px;}
+  .setting{
+      position: absolute;
+      right: 0;
+      bottom:3px;
+      margin:0 4px 0 0;
+      padding: 0 5px;
+      display: block;
+      height: 30px;
+      line-height: 30px;
+  }
+  .setting img{width:25px;}
+  /*--------------header logo----------------------*/
+
+  /*nav*/
+  .nav{
+      width: 100%;
+    overflow: hidden;
+    border-top:1px solid #f0f0f0;
+    border-bottom:1px solid #f0f0f0;
+    background:#FAFAFA;
+    z-index: 9;
+  }
+  .nav_fixed{position:fixed;top:0;z-index:9;}
+  .nav_sticky{position:-webkit-sticky;position:sticky;top:0px;}
+  .down_nav_fixed{top:49px;}
+  .nav li{
+      width: 14.28%;
+      line-height: 30px;
+      float: left;
+      font-size: 1em;
+      display: inline-block;
+      text-align: center;
+  }
+  .nav li a{color:#000;font-weight:100;}
+  .nav .current{background:#74B5F7;}
+  .nav .current a{color:#fafafa;}
+  /*赛事选择*/
+  .shaixuan{text-align:center;background:#fff;font-weight:100;}
+  .shaixuan span{
+          /*float: left;*/
+      margin: 5px 4px; padding:0 11px;
+      display: inline-block;
+      color: #000;
+      /*background: #4998e6;*/
+      /* background: linear-gradient(#4998e7,#1971db); */
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 6px;
+      border:1px solid #E0E0E0;
+  }
+
+  .shaixuan .current{background:#e04e4c;color:white;border:1px solid #e04e4c;}
+
+  /*赛事选择*/
+  /*----------头条新闻----------*/
+  .module,.module .content{width:100%;overflow:hidden;position:relative;}
+  /*.headline li h2{line-height:60px;}*/
+  .headline li h2 img {width:60px;height:40px;vertical-align:middle;margin-right:8px;float:left;margin-top:10px;}
+  /*.headline .video_lite h2 a{background-image:url(//m.zhibo8.cc/css/images/ic_headline_video.png)}*/
+  /*.headline .news_lite h2 a{background-image:url(//m.zhibo8.cc/css/images/ic_headline_news.png)}*/
+  .headline .notice_lite h2 a{
+              /*background-image: url(//m.zhibo8.cc/css/images/ic_headline_notice.png) ;*/
+          }
+  .headline .lite h2 a{
+      background-position: left center;
+      background-size: 80px 40px;
+      background-repeat: no-repeat;
+      /*text-indent: 88px;*/
+      margin-left:3px;
+      font-size:1em;
+      /*width:95%;*/
+      /*overflow:hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;*/
+  }
+  .headline .line_tlt{display:table-cell;height:60px;vertical-align:middle; white-space: nowrap;}
+  .headline ul.ent{overflow:hidden;max-height:244px;}
+  .headline ul.adv{overflow:hidden;position:relative;}
+  .headline ul.adv .adv_tip{position:absolute;right:6px;bottom:5px;font-size:12px;background:#c0c0c0;padding:2px 7px;color:#fff;}
+  /*------头条新闻-------------------*/
+  /*----赛事列表--------*/
+  .head{
+      height:31px;
+      /*border-top:1px solid lightgray;*/
+      /*border-bottom:1px solid #d5d5d5;*/
+      background:#F7F7F7;
+  }
+  .head .head_market{
+      float:left;
+      width:5px;
+      height:20px;
+      background:#2784de;
+      margin:5px 0 0 20px;
+  }
+  .head h2{
+      font-size: 1em;
+      font-weight: normal;
+      display: inline-block;
+      text-align: center;
+      float: left;
+      width: auto;
+      padding: 0 10px 0 20px;
+      height: 31px;
+      line-height: 31px;
+  }
+  .module .panel{overflow:hidden;float:left;width:100%;}
+  .list{padding: 0;overflow:hidden;}
+  ul.ent{padding:0;margin:0;overflow:hidden;}
+  .list li{
+      overflow: hidden;
+      border-bottom: 1px solid #f2f2f2;
+      box-shadow: 0 1px 1px #fff;
+      float:left;
+      width:100%;
+  }
+  .list li:last-of-type{border-bottom:1px solid #fff;}
+  .list h2{
+      font-weight: normal;
+      height: auto;
+      margin:0;
+      font-size: 1em;
+      float:left;
+      width:100%;
+      /*margin-top:-20px;*/
+  }
+  /*
+  list*/
+  .list li a {
+      display: block;
+      color: #000;
+  }
+  .module table tr td:nth-child(1){width:15%;padding-left:10px;font-weight: normal;text-align:left;}
+  .module table tr td:nth-child(2){width:23%;}
+  .module table tr td:nth-child(3){width:23%;}
+  .module table tr td:nth-child(4){width:23%;}
+  /*.module table tr td:nth-child(5){width:19%;}*/
+  .module table tr td:nth-child(5) div{display:inline-block;width:50px;color:#E04E4C;font-size:0.9em;}
+  .list li table td{text-align: center;padding:5px 0;color:#000;font-size:0.9em;}
+  .s_time{width:50px;font-weight:bold;}
+  .s_name{font-size:0.825em;}
+  .s_keyword{color:#888;overflow:hidden;font-size:0.825em;margin-top:5px;line-height:15px;}
+  .lite .s_keyword a{
+      color: #888;
+      display: inline;
+  }
+  .module table img{width:40px;height:40px;}
+  .module .remind img{width:25px;height:25px;}
+  /*----赛事列表--------*/
+
+  /*已结束*/
+  /*.endgame .list li:last-of-type {border-bottom: 1px solid #d5d5d5}*/
+  .endgame table tr td:nth-child(1){width:30%;text-align: center;}
+  .endgame table tr td:nth-child(2){width:40%;text-align: center;}
+  .endgame table tr td:nth-child(3){width:30%;text-align: center;}
+  .endgame .s_keyword span{background:#4998e6;color:white;margin-right:3px;}
+   .loadMore{height:50px;text-align:center;line-height:50px;color:#888;cursor:pointer;border-top: 1px solid #d5d5d5}
+  /*已结束*/
+
+  /*-----------------dialog-------------------*/
+      .mask{
+          position: absolute;
+          left: 0;top: 0;right: 0;bottom: 0;
+          width: 100%; height: 100%;
+          background: #000;
+          background: rgba(0,0,0,0.3);
+          z-index: 2;
+      }
+      .dialog {
+          width: 270px;
+          height: 164px;
+          background: #fff;
+          background: rgba(255,255,255,0.9);
+          border-radius: 8px;
+          text-align: center;
+          position: absolute; z-index: 3;
+          left: 50%; top: 50%; margin:  -82px 0 0 -135px;
+      }
+      .dialog h3{
+          padding: 20px 0 10px;line-height: normal;
+          font-size: 1.0625em;
+          color: #000;
+      }
+      .dialog p{
+          padding: 5px 0; line-height: normal;
+          font-size: 1em;
+          color: #000;
+      }
+      .dialogbar {
+          border-top: 1px solid #b2b2b2;
+          width: 100%; position: absolute;
+          left: 0; bottom: 0;
+          display: table;
+      }
+      .dialog span{
+          display: table-cell;
+          width: 50%; height: 44px; line-height: 44px;
+          color: #007aff; font-size:1.0625em;
+      }
+      .dialog span:first-child{
+          border-right: 1px solid #b2b2b2
+      }
+  /*--------------dialog--------------------*/
+  /*手机客户端广告*/
+   .ui-icon {
+          width: 18px;
+          height: 18px;
+      }
+      .ui-icon-shadow {
+          -moz-box-shadow: 0 1px 0 rgba(255,255,255,.4);
+          -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.4);
+          box-shadow: 0 1px 0 rgba(255,255,255,.4);
+      }
+      .ui-icon-delete {
+          background-position: -73px -1px;
+      }
+      .ui-icon, .ui-icon-searchfield:after {
+          background-color: #666;
+          background-color: rgba(0,0,0,.4);
+          background-image: url(//static4style.oss-cn-hangzhou.aliyuncs.com/common/img/icons-18-white.png);
+          background-repeat: no-repeat;
+          -webkit-border-radius: 9px;
+          border-radius: 9px;
+      }
+  /*--手机客户端广告-----*/
+  /*footnav*/
+  .footer{
+      background: #404a54;
+      padding: 10px 45px 12px 0;
+      overflow: hidden;
+      position: relative;
+  }
+  .footer .links{
+      margin-top: 12px;
+      height: 25px;
+      line-height: 25px;
+      color: #565e61;
+      font-size: 0.8125em;
+      text-align: left;
+  }
+  .footer .links a{
+      color: #95a0ac;
+      margin: 0 0 0 8px;
+      display: inline;
+      float: left;
+  }
+  .copyright{
+      font-size: 0.5em;
+      color: #707982;
+      text-align: left;
+      text-indent: 8px;
+      /* white-space: nowrap; */
+        width: 80%;
+  }
+  .gotop{
+      width: 80px;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      color: #95a0ac;
+      background: #313a43;
+      position: absolute;
+      right: 12px;
+      top: 10px;
+  }
+  /*footer*/
+
+  /*弹框*/
+  .global{position:relative;}
+  .box{}
+  .box_bg{position:absolute;top:0;right:0;left:0;height:100%;background:#000;opacity:0.5;z-index:10;}
+  .box_box{position:fixed;top:50%;width:100%;margin-top:-130px;z-index:11;}
+  .box_ent{margin:0 auto;width:60%;max-width:280px;min-width:220px;height:260px;background:#fff;border-radius:10px;padding:5px 10px;}
+  .box_ent .box_center{padding:5px 10px;text-align:center;}
+  .box_ent h2{font-size:18px;font-weight:100;padding:20px 0;border-bottom:1px solid #e2e2e2;}
+  .box_ent ul{margin:0;padding-top:15px;}
+  .box_ent ul li{display:block;margin:15px 0;}
+  .box_ent ul li a{display:inline-block;width:60%;height:30px;line-height:30px;border-radius:15px;border:1px solid #e2e2e2;color:#333;font-weight:100;}
+  .defaultImg{
+      display: none;
+  }

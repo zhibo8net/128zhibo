@@ -1,0 +1,99 @@
+<div th:fragment="channel">
+    <!-- <div class="channel">
+        <label class="margin-top-10"><img th:src="@{/image_1/icon/tv.png}" class="icon-24"/><span class="padding-left-10">常用频道</span></label>
+        <ul class="list-unstyled">
+            <li th:each="t:${teles}"><a th:href="${t.link}" th:text="${t.name}" class="padding-left-2"></a></li>
+        </ul>
+    </div> -->
+</div>
+
+<div th:fragment="collection">
+    <div class="collection margin-top-20">
+        <label class=" ">
+            <img th:src="@{/image_1/icon/video-list.png}" class="icon-24" />
+            <span class="padding-left-10" th:text="${'视频'}"></span>
+        </label>
+        <ul class="list-unstyled">
+            <li th:each="v:${videos}" class="video-li">
+                <span class="list-style">•</span>
+                <a th:href="${v.link}" th:text="${v.name}" target="_blank"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div th:fragment="projectCollection">
+    <div class="collection margin-top-20 ">
+        <label class="">
+            <img th:src="@{/image_1/icon/video-list.png}" class="icon-24" />
+            <span class="padding-left-10" th:text="${project+'视频'}"></span>
+        </label>
+        <ul class="list-unstyled">
+            <li th:each="v:${videos}" class="video-li">
+                <span class="list-style">•</span>
+                <a th:href="${v.link}" th:text="${v.name}" target="_blank"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div th:fragment="gameCollection">
+    <div class="collection margin-top-20 " th:if="${videos.size() &gt; 0}">
+        <label class="">
+            <img th:src="@{/image_1/icon/video-list.png}" class="icon-24" />
+            <span class="padding-left-10" th:text="${game+'视频'}"></span>
+        </label>
+        <ul class="list-unstyled">
+            <li th:each="v:${videos}" class="video-li">
+                <span class="list-style">•</span>
+                <a th:href="${v.link}" th:text="${v.name}" target="_blank"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div th:fragment="video">
+    <div class="video margin-top-20">
+        <label class="">
+            <img th:src="@{/image_1/icon/video-list.png}" class="icon-24" />
+            <span class="padding-left-10" th:text="${'录像'}"></span>
+        </label>
+        <ul class="list-unstyled">
+            <li th:each="p:${luxiangs}" class="luxiang-li">
+                <!-- <img th:src="@{/image_1/icon/video.png}" class="icon-24" /> -->
+                <span class="list-style">•</span>
+                <a th:href="${'/video_1/'+p.ended.id}" th:text="${p.name}"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div th:fragment="projectVideo">
+    <div class="video margin-top-20">
+        <label class="">
+            <img th:src="@{/image_1/icon/video-list.png}" class="icon-24" />
+            <span class="padding-left-10" th:text="${project+'录像'}"></span>
+        </label>
+        <ul class="list-unstyled">
+            <li th:each="p:${luxiangs}" class="luxiang-li">
+                <img th:src="@{/image_1/icon/video.png}" class="icon-24" />
+                <a th:href="${'/video_1/'+p.ended.id}" th:text="${p.name}"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div th:fragment="gameVideo">
+    <div class="video margin-top-20" th:if="${luxiangs.size() &gt; 0}">
+        <label class="">
+            <img th:src="@{/image_1/icon/video-list.png}" class="icon-24" />
+            <span class="padding-left-10" th:text="${game+'录像'}"></span>
+        </label>
+        <ul class="list-unstyled">
+            <li th:each="p:${luxiangs}" class="luxiang-li">
+                <img th:src="@{/image_1/icon/video.png}" class="icon-24" />
+                <a th:href="${'/video_1/'+p.ended.id}" th:text="${p.name}"></a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout">
+<head>
+    <title th:text="${imageBag.title}"></title>
+    <link rel="stylesheet" th:href="@{/styles_1/image.css}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <script th:src="@{/js_1/image.js}"></script>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-9 left-content">
+            <div class="row">
+                 <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  > <a href="/image_1">体育图片</a> > <span th:text="${imageBag.title}"></span></div>
+           </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 th:text="${imageBag.title}"></h1>
+                    <p th:if="${imageBag.addTime != null}" th:text="${#dates.format(imageBag.addTime, 'yyyy-MM-dd')}+' 浏览量:'+${imageBag.readCount}"></p>
+                    <a href="javascript:void(0);"><img class="img-responsive js-image" th:src="${webImageBase + image.name}" th:alt="${imageBag.title}"/></a>
+                    <div>
+                        <a th:href="${'/viewImage_1/'+imageBag.id+'/'+(index-1)}" th:if="${index&gt;1}" id="js-prev">上一张</a>
+                        <span th:text="${'('+index+'/'+imageBag.images.size()+')'}"></span>
+                        <a th:href="${'/viewImage_1/'+imageBag.id+'/'+(index+1)}" th:if="${index&lt;imageBag.images.size()}" id="js-next">下一张</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3 right-content">
+            <div th:replace="layout/right :: channel"></div>
+            <div th:replace="layout/right :: projectCollection"></div>
+            <div th:replace="layout/right :: projectVideo"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

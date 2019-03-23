@@ -1,0 +1,233 @@
+.emphasis {
+  font-weight: 600;
+}
+.important {
+  color: red;
+}
+.important .time,
+.important .game,
+.important .match,
+.important a {
+  color: red;
+}
+.collection-title b img {
+  vertical-align: middle;
+}
+.collection-title b span {
+  padding-left: 5px;
+  line-height: 24px;
+  vertical-align: middle;
+}
+.collections div {
+  padding-right: 0;
+  font-size: 12px;
+  line-height: 30px;
+}
+.collections div a {
+  font-size: 12px;
+}
+.schedule-tabs {
+  border-bottom: none;
+}
+@media (max-width: 1200px) {
+  .schedule-tabs li {
+    width: 25%;
+    height: 30px;
+  }
+}
+.schedule-tabs li a {
+  color: #4184f3;
+  margin: 0;
+  line-height: 21px;
+  text-align: center;
+}
+@media (min-width: 1200px) {
+  .schedule-tabs li a {
+    width: 106px;
+    height: 35px;
+    padding: 7px 25px;
+  }
+}
+.schedule-tabs li a:link,
+.schedule-tabs li a:visited,
+.schedule-tabs li a:hover,
+.schedule-tabs li a:active {
+  border: 1px solid #4184f3;
+  border-radius: 0;
+}
+@media (max-width: 1200px) {
+  .schedule-tabs li a:link,
+  .schedule-tabs li a:visited,
+  .schedule-tabs li a:hover,
+  .schedule-tabs li a:active {
+    padding-top: 3px;
+    padding-bottom: 4px;
+  }
+}
+.schedule-tabs li a .icon0 {
+  display: none;
+}
+@media (max-width: 1200px) {
+  .schedule-tabs li a .icon1 {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  .schedule-tabs li a .icon1 {
+    display: inline;
+  }
+}
+.schedule-tabs li.active a:link,
+.schedule-tabs li.active a:visited,
+.schedule-tabs li.active a:hover,
+.schedule-tabs li.active a:active {
+  border: 1px solid #4184f3;
+  border-radius: 0;
+  background-color: #4184f3;
+  color: #ffffff;
+}
+@media (max-width: 1200px) {
+  .schedule-tabs li.active a .icon0 {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  .schedule-tabs li.active a .icon0 {
+    display: inline;
+  }
+}
+.schedule-tabs li.active a .icon1 {
+  display: none;
+}
+.schedule-tabs li + li a:link,
+.schedule-tabs li + li a:visited,
+.schedule-tabs li + li a:hover,
+.schedule-tabs li + li a:active {
+  border-left: none;
+}
+@media (max-width: 1200px) {
+  .max-height-600 .day-div:nth-child(3),
+  .max-height-600 .day-div:nth-child(4),
+  .max-height-600 .day-div:nth-child(5),
+  .max-height-600 .day-div:nth-child(6),
+  .max-height-600 .day-div:nth-child(7) {
+    display: none;
+  }
+}
+.schedule {
+  line-height: 2;
+}
+.schedule .day-div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.schedule .day-div label {
+  display: block;
+  width: 140px;
+  height: 20px;
+  line-height: 20px;
+  font-weight: 300;
+  margin-bottom: 0;
+  padding: 0 20px;
+  font-size: 14px;
+  background-color: #4184f3;
+  color: #ffffff;
+}
+.schedule .day-div ul {
+  margin: 0;
+}
+@media (min-width: 1200px) {
+  .schedule .day-div ul {
+    border: 1px solid #4184f3;
+  }
+}
+.schedule .day-div ul li {
+  border-bottom: 1px #e1e1e1 dashed;
+}
+@media (max-width: 1200px) {
+  .schedule .day-div ul li {
+    line-height: 140%;
+    padding-top: 19px;
+    padding-bottom: 12px;
+  }
+}
+@media (min-width: 1200px) {
+  .schedule .day-div ul li {
+    line-height: 48px;
+    padding-left: 10px;
+  }
+}
+.schedule .day-div ul li:last-child {
+  border-bottom: none;
+}
+.schedule .day-div ul li .live {
+  font-size: 12px;
+}
+.schedule .day-div span {
+  padding: 2px;
+}
+.schedule .day-div a {
+  font-size: 12px;
+}
+#loadMore {
+  padding: 20px 0;
+  line-height: 200%;
+  text-align: center;
+}
+@media (min-width: 1200px) {
+  #loadMore {
+    display: none;
+  }
+}
+#loadMore a {
+  color: #4184f3;
+}
+#scrollToTop {
+  display: none;
+  padding: 20px 0;
+  line-height: 200%;
+  text-align: center;
+}
+@media (min-width: 1200px) {
+  #scrollToTop {
+    display: none;
+  }
+}
+#scrollToTop a {
+  color: #4184f3;
+}
+.scroller {
+  position: absolute;
+  top: 0;
+  left: -75px;
+}
+.scroller ul {
+  margin-bottom: 0;
+  list-style: none;
+  padding-left: 0;
+  border: 1px #4184f3 solid;
+  border-bottom: none;
+}
+.scroller ul li a {
+  display: block;
+  font-size: 12px;
+  padding: 7px 15px;
+  border-bottom: 1px #4184f3 solid;
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #4184f3;
+}
+.scroller ul li a:hover,
+.scroller ul li a:active {
+  background-color: #4184f3;
+  color: #ffffff;
+}
+.scroller ul li a.active {
+  position: relative;
+  background-color: #4184f3;
+  color: #ffffff;
+}
+.scroller .up {
+  padding-top: 15px;
+  text-align: center;
+}

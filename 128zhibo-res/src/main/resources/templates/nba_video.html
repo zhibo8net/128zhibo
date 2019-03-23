@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NBA篮球视频_NBA视频集锦-直播8</title>
+    <meta name="keywords" content="直播吧,直播8,足球直播,篮球直播,NBA直播,世界杯直播,在线直播,体育直播" />
+    <meta name="description" content="直播吧是国内最好的体育直播平台,主要提供足球直播、篮球直播、NBA直播、CBA直播、世界杯直播、球赛直播、比分直播、英超直播以及CCTV5在线直播等体育赛事。" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
+    <meta name="baidu-site-verification" content="FeM2EtCC8T" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{../styles_1/common.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/nbanews.css}" />
+    <!-- <link rel="stylesheet" href="../static/styles_1/common.css" />
+    <link rel="stylesheet" href="./news.css" /> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <!-- <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?aab079013b60296378945e415582815d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script> -->
+</head>
+
+<body>
+<div th:replace="layout/header :: header"></div>
+
+
+<div id="main">
+    <div id="middle" style="margin-top:0;">
+
+        <div class="m_left">
+            <!--top left start-->
+            <div class="t_left">
+                <ul>
+                    <li th:each="v:${videos}">
+                        <a th:href="${v.link}" th:if="${v.isFisrt=='TRUE'}" target="_blank">
+                            <img th:alt="${v.name}" th:src="${webImageBase + v.image}" class="first_img" onerror="javascript:this.src='/image_1/error.png';"/>
+                        </a>
+                            <span th:if="${v.isFisrt=='TRUE'}" class="fist_span">
+                                <a th:href="${v.link}" target="_blank" th:text="${v.name}"></a>
+                            </span>
+
+                        <a th:href="${v.link}" th:if="${v.isFisrt!='TRUE'}"  target="_blank">
+                            <img th:alt="${v.name}" th:src="${v.image}"  onerror="javascript:this.src='/image_1/error.png';"/>
+                        </a>
+                             <span th:if="${v.isFisrt!='TRUE'}">
+                                <a th:href="${v.link}" target="_blank" th:text="${v.name}"></a>
+                            </span>
+                    </li>
+
+                </ul>
+                <!--mid adv start-->
+                <div class="adv_mid_banner">
+                </div>
+                <!--mid adv end-->
+            </div>
+            <!--top left end-->
+
+
+            <!--Recommend video start-->
+            <!--            <div class="video">
+                                    <div class="v_top"><a class="v_group">推荐视频</a></div>
+                                    <ul>
+                                                        </ul>
+                                </div>-->
+            <!--Recommend video start-->
+
+            <!--new video start-->
+            <div class="video">
+                <div class="v_top">
+                    <a class="v_group">最新视频</a>
+                    <!-- <a href="https://www.zhibo8.cc/nba/index_old.htm" target="_blank" class="more">
+                            <font color="red">+更多每日视频</font>
+                        </a> -->
+                </div>
+                <ul>
+                    <li th:each="v:${newVideos}">
+                        <a th:href="${v.link}" target="_blank" th:text="${v.name}"></a>
+                    </li>
+
+                </ul>
+            </div>
+            <!--new video end-->
+
+            <!--team video start-->
+
+            <div class="video v_change">
+                <div class="v_top">
+                    <a class="v_group">CBA视频</a>
+
+
+                    <!-- <a class="more" href="./more.htm?label=%E5%8B%87%E5%A3%AB" target="_blank">+更多</a> -->
+
+                </div>
+
+                <div class="content" style="height:500px;overflow: hidden;">
+
+                    <ul>
+                        <li th:each="v:${cbaNewVideos}">
+                            <a th:href="${v.link}" target="_blank" th:text="${v.name}"></a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+            <div class="video v_change">
+                <div class="v_top">
+                    <a class="v_group">CBA录像</a>
+
+                    <!-- <a class="more" href="./more.htm?label=%E6%B9%96%E4%BA%BA" target="_blank">+更多</a> -->
+
+                </div>
+
+                <div class="content" style="height:500px;overflow: hidden;">
+
+                    <ul>
+                        <li th:each="v:${cbaHotVideos}">
+                            <a th:href="${v.link}" target="_blank" th:text="${v.name}"></a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!--team video end-->
+        </div>
+
+        <div th:replace="layout/nba_right :: nba_right"></div>
+        <div class="clearb"></div>
+    </div>
+</div>
+
+
+
+<div th:replace="layout/footer :: footer"></div>
+<script>
+    $(function () {
+        $('.m_r_team li').click(function () {
+            $(this).siblings().removeClass('a_cur');
+            $(this).addClass('a_cur');
+            var li_index = $(this).index();
+            $(this).parent().parent().parent().parent().nextAll('table').addClass('dis_none');
+            $(this).parent().parent().parent().parent().nextAll('table').eq(li_index).removeClass(
+                    'dis_none');
+        })
+    })
+</script>
+    <script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
+
+</body>
+
+</html>

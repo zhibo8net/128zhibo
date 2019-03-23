@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>体育新闻_足球资讯_篮球资讯-直播8</title>
+    <meta name="keywords" content="直播吧,直播8,足球直播,篮球直播,NBA直播,世界杯直播,在线直播,体育直播" />
+    <meta name="description" content="直播吧是国内最好的体育直播平台,主要提供足球直播、篮球直播、NBA直播、CBA直播、世界杯直播、球赛直播、比分直播、英超直播以及CCTV5在线直播等体育赛事。" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
+    <meta name="baidu-site-verification" content="FeM2EtCC8T" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{../styles_1/common.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/less/jingcai.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/login.css}" />
+    <!-- <link rel="stylesheet" href="../static/styles_1/common.css" />
+    <link rel="stylesheet" href="../static/styles_1/less/jingcai.css" /> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <script th:src="@{/js_1/md5.js}"></script>
+    <!-- <script th:src="@{/js_1/flashSlider.js}"></script> -->
+    <!-- <script src="../static/js_1/flashSlider.js"></script> -->
+    <style>
+        em{
+            font-style: normal;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .onekey-login ul li span.li{
+            margin-bottom: -6px;
+        }
+        .loginBox{
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div th:replace="layout/header :: header"></div>
+
+
+    <div id="main" class="container" th:if="${issue!=null}">
+        <div class="left">
+            <div class="breadcrumbs">
+                <a href="https://www.zhibo8.net">直播首页</a>&gt;
+                <span>竞猜活动</span>
+
+                <span class="getId" style="display:none;" th:text="${issue.issue}"></span>
+            </div>
+            <div class="banner">
+
+            </div>
+            <p class="matchTitle">在 <span th:text="${issue.playDateStr}"></span> <span th:text="${issue.matchName}"></span>的这场比赛中：</p>
+            <ul>
+                <li th:each="question:${issue.issueQuestionList}">
+                    <p class="title" th:text="${question.problemTitle}"></p>
+                    <p class="optionCon single">
+                        <span th:each="options:${question.issueQuestionContentList}" th:classappend="|${options.userChecked=='CHECKED'?'mychoice':''} ${options.answerFlag=='true'?'true':''}">
+                            <em th:text="${options.questionContent}"></em>
+                            <!--<em th:if="${question.inputFlag=='INPUT'}" th:text="${question.inputContent}"></em>-->
+                        </span>
+                    </p>
+                </li>
+                <li>
+                    <p class="title">请填写您的微信号码：<input type="text" class="userWx" /></p>
+                </li>
+            </ul>
+            <button class="submit">确认并提交</button>
+
+        </div>
+        <div class="right">
+            <img th:src="@{/image_1/20181227203944.jpg}" alt="" />
+        </div>
+    </div>
+    <div th:replace="layout/login :: login"></div>
+    <div id="main2" class="container" th:if="${issue==null}">
+        <div class="breadcrumbs">
+            <a href="https://www.zhibo8.net">直播首页</a>&gt;
+            <span>竞猜活动</span>
+
+            <span class="getId" style="display:none;"></span>
+        </div>
+    </div>
+    <div th:replace="layout/footer :: footer"></div>
+    <script>
+        $(function () {
+            var issue = $('.getId').html();
+            checkLogin();
+
+            function checkLogin() {
+                $.ajax({
+                    url: '/checkUser',
+                    type: 'POST',
+                    // data: JSON.stringify(data),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.code != '0000') {
+                            $('.loginBox').fadeIn(); // 显示登录弹窗
+                        }
+                    },
+                    fail: function (err) {
+                        alert(err)
+                    }
+                });
+            }
+
+            $('.optionCon span').click(function (e) {
+                var that = $(this);
+                that.siblings().removeClass('mychoice')
+                if (that.hasClass('mychoice')) {
+                    that.removeClass('mychoice')
+                } else if (!that.hasClass('mychoice')) {
+                    that.addClass('mychoice')
+                }
+            });
+            $('.submit').click(function (e) {
+                var list = [];
+                if (!$('.userWx').val()) {
+                    alert('请输入微信号')
+                    return false
+                }
+                $('.optionCon').each(function (i, e) {
+                    var i = $(e).find('.mychoice').index();
+                    if (i == -1) {
+                        i = ''
+                    } else {
+                        i++;
+                    }
+                    list.push(i);
+                });
+                var data = {
+                    issue: issue,
+                    answer: list.join('-'),
+                    userWx: $('.userWx').val() || ''
+                }
+                $.ajax({
+                    url: '/api/user/addIssue',
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.code == '0000') {
+                            alert(resp.message)
+                        } else {
+                            alert(resp.message)
+                        }
+                    },
+                    fail: function (err) {
+                        alert(err)
+                    }
+                })
+            })
+        })
+    </script>
+    <script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
+</body>
+
+</html>

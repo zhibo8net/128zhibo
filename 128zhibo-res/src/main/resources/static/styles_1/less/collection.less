@@ -1,0 +1,37 @@
+@import "components.less";
+
+.collection-gallery{
+
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    
+    border-bottom: 1px @c1 solid;
+    
+    &:last-child{
+        border-bottom: none;
+    }
+    
+    .title{
+        margin-bottom: 5px;
+        b{
+            display: inline-block;
+            margin-left: 5px;
+            vertical-align: middle;
+            font-size: @default_font_size;
+            line-height: @default_font_size;
+        }
+    }
+    
+    .collection-item{
+        img{
+            width: 168px;
+            height: 108px;
+        }
+        a{
+            display: block;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+        }
+    }
+}

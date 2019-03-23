@@ -1,0 +1,172 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<!--<groupId>net.studio427</groupId>-->
+<!--<artifactId>zhibo82018</artifactId>-->
+<!--<version>1.50.1</version>-->
+<!--<packaging>jar</packaging>-->
+    <groupId>128zhibo</groupId>
+    <artifactId>128zhibo-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <!-- 打包方式为pom -->
+    <packaging>pom</packaging>
+
+    <!-- 引入子项目 -->
+    <modules>
+        <module>128zhibo-web</module>
+        <module>128zhibo-service</module>
+        <module>128zhibo-spider</module>
+        <module>128zhibo-res</module>
+        <module>128zhibo-common</module>
+        <module>128zhibo-domain</module>
+        <module>128zhibo-repository</module>
+    </modules>
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.9.RELEASE</version>
+</parent>
+
+<properties>
+    <java.version>1.8</java.version>
+    
+    <springside.version>5.0.0-SNAPSHOT</springside.version>
+    
+    <guava.version>20.0</guava.version>
+
+</properties>
+
+<dependencies>
+
+    <!-- spring boot -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-websocket</artifactId>
+    </dependency>
+    <dependency>
+	   <groupId>org.springframework.boot</groupId>
+	   <artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
+    <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+	
+	<!-- hibernate -->
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-ehcache</artifactId>
+	</dependency>
+	
+	<!-- activemq -->
+    <dependency>
+       <groupId>org.apache.activemq</groupId>
+       <artifactId>activemq-broker</artifactId>
+    </dependency>
+    <dependency>
+       <groupId>org.springframework</groupId>
+       <artifactId>spring-jms</artifactId>
+    </dependency>
+    <dependency>
+       <groupId>org.apache.activemq</groupId>
+       <artifactId>activemq-client</artifactId>
+    </dependency>
+    
+    <!-- springside -->
+    <dependency>
+        <groupId>io.springside</groupId>
+        <artifactId>springside-utils</artifactId>
+        <version>${springside.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>io.springside</groupId>
+        <artifactId>springside-core</artifactId>
+        <version>${springside.version}</version>
+    </dependency>
+    
+    <!-- jdbc driver -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+        
+    <!-- test -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+        
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.freemarker</groupId>
+        <artifactId>freemarker</artifactId>
+    </dependency>
+        
+        
+    <!-- others begin -->
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.3.5</version>
+    </dependency>
+    
+    <!-- jsoup -->
+    <dependency>
+        <groupId>org.jsoup</groupId>
+        <artifactId>jsoup</artifactId>
+        <version>1.6.3</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guava.version}</version>
+    </dependency>
+        
+    <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.1</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>ma.glasnost.orika</groupId>
+        <artifactId>orika-core</artifactId>
+        <version>1.5.0</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>net.sf.dozer</groupId>
+        <artifactId>dozer</artifactId>
+        <version>5.5.1</version>
+    </dependency>
+    <dependency>
+        <groupId>net.sf.json-lib</groupId>
+        <artifactId>json-lib</artifactId>
+        <version>2.4</version>
+        <classifier>jdk15</classifier>
+    </dependency>
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>1.2.4</version>
+    </dependency>
+</dependencies>
+
+</project>

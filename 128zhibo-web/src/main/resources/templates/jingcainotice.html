@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>体育新闻_足球资讯_篮球资讯-直播8</title>
+    <meta name="keywords" content="直播吧,直播8,足球直播,篮球直播,NBA直播,世界杯直播,在线直播,体育直播" />
+    <meta name="description" content="直播吧是国内最好的体育直播平台,主要提供足球直播、篮球直播、NBA直播、CBA直播、世界杯直播、球赛直播、比分直播、英超直播以及CCTV5在线直播等体育赛事。" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
+    <meta name="baidu-site-verification" content="FeM2EtCC8T" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{../styles_1/common.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/less/jingcai.css}" />
+    <!-- <link rel="stylesheet" href="../static/styles_1/common.css" />
+    <link rel="stylesheet" href="../static/styles_1/less/jingcai.css" /> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+    <div th:replace="layout/header :: header"></div>
+
+
+    <div id="main" class="container">
+        <div class="left">
+            <div class="breadcrumbs">
+                <a href="https://www.zhibo8.net">直播首页</a>&gt;
+                <span>竞猜规则</span>
+            </div>
+            <div th:if="${issue!=null}">
+            <h3 class="matchTitle">本网站第<span th:text="${issue.issue}"></span>期竞猜活动已开奖，中奖名单如下:</h3>
+            <div class="list">
+                <p th:each="users:${issue.issueUserList}" th:text="${users.userMobile}"></p>
+            </div>
+            <h4>5个工作日内，工作人员会添加你竞猜时预留的微信，请耐心等待。</h4>
+            </div>
+            <h3 th:if="${issue==null}" class="matchTitle">本网站第暂无公告信息</h3>
+
+        </div>
+        <div class="right">
+            <div id="siderbar">
+                <div class="advert last">
+                    <img th:src="@{/image_1/20181227203944.jpg}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container border-top" style="padding:0;">
+        <h3>竞猜规则</h3>
+        <p>不知道是什么</p>
+    </div>
+    <div th:replace="layout/footer :: footer"></div>
+
+    <script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
+</body>
+
+</html>

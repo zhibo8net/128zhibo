@@ -1,0 +1,109 @@
+package website2018.api.admin;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springside.modules.utils.mapper.BeanMapper;
+import org.springside.modules.web.MediaTypes;
+
+import website2018.base.BaseEndPoint;
+import website2018.base.BaseService;
+import website2018.domain.${entity.big};
+import website2018.dto.admin.${entity.big}AdminDTO;
+import website2018.service.admin.${entity.big}Service;
+
+@RestController
+public class ${entity.big}AdminEndpoint extends BaseEndPoint {
+
+    private static Logger logger = LoggerFactory.getLogger(${entity.big}AdminEndpoint.class);
+
+    @Autowired
+    private ${entity.big}Service ${entity.small}Service;
+
+    @RequestMapping(value = "/api/admin/${entity.small}s", method = RequestMethod.GET, produces = MediaTypes.JSON_UTF_8)
+    public List<${entity.big}AdminDTO> listAll${entity.big}() {
+
+        assertAdmin();
+
+        List<${entity.big}> ${entity.small}s = ${entity.small}Service.findAll(buildSpecification(BaseService.base(), ${entity.big}.class));
+
+        return BeanMapper.mapList(${entity.small}s, ${entity.big}.class, ${entity.big}AdminDTO.class);
+    }
+
+    @RequestMapping(value = "/api/admin/${entity.small}s/page", method = RequestMethod.GET, produces = MediaTypes.JSON_UTF_8)
+    public Page<${entity.big}AdminDTO> listByPage(HttpServletRequest request, Pageable pageable) {
+
+        assertAdmin();
+
+        Page<${entity.big}> orders = ${entity.small}Service.findAll(buildSpecification(request, ${entity.big}.class), new PageRequest(pageable.getPageNumber(), pageable.getPageSize(), getSort("id", "DIRE")));
+
+        List<${entity.big}AdminDTO> dtos = BeanMapper.mapList(orders, ${entity.big}.class, ${entity.big}AdminDTO.class);
+
+        Page<${entity.big}AdminDTO> dtoPage = new PageImpl(dtos, pageable, orders.getTotalElements());
+
+        logService.log("查询${entity.chinese}表", null);
+
+        return dtoPage;
+    }
+
+    @RequestMapping(value = "/api/admin/${entity.small}s/{id}", method = RequestMethod.GET, produces = MediaTypes.JSON_UTF_8)
+    public ${entity.big}AdminDTO listOne${entity.big}(@PathVariable("id") Long id) {
+
+        assertAdmin();
+
+        ${entity.big} ${entity.big} = ${entity.small}Service.findOne(id);
+
+        return BeanMapper.map(${entity.big}, ${entity.big}AdminDTO.class);
+    }
+
+    @RequestMapping(value = "/api/admin/${entity.small}s", method = RequestMethod.POST, consumes = MediaTypes.JSON_UTF_8)
+    public void create${entity.big}(@RequestBody ${entity.big}AdminDTO ${entity.small}AdminDTO) {
+
+        assertAdmin();
+
+        ${entity.big} ${entity.small} = BeanMapper.map(${entity.small}AdminDTO, ${entity.big}.class);
+
+        ${entity.small}.addTime = new Date();
+        ${entity.small}Service.create(${entity.small});
+        
+        logService.log("添加${entity.chinese}", "/${entity.small}Form/" + ${entity.small}.id);
+    }
+
+    @RequestMapping(value = "/api/admin/${entity.small}s/{id}", method = RequestMethod.PUT, consumes = MediaTypes.JSON_UTF_8)
+    public void modify${entity.big}(@RequestBody ${entity.big}AdminDTO ${entity.small}AdminDTO) {
+
+        assertAdmin();
+
+        ${entity.big} ${entity.small} = BeanMapper.map(${entity.small}AdminDTO, ${entity.big}.class);
+
+        ${entity.small}.addTime = new Date();
+        ${entity.small}Service.modify(${entity.small});
+
+        logService.log("修改${entity.chinese}", "/${entity.small}Form/" + ${entity.small}.id);
+    }
+
+    @RequestMapping(value = "/api/admin/${entity.small}s/{id}", method = RequestMethod.DELETE)
+    public void delete${entity.big}(@PathVariable("id") Long id) {
+
+        assertAdmin();
+
+        ${entity.small}Service.delete(id);
+
+        logService.log("删除${entity.chinese}", null);
+    }
+
+}

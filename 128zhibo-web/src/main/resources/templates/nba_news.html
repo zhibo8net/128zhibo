@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>体育新闻_篮球资讯_足球资讯-直播8</title>
+    <meta name="keywords" content="直播吧,直播8,足球直播,篮球直播,NBA直播,世界杯直播,在线直播,体育直播" />
+    <meta name="description" content="直播吧是国内最好的体育直播平台,主要提供足球直播、篮球直播、NBA直播、CBA直播、世界杯直播、球赛直播、比分直播、英超直播以及CCTV5在线直播等体育赛事。" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
+    <meta name="baidu-site-verification" content="FeM2EtCC8T" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{../styles_1/common.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/nbanews.css}" />
+    <!-- <link rel="stylesheet" href="../static/styles_1/common.css" />
+    <link rel="stylesheet" href="./nbanews.css" /> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <script th:src="@{/js_1/flashSlider.js}"></script>
+    <!-- <script src="../static/js_1/flashSlider.js"></script> -->
+    <!-- <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?aab079013b60296378945e415582815d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script> -->
+</head>
+
+<body>
+<div th:replace="layout/header :: header"></div>
+
+
+<div id="main">
+
+    <div id="top">
+        <div class="xw_left">
+            <!-- start leftbox -->
+            <div class="topleftbox">
+                <h2>
+                    <span th:each="n,iterStat:${h2TopNewsList1}">
+                         <a  target="_blank" th:href="'/news_detail/'+${n.id}+'.html'" th:text="${n.title}"></a>
+                    </span>
+                </h2>
+                <p>
+                    <span th:each="n,iterStat:${pTopNewsList1}">
+                    <a  target="_blank" th:href="'/news_detail/'+${n.id}+'.html'" th:text="${n.title}"></a>
+                       <span th:if="${iterStat.count%3!=0}">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <br th:if="${iterStat.count==3||iterStat.count==6||iterStat.count==9}"></br>
+                     </span>
+
+                </p>
+
+                <h2>
+                    <span th:each="n,iterStat:${h2TopNewsList2}">
+                         <a  target="_blank" th:href="'/news_detail/'+${n.id}+'.html'" th:text="${n.title}"></a>
+                    </span>
+                </h2>
+                <p>
+                    <span th:each="n,iterStat:${pTopNewsList2}">
+                    <a  target="_blank" th:href="'/news_detail/'+${n.id}+'.html'" th:text="${n.title}"></a>
+                       <span th:if="${iterStat.count%3!=0}">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <br th:if="${iterStat.count==3||iterStat.count==6||iterStat.count==9}"></br>
+                     </span>
+
+                </p>
+
+
+                <h2>
+                    <span th:each="n,iterStat:${h2TopNewsList3}">
+                         <a  target="_blank" th:href="'/news_detail/'+${n.id}+'.html'" th:text="${n.title}"></a>
+                    </span>
+                </h2>
+                <p>
+                    <span th:each="n,iterStat:${pTopNewsList3}">
+                    <a  target="_blank" th:href="'/news_detail/'+${n.id}+'.html'" th:text="${n.title}"></a>
+                        <span th:if="${iterStat.count%3!=0}">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <br th:if="${iterStat.count==3||iterStat.count==6||iterStat.count==9}"></br>
+                     </span>
+
+                </p>
+            </div>
+
+            <!-- 2018-10-14 12:49:18 -->
+            <!--end leftbox -->
+        </div>
+        <div class="xw_right">
+            <div id="slider">
+                <ul>
+                    <li th:each="n:${sliderList}">
+
+                        <a th:href="'/news_detail/'+${n.id}+'.html'" target="_blank">
+                            <img th:src="${webImageBase +n.image}" th:alt="${n.title}"/>
+                            <div class="info">
+                                <b th:text="${n.title}"></b>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="clearb"></div>
+    </div>
+    <div class="adv_top_banner"></div>
+
+    <div id="middle">
+
+        <div class="m_left">
+
+            <!--Recommend video start-->
+            <!--            <div class="video">
+                                    <div class="v_top"><a class="v_group">推荐视频</a></div>
+                                    <ul>
+                                                        </ul>
+                                </div>-->
+            <!--Recommend video start-->
+
+            <!--team video start-->
+
+            <div class="video v_change">
+                <div class="v_top">
+                    <a class="v_group">NBA 新闻</a>
+
+                    <!-- <a class="more" href="./more.htm?label=%E5%8B%87%E5%A3%AB" target="_blank">+更多</a> -->
+
+                </div>
+
+                <div class="content" style="height:500px;overflow: hidden;">
+
+                    <ul>
+                        <li th:each="n:${newsListNBA}">
+                            <a th:href="'/news_detail/'+${n.id}+'.html'" th:text="${n.title}" target="_blank"></a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+            <div class="video v_change">
+                <div class="v_top">
+                    <a class="v_group">CBA 新闻</a>
+
+                    <!-- <a class="more" href="./more.htm?label=%E5%8B%87%E5%A3%AB" target="_blank">+更多</a> -->
+
+                </div>
+
+                <div class="content" style="height:500px;overflow: hidden;">
+
+                    <ul>
+                        <li th:each="n:${newsListCBA}">
+                            <a th:href="'/news_detail/'+${n.id}+'.html'" th:text="${n.title}" target="_blank"></a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+            <div class="video v_change">
+                <div class="v_top">
+                    <a class="v_group">其他 新闻</a>
+
+                    <!-- <a class="more" href="./more.htm?label=%E5%8B%87%E5%A3%AB" target="_blank">+更多</a> -->
+
+                </div>
+
+                <div class="content" style="height:500px;overflow: hidden;">
+
+                    <ul>
+                        <li th:each="n:${newsListOther}">
+                            <a th:href="'/news_detail/'+${n.id}+'.html'" th:text="${n.title}" target="_blank"></a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <!--team video end-->
+        </div>
+
+        <div th:replace="layout/nba_right :: nba_right"></div>
+        <div class="clearb"></div>
+    </div>
+</div>
+
+
+
+<div th:replace="layout/footer :: footer"></div>
+<script>
+    $(function () {
+        $('#hot_video').hide();
+        $("#slider").flashSlider();
+        $('.m_r_team li').click(function () {
+            $(this).siblings().removeClass('a_cur');
+            $(this).addClass('a_cur');
+            var li_index = $(this).index();
+            $(this).parent().parent().parent().parent().nextAll('table').addClass('dis_none');
+            $(this).parent().parent().parent().parent().nextAll('table').eq(li_index).removeClass(
+                    'dis_none');
+        })
+    })
+</script>
+    <script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
+
+</body>
+
+</html>

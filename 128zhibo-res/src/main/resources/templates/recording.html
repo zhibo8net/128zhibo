@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout">
+<head>
+    <title>比赛录像_NBA录像_CBA录像_足球录像_英超录像-直播8</title>
+    <meta name="keywords" content="比赛录像,NBA录像,CBA录像,足球录像,英超录像" />
+    <meta name="description" content="比赛录像频道为您提供最新的NBA录像、CBA录像、足球录像、英超录像、足球世界杯录像、篮球世界杯录像回放等，更多精彩赛事录像尽在直播吧" />
+    <link rel="stylesheet" th:href="@{styles_1/video.css}" />
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-9 left-content">
+            <div class="row">
+                <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  ><a href="/recording_1?type=all"> 比赛录像</a></div>
+           </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills margin-top-20">
+                      <li role="presentation" th:classappend="${game==''?'active':''}"><a href="?type=all">全部</a></li>
+                      <li role="presentation" th:classappend="${game=='NBA'?'active':''}"><a href="?project=篮球&amp;game=NBA">NBA</a></li>
+                      <li role="presentation" th:classappend="${game=='CBA'?'active':''}"><a href="?project=篮球&amp;game=CBA">CBA</a></li>
+                      <li role="presentation" th:classappend="${game=='英超'?'active':''}"><a href="?project=足球&amp;game=英超">英超</a></li>
+                      <li role="presentation" th:classappend="${game=='意甲'?'active':''}"><a href="?project=足球&amp;game=意甲">意甲</a></li>
+                      <li role="presentation" th:classappend="${game=='西甲'?'active':''}"><a href="?project=足球&amp;game=西甲">西甲</a></li>
+                      <li role="presentation" th:classappend="${game=='德甲'?'active':''}"><a href="?project=足球&amp;game=德甲">德甲</a></li>
+                      <li role="presentation" th:classappend="${game=='法甲'?'active':''}"><a href="?project=足球&amp;game=法甲">法甲</a></li>
+                      <li role="presentation" th:classappend="${game=='中超'?'active':''}"><a href="?project=足球&amp;game=中超">中超</a></li>
+                      <li role="presentation" th:classappend="${game=='欧冠'?'active':''}"><a href="?project=足球&amp;game=欧冠">欧冠</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered video-table margin-top-20">
+                        <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>更新时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="r:${page.content}">
+                                <td><a th:href="${r.link}" th:text="${r.name}" target="_blank"></a> <img th:src="@{image_1/icon/video.png}" class="icon-24"/></td>
+                                <td><span th:if="${r.addTime!=null}" th:text="${#dates.format(r.addTime, 'yyyy-MM-dd')}"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div th:replace="layout/pagination :: pagination"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 right-content">
+            <div th:replace="layout/right :: channel"></div>
+            <div th:replace="layout/right :: gameCollection"></div>
+            <div th:replace="layout/right :: gameVideo"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

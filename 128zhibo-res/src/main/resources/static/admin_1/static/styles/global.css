@@ -1,0 +1,124 @@
+.container{
+	color: #616b76;
+}
+
+.admin-body{
+	background-color: #3d3d3d;
+}
+
+.menu{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.main{
+	background-color: #fff;
+}
+
+.top-bar{
+	line-height: 36px;
+	border-bottom: #AAAAAA 1px solid;
+}
+
+.menu-bar{
+	border-bottom: #AAAAAA 1px solid;
+	color: #cf5026;
+}
+
+.foot-bar{
+	border-top: #AAAAAA 1px solid;
+	padding-top: 10px;
+}
+
+.menu-bar h1{
+	line-height: 40px;
+	font-size: 40px;
+	margin: 20px 0;
+	font-weight: 400;
+}
+
+.menu-bar h1 a{
+	color: #cf5026;
+}
+
+.blog-items{
+	margin-left: -15px;
+}
+
+.blog-item{
+	margin: 20px 0;
+}
+
+.blog-img{
+	padding: 0;
+}
+
+.blog-item h2{
+	margin-top: 0;
+}
+
+.blog-item h2 a.article-title{
+	font-weight: 300;
+	color: #cf5026;
+}
+
+h2.article-title{
+	font-weight: 300;
+	margin: 30px 0;
+	color: #cf5026;
+}
+
+.blog-types{
+	margin: 15px 0;
+	padding: 0 0 0 15px;
+}
+
+.blog-types-title{
+	font-weight: 300;
+	color: #cf5026;
+}
+
+.blog-types li{
+	margin: 10px 0;
+}
+
+a.blog-type{
+	color: #cf5026;
+}
+
+.book-form{
+	margin: 15px 0;
+}
+
+.book{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.book-image{
+	width: 100%;
+}
+
+h2.book-title-header{
+	margin-top: 0;
+}
+
+a.book-title{
+	font-weight: 300;
+	color: #cf5026;
+}
+
+.recommend{
+	display: inline-block;
+	padding: 3px;
+	font-size: 12px;
+	color: #fff;
+}
+
+.recommend-2{
+	background-color: #c65549;
+}
+
+.recommend-1{
+	background-color: #5fadf6;
+}

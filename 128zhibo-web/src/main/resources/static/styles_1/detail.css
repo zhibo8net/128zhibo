@@ -1,0 +1,1247 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #535353;
+    background: #fff;
+    font: 12px/1.125 Helvetica, Arial, sans-serif;
+    font-family: "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "寰蒋闆呴粦", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+
+.no_shadow {
+    -moz-text-shadow: none;
+    -webkit-text-shadow: none;
+    text-shadow: none;
+}
+
+/***Color of links***/
+
+a img {
+    border: 0;
+}
+
+a:link {
+    color: #0000ee;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:visited {
+    color: #0000ee;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0000ee;
+    text-decoration: none;
+}
+
+a:active {
+    color: #0000ee;
+    text-decoration: none;
+}
+
+a:focus {
+    outline: none;
+}
+
+.red {
+    color: #ee2b40;
+}
+
+.bold {
+    font-weight: normal;
+}
+
+ul {
+    list-style-type: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+input.button {
+    border: none;
+}
+
+p {
+    text-indent: 24px;
+    margin: 10px 0;
+}
+
+/*** body ***/
+
+.top-container {
+    height: 50px;
+    /* background-color: #4184f3; */
+    border-bottom: 2px solid #4184f3
+}
+
+.top-body {
+    width: 990px;
+    margin: 0 auto;
+    /* overflow: hidden; */
+}
+.top-body::after{
+    content: "";
+    width: 0;
+    height: 0;
+    clear: both;
+}
+
+.top-right {
+    height: 50px;
+    vertical-align: middle;
+    font-size: 18px;
+    display: inline-block;
+    line-height: 52px;
+    margin-left: 20px;
+    /* margin: 0 0 20px 20px; */
+}
+
+.top-right a {
+    /* padding: 15px; */
+    color: #555;
+    font-size: 15px;
+    padding-top: 10px;
+    display: block;
+}
+
+._self {
+    float: left;
+    height: 50px;
+    position: relative;
+    min-width: 148px;
+}
+._self img{
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 140px;
+}
+.foot-container {
+    height: 40px;
+}
+
+.foot-body {
+    width: 960px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 14px;
+}
+.footer .container{
+    margin: 0 auto;
+}
+.container1 {
+    width: 100%;
+    /* background: linear-gradient(to bottom right, #fff, #4184f3);
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#ffffff', endColorStr='#4184f3', gradientType='0'); */
+    padding: 15px 0;
+}
+.containerBf .body{
+    width: 1020px;
+}
+.body {
+    width: 1020px;
+    margin: 0 auto;
+    background: white;
+    -moz-border-radius: 15px;
+         border-radius: 15px;
+    padding: 10px;
+    font-size: 13px;
+    overflow: auto;
+}
+
+.body .live-match,
+.body .live-day {
+    clear: both;
+    line-height: 36px;
+    margin: 1px auto;
+    text-align: center;
+}
+
+.live-day {
+    font-size: 14px;
+    background: #535353;
+    color: white;
+}
+
+.live-match {
+    font-size: 14px;
+}
+
+.live-match-even {
+    background: #f3f3f3;
+}
+
+.live-head {
+    font-size: 18px;
+}
+
+.live-match ul {
+    overflow: auto;
+}
+
+.live-match ul li {
+    float: left;
+}
+
+.live-match ul li.live-time {
+    width: 40px;
+    padding-left: 30px;
+}
+
+.live-match ul li.live-time-day {
+    background: url(../image_1/sun.png) 0 0 no-repeat;
+}
+
+.live-match ul li.live-time-night {
+    background: url(../image_1/moon.png) 0 0 no-repeat;
+}
+
+.live-match ul li.live-event {
+    width: 120px;
+}
+
+.live-match ul li.live-team {
+    width: 450px;
+}
+
+.live-match ul li.live-team img {
+    height: 30px;
+    margin: 0 8px;
+    vertical-align: middle;
+}
+
+.live-match ul span {}
+
+.live-match ul span.live-home {
+    width: 210px;
+    text-align: right;
+    display: inline-block;
+}
+
+.live-match ul span.live-vs {
+    width: 20px;
+    display: inline-block;
+}
+
+.live-match ul span.live-away {
+    width: 210px;
+    text-align: left;
+    display: inline-block;
+}
+
+.live-match ul li.live-channel {
+    width: 260px;
+}
+
+.live-match ul li.live-channel a {
+    color: #0092da;
+}
+
+.live-match ul li.live-status {
+    width: 60px
+}
+
+.play-left {
+    width: 1020px;
+    float: left;
+}
+
+.play-right {
+    padding-top: 0px;
+    float: left;
+    margin-left: 5px;
+}
+
+.play-right a {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.play-info {
+    line-height: 60px;
+    text-align: center;
+    background-position: 0 -100px;
+    margin-bottom: 10px;
+    height: 62px;
+}
+
+.play-info img {
+    height: 30px;
+    margin: 0 8px;
+    vertical-align: middle;
+}
+
+.play-info span{
+    font-size: 18px;
+    color: white;
+}
+
+.play-info-soccer {
+    background: url(../image_1/bg-soccer.png) no-repeat 0 0;
+    -moz-background-size: 100% auto;
+         background-size: 100% auto;
+}
+
+.play-info-basketball {
+    background: url(../image_1/bg-basketball.png) no-repeat 0 0;
+}
+
+.play-info-other {
+    background: url(../image_1/bg-other.png) no-repeat 0 0;
+}
+
+.play-channel {
+    overflow: auto;
+    margin: 5px 0;
+}
+.lanqiubf{
+    display: none;
+}
+.play-channel span {
+    border: 1px #0092da solid;
+    -moz-border-radius: 8px;
+         border-radius: 8px;
+    margin: 0 10px;
+    padding: 5px 20px;
+    letter-spacing: 5px;
+    float: left;
+}
+
+.play-channel .on {
+    background: #0092da;
+    color: white;
+}
+
+.play-channel-name {
+    float: right;
+    line-height: 26px;
+    margin-right: 5px;
+    background: #535353;
+    color: white;
+    padding: 0 8px;
+}
+
+.play-player,
+iframe {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+.play-player{
+    -moz-border-radius: 5px;
+         border-radius: 5px;
+    background-color: #333;
+}
+.zuqiubf,.lanqiubf{
+    height: 20000px;
+}
+a.play-out-link {
+    margin: 150px auto;
+    display: block;
+    color: #0092da;
+    font-size: 18px;
+    text-align: center;
+}
+
+.play-animate {
+    background: url(../image_1/liveno.svg) no-repeat bottom center;
+    height: 270px;
+    display: none;
+}
+
+.play-nosignal {
+    font-size: 22px;
+    margin-left: 300px;
+    margin-top: 20px;
+    vertical-align: baseline;
+    display: none;
+}
+
+.player-ad-close {
+    color: white;
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    right: 0;
+    top: 20px;
+    cursor: pointer;
+}
+
+.play-home {
+    width: 250px;
+    text-align: right;
+    display: inline-block;
+    font-size: 18px;
+    color: white;
+}
+
+.play-vs {
+    width: 150px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 18px;
+    color: white;
+}
+
+.play-title {
+    width: 400px;
+    display: inline-block;
+    margin-top: 15px;
+    line-height: 18px;
+    color: white;
+}
+
+.play-away {
+    width: 250px;
+    text-align: left;
+    display: inline-block;
+    font-size: 18px;
+    color: white;
+}
+
+.noData {
+    width: 100%;
+    height: 100%;
+    -moz-border-radius: 5px;
+         border-radius: 5px;
+    background-color: #333;
+    overflow: hidden;
+}
+
+.noData p.first {
+    padding-top: 190px;
+}
+
+.noData p {
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.noData p a {
+    color: #fffc00;
+}
+
+i.team {
+    background: url(../image_1/teamlogo.png) no-repeat 25px 25px;
+    width: 24px;
+    height: 24px;
+    display: inherit;
+    vertical-align: text-bottom;
+    margin: 0 3px;
+}
+
+/*--涓秴--*/
+
+i.tchangchun_yatai {
+    background-position: -25px 0px;
+}
+
+i.ttianjin_teda {
+    background-position: -25px -25px;
+}
+
+i.tshanghai_shenxin {
+    background-position: -25px -50px;
+}
+
+i.tshanghai_shenhua {
+    background-position: -25px -75px;
+}
+
+i.tshanghai_sipg {
+    background-position: -25px -100px;
+}
+
+i.tshandong_luneng {
+    background-position: -25px -125px;
+}
+
+i.tliaoning_fc {
+    background-position: -25px -150px;
+}
+
+i.tjiangsu_shuntian {
+    background-position: -25px -500px;
+}
+
+i.thenan_jianye {
+    background-position: -25px -200px;
+}
+
+i.thangzhou_lvcheng {
+    background-position: -25px -225px;
+}
+
+i.thaerbin_yiteng {
+    background-position: -25px -250px;
+}
+
+i.tguizhou_renhe {
+    background-position: -25px -275px;
+}
+
+i.tguangzhou_pharmaceutical_fc {
+    background-position: -25px -300px;
+}
+
+i.tguangzhou_rf {
+    background-position: -25px -325px;
+}
+
+i.tdalian_aerbin {
+    background-position: -25px -350px;
+}
+
+i.tbeijing_guoan {
+    background-position: -25px -375px;
+}
+
+i.tchongqing_lifan {
+    background-position: -25px -400px;
+}
+
+i.tshijiazhuang {
+    background-position: -25px -425px;
+}
+
+i.thebei_fc {
+    background-position: -25px -450px;
+}
+
+i.tyanbian_fc {
+    background-position: -25px -475px;
+}
+
+i.tguizhou_maotai {
+    background-position: -25px -550px;
+}
+
+i.ttianjin_quanjian_fc {
+    background-position: -25px -525px;
+}
+
+/*--鑻辫秴--*/
+
+i.twest_ham_united {
+    background-position: 0 0;
+}
+
+i.twest_bromwich_albion {
+    background-position: 0 -25px;
+}
+
+i.taston_villa {
+    background-position: 0 -50px;
+}
+
+i.tswansea_city_fc {
+    background-position: 0 -75px;
+}
+
+i.tstoke_city {
+    background-position: 0 -100px;
+}
+
+i.tcrystal_palace {
+    background-position: 0 -125px;
+}
+
+i.tsunderland {
+    background-position: 0 -150px;
+}
+
+i.ttottenham_hotspur {
+    background-position: 0 -175px;
+}
+
+i.tchelsea {
+    background-position: 0 -200px;
+}
+
+i.tnewcastle_united {
+    background-position: 0 -650px;
+}
+
+i.tsouthampton_fc {
+    background-position: 0 -275px;
+}
+
+i.tmanchester_united {
+    background-position: 0 -300px;
+}
+
+i.tmanchester_city {
+    background-position: 0 -325px;
+}
+
+i.tliverpool_fc {
+    background-position: 0 -350px;
+}
+
+i.thull_city {
+    background-position: 0 -400px;
+}
+
+i.teverton_fc {
+    background-position: 0 -450px;
+}
+
+i.tarsenal {
+    background-position: 0 -475px;
+}
+
+i.tleicester_city {
+    background-position: 0 -500px;
+}
+
+i.tqueens_park_rangers {
+    background-position: 0 -525px;
+}
+
+i.tburnley_fc {
+    background-position: 0 -550px;
+}
+
+i.tnorwich_city {
+    background-position: 0 -576px;
+}
+
+i.tbournemouth_fc {
+    background-position: 0 -600px;
+}
+
+i.twatford_fc {
+    background-position: 0 -625px;
+}
+
+i.tbrighton_and_ha {
+    background-position: 0 -675px;
+}
+
+i.thuddersfield_town {
+    background-position: 0 -700px;
+}
+
+/*--鎰忕敳--*/
+
+i.tjuventus {
+    background-position: -50px 0;
+}
+
+i.tatalanta_bergamo {
+    background-position: -50px -25px;
+}
+
+i.tudinese {
+    background-position: -50px -50px;
+}
+
+i.tsampdoria {
+    background-position: -50px -75px;
+}
+
+i.tus_sassuolo {
+    background-position: -50px -100px;
+}
+
+i.tgenoa {
+    background-position: -50px -125px;
+}
+
+i.tac_chievo_verona {
+    background-position: -50px -150px;
+}
+
+i.tparma {
+    background-position: -50px -175px;
+}
+
+i.tnapoli {
+    background-position: -50px -200px;
+}
+
+i.tas_roma {
+    background-position: -50px -225px;
+}
+
+i.tlazio {
+    background-position: -50px -275px;
+}
+
+i.tcagliari {
+    background-position: -50px -325px;
+}
+
+i.tinter_milan {
+    background-position: -50px -350px;
+}
+
+i.tac_fiorentina {
+    background-position: -50px -375px;
+}
+
+i.ttorino_fc {
+    background-position: -50px -400px;
+}
+
+i.tac_milan {
+    background-position: -50px -450px;
+}
+
+i.tempoli_fc {
+    background-position: -50px -475px;
+}
+
+i.tspal_1907 {
+    background-position: -50px -475px;
+}
+
+i.tus_palermo {
+    background-position: -50px -500px;
+}
+
+i.tac_cesena {
+    background-position: -50px -525px;
+}
+
+i.thellas_verona {
+    background-position: -50px -550px;
+}
+
+i.tfrosinone_calcio {
+    background-position: -50px -575px;
+}
+
+i.tbologna_fc {
+    background-position: -50px -600px;
+}
+
+i.tcarpi {
+    background-position: -50px -630px;
+}
+
+i.tpescara {
+    background-position: -50px -665px;
+}
+
+i.tfc_crotone {
+    background-position: -50px -675px;
+}
+
+i.tbenevento {
+    background-position: -50px -700px;
+}
+
+/*--瑗跨敳--*/
+
+i.tespanyol {
+    background-position: -75px 0px;
+}
+
+i.tfc_sevilla {
+    background-position: -75px -25px;
+}
+
+i.tcelta_de_vigo {
+    background-position: -75px -50px;
+}
+
+i.tmalaga_cf {
+    background-position: -75px -75px;
+}
+
+i.tatletico_madrid {
+    background-position: -75px -100px;
+}
+
+i.treal_madrid {
+    background-position: -75px -150px;
+}
+
+i.treal_sociedad {
+    background-position: -75px -175px;
+}
+
+i.tgranada_cf {
+    background-position: -75px -225px;
+}
+
+i.tgetafe_cf {
+    background-position: -75px -225px;
+}
+
+i.tathletic_bilbao {
+    background-position: -75px -250px;
+}
+
+i.tvillarreal_cf {
+    background-position: -75px -275px;
+}
+
+i.tfc_barcelona {
+    background-position: -75px -325px;
+}
+
+i.tvalencia_cf {
+    background-position: -75px -350px;
+}
+
+i.trayo_vallecano {
+    background-position: -75px -375px;
+}
+
+i.tosasuna {
+    background-position: -75px -425px;
+}
+
+i.tgirona_fc {
+    background-position: -75px -425px;
+}
+
+i.telche_cf {
+    background-position: -75px -450px;
+}
+
+i.tud_almeria {
+    background-position: -75px -475px;
+}
+
+i.tdeportivo_la_coruna {
+    background-position: -75px -500px;
+}
+
+i.tcordoba_cf {
+    background-position: -75px -525px;
+}
+
+i.tsd_eibar {
+    background-position: -75px -550px;
+}
+
+i.tud_levante {
+    background-position: -75px -575px;
+}
+
+i.tsporting_de_gijon {
+    background-position: -75px -575px;
+}
+
+i.tud_las_palmas {
+    background-position: -75px -600px;
+}
+
+i.treal_betis {
+    background-position: -75px -625px;
+}
+
+i.tdeportivo_alaves {
+    background-position: -75px -650px;
+}
+
+i.tleganes {
+    background-position: -75px -675px;
+}
+
+i.td_las_palmas {
+    background-position: -75px -722px;
+}
+
+/*--寰风敳--*/
+
+i.tvfl_wolfsburg {
+    background-position: -100px 0
+}
+
+i.tvfb_stuttgart {
+    background-position: -100px -25px;
+}
+
+i.tfc_schalke_04 {
+    background-position: -100px -50px;
+}
+
+i.tborussia_monchengladbach {
+    background-position: -100px -100px;
+}
+
+i.tfsv_mainz_05 {
+    background-position: -100px -125px;
+}
+
+i.tbayer_04_leverkusen {
+    background-position: -100px -150px;
+}
+
+i.ttsg_hoffenheim {
+    background-position: -100px -175px;
+}
+
+i.thannover_96 {
+    background-position: -100px -200px;
+}
+
+i.thamburger_sv {
+    background-position: -100px -225px;
+}
+
+i.tsc_freiburg {
+    background-position: -100px -250px;
+}
+
+i.teintracht_frankfurt {
+    background-position: -100px -275px;
+}
+
+i.tborussia_dortmund {
+    background-position: -100px -300px;
+}
+
+i.twerder_bremen {
+    background-position: -100px -350px;
+}
+
+i.tbayern_munchen {
+    background-position: -100px -375px;
+}
+
+i.thertha_bsc_berlin {
+    background-position: -100px -400px;
+}
+
+i.tfc_augsburg {
+    background-position: -100px -425px;
+}
+
+i.tsc_paderborn_07 {
+    background-position: -100px -450px;
+}
+
+i.t1_fc_koln {
+    background-position: -100px -475px;
+}
+
+i.tsv_darmstadt_98 {
+    background-position: -100px -500px;
+}
+
+i.tfc_ingolstadt_04 {
+    background-position: -100px -525px;
+}
+
+i.trb_leipzig {
+    background-position: -100px -575px;
+}
+
+/*--娉曠敳--*/
+
+i.tparis_saint_germain {
+    background-position: -200px 0
+}
+
+i.tsco_angers {
+    background-position: -200px -25px;
+}
+
+i.tgirondins_bordeaux {
+    background-position: -200px -75px;
+}
+
+i.tdijon_footbal {
+    background-position: -200px -100px;
+}
+
+i.ten_avant_guingamp {
+    background-position: -200px -125px;
+}
+
+i.tsm_caen {
+    background-position: -200px -150px;
+}
+
+i.tstade_rennes {
+    background-position: -200px -175px;
+}
+
+i.tolympique_lyon {
+    background-position: -200px -200px;
+}
+
+i.tlille_osc {
+    background-position: -200px -225px;
+}
+
+i.tolympique_marseille {
+    background-position: -200px -275px;
+}
+
+i.tfc_metz {
+    background-position: -200px -300px;
+}
+
+i.tmontpellier_hsc {
+    background-position: -200px -325px;
+}
+
+i.tas_monaco {
+    background-position: -200px -350px;
+}
+
+i.tfc_nantes {
+    background-position: -200px -375px;
+}
+
+i.togc_nice {
+    background-position: -200px -425px;
+}
+
+i.tsaintetienne {
+    background-position: -200px -450px;
+}
+
+i.ttoulouse {
+    background-position: -200px -475px;
+}
+
+i.tamiens_sc {
+    background-position: -200px -500px;
+}
+
+i.testac_troyes {
+    background-position: -200px -525px;
+}
+
+i.tracing_strasbourg {
+    background-position: -200px -550px;
+}
+
+/*--NBA--*/
+
+i.tboston_celtics {
+    background-position: -175px 0px;
+}
+
+i.tindiana_pacers {
+    background-position: -175px -25px;
+}
+
+i.tphiladelphia_76ers {
+    background-position: -175px -50px;
+}
+
+i.tchicago_bulls {
+    background-position: -175px -75px;
+}
+
+i.tsacramento_kings {
+    background-position: -175px -100px;
+}
+
+i.tlos_angeles_lakers {
+    background-position: -175px -125px;
+}
+
+i.tcharlotte_hornets {
+    background-position: -175px -150px;
+}
+
+i.tmemphis_grizzlies {
+    background-position: -175px -175px;
+}
+
+i.tdetroit_pistons {
+    background-position: -175px -200px;
+}
+
+i.thouston_rockets {
+    background-position: -175px -225px;
+}
+
+i.tdenver_nuggets {
+    background-position: -175px -250px;
+}
+
+i.tutah_jazz {
+    background-position: -175px -275px;
+}
+
+i.tportland_trail_blazers {
+    background-position: -175px -300px;
+}
+
+i.tlos_angeles_clippers {
+    background-position: -175px -325px;
+}
+
+i.tnew_jersey_nets {
+    background-position: -175px -350px;
+}
+
+i.tatlanta_hawks {
+    background-position: -175px -375px;
+}
+
+i.toklahoma_city_thunder {
+    background-position: -175px -400px;
+}
+
+i.tsan_antonio_spurs {
+    background-position: -175px -425px;
+}
+
+i.ttoronto_raptors {
+    background-position: -175px -450px;
+}
+
+i.torlando_magic {
+    background-position: -175px -475px;
+}
+
+i.tnew_york_knicks {
+    background-position: -175px -500px;
+}
+
+i.twashington_wizards {
+    background-position: -175px -525px;
+}
+
+i.tcleveland_cavaliers {
+    background-position: -175px -550px;
+}
+
+i.tmiami_heat {
+    background-position: -175px -575px;
+}
+
+i.tminnesota_timberwolves {
+    background-position: -175px -600px;
+}
+
+i.tphoenix_suns {
+    background-position: -175px -625px;
+}
+
+i.tnew_orleans_hornets {
+    background-position: -175px -650px;
+}
+
+i.tdallas_mavericks {
+    background-position: -175px -675px;
+}
+
+i.tmilwaukee_bucks {
+    background-position: -175px -700px;
+}
+
+i.tgolden_state_warriors {
+    background-position: -175px -725px;
+}
+
+/*--CBA--*/
+
+i.tjilin_northeast_tigers {
+    background-position: -150px 0px;
+}
+
+i.tzhejiang_guangsha {
+    background-position: -150px -25px;
+}
+
+i.tguangdonghongyuan {
+    background-position: -150px -50px;
+}
+
+i.tfujian_sbs_xunxin {
+    background-position: -150px -75px;
+}
+
+i.tfoshan {
+    background-position: -150px -100px;
+}
+
+i.tshenzhen {
+    background-position: -150px -125px;
+}
+
+i.tshougang_beijing_ducks {
+    background-position: -150px -150px;
+}
+
+i.tbayihuojian {
+    background-position: -150px -175px;
+}
+
+i.tzhejiangchouzhou {
+    background-position: -150px -200px;
+}
+
+i.txinjiang_gyang_flying_tigers {
+    background-position: -150px -225px;
+}
+
+i.ttianjin_rongcheng {
+    background-position: -150px -250px;
+}
+
+i.tsichuanjinqiang {
+    background-position: -150px -275px;
+}
+
+i.tshanghai_dongfang_sharks {
+    background-position: -150px -300px;
+}
+
+i.tshanxi_zhongyu {
+    background-position: -150px -325px;
+}
+
+i.tshandonggaosu {
+    background-position: -150px -350px;
+}
+
+i.tqingdao_double_star {
+    background-position: -150px -375px;
+}
+
+i.tliaoning_panpan_hunters {
+    background-position: -150px -400px;
+}
+
+i.tjiangsulong {
+    background-position: -150px -425px;
+}
+
+i.tbeikong {
+    background-position: -150px -450px;
+}
+
+
+
+
+.wrap-detail{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.left-content{
+    float: left;
+    width: 620px;
+}
+.left-top{
+    overflow: hidden;
+}
+.left-top li{
+    float: left;
+    margin: 0 10px;
+    line-height: 30px;
+}

@@ -1,0 +1,73 @@
+<div class="topbar" th:fragment="header">
+    <div class="container">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <!--
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <div class="visible-xs-block hidden-sm hidden-md hidden-lg navbar-menu-text" style="float:right; font-size:20px; line-height:34px; padding-right: 8px; margin-top:8px;">菜单</div>
+               -->
+              <a class="navbar-brand" href="/"><img th:src="@{/image_1/logo.png}"/></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li th:classappend="${menu=='index'?'active':''}"><a href="/">首页</a></li>
+                <li class="dropdown" th:classappend="${menu=='basketballLive'?'active':''}">
+                  <a href="/live_1.html?project=篮球">篮球直播</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/live_1.html?project=篮球&amp;game=NBA">NBA直播</a></li>
+                    <li><a href="/live_1.html?project=篮球&amp;game=CBA">CBA直播</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown" th:classappend="${menu=='footballLive'?'active':''}">
+                  <a href="/live_1.html?project=足球">足球直播</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/live_1.html?project=足球&amp;game=英超">英超直播</a></li>
+                    <li><a href="/live_1.html?project=足球&amp;game=意甲">意甲直播</a></li>
+                    <li><a href="/live_1.html?project=足球&amp;game=西甲">西甲直播</a></li>
+                    <li><a href="/live_1.html?project=足球&amp;game=德甲">德甲直播</a></li>
+                    <li><a href="/live_1.html?project=足球&amp;game=法甲">法甲直播</a></li>
+                    <li><a href="/live_1.html?project=足球&amp;game=中超">中超直播</a></li>
+                    <li><a href="/live_1.html?project=足球&amp;game=欧冠">欧冠直播</a></li>
+                  </ul>
+                </li>
+                <!-- <li th:classappend="${menu=='basketballVideo'?'active':''}"><a href="/projectVideo_1?project=篮球">篮球集锦 </a></li>
+                <li th:classappend="${menu=='footballVideo'?'active':''}"><a href="/projectVideo_1?project=足球">足球集锦 </a></li> -->
+                <li th:classappend="${menu=='basketballVideo'?'active':''}"><a href="/nba_video.html">NBA视频</a></li>
+                <li th:classappend="${menu=='footballVideo'?'active':''}"><a href="/footer_video.html">足球视频</a></li>
+                <li class="dropdown" th:classappend="${menu=='record'?'active':''}">
+                  <a href="/recording_1.html?type=all">比赛录像</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/recording_1.html?project=篮球&amp;game=NBA">NBA录像</a></li>
+                    <li><a href="/recording_1.html?project=篮球&amp;game=CBA">CBA录像</a></li>
+                    <li><a href="/recording_1.html?project=足球&amp;game=英超">英超录像</a></li>
+                    <li><a href="/recording_1.html?project=足球&amp;game=意甲">意甲录像</a></li>
+                    <li><a href="/recording_1.html?project=足球&amp;game=西甲">西甲录像</a></li>
+                    <li><a href="/recording_1.html?project=足球&amp;game=德甲">德甲录像</a></li>
+                    <li><a href="/recording_1.html?project=足球&amp;game=法甲">法甲录像</a></li>
+                    <li><a href="/recording_1.html?project=足球&amp;game=中超">中超录像</a></li>
+                    <li><a href="/recording_1.html?project=足球&amp;game=欧冠">欧冠录像</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown" th:classappend="${menu=='news'?'active':''}">
+                  <a href="/nba_news.html">新闻资讯</a>
+                  <ul class="dropdown-menu">
+                      <li><a href="/nba_news.html">NBA新闻</a></li>
+                      <li><a href="/footer_news.html">足球新闻</a></li>
+                    </ul>
+                </li>
+                <li th:classappend="${menu=='image'?'active':''}"><a href="/image_1.html">体育图片</a></li>
+                <li  th:classappend="${menu=='bf'?'active':''}"><a href="/prospect.html" >赛事前瞻</a></li>
+                <li  th:classappend="${menu=='download'?'active':''}"><a href="/download.html" >下载APP</a></li>
+
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+</div>

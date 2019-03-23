@@ -1,0 +1,77 @@
+package website2018.service.admin;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springside.modules.utils.text.EncodeUtil;
+import org.springside.modules.utils.text.HashUtil;
+
+import website2018.domain.${entity.big};
+import website2018.exception.ErrorCode;
+import website2018.exception.ServiceException;
+import website2018.repository.${entity.big}Dao;
+
+@Service
+public class ${entity.big}Service {
+
+    @Autowired
+    ${entity.big}Dao ${entity.small}Dao;
+
+    @Transactional(readOnly = true)
+    public List<${entity.big}> findAll(Specification spec) {
+        return ${entity.small}Dao.findAll(spec);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<${entity.big}> findAll(Pageable pageable) {
+        return ${entity.small}Dao.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<${entity.big}> findAll(Specification<${entity.big}> specification, Pageable pageable) {
+        return ${entity.small}Dao.findAll(specification, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public ${entity.big} findOne(Long id) {
+        return ${entity.small}Dao.findOne(id);
+    }
+
+    @Transactional
+    public void create(${entity.big} ${entity.small}) {
+        ${entity.small}Dao.save(${entity.small});
+    }
+
+    @Transactional
+    public void modify(${entity.big} ${entity.small}) {
+
+        ${entity.big} orginal${entity.big} = ${entity.small}Dao.findOne(${entity.small}.id);
+
+        if (orginal${entity.big} == null) {
+            throw new ServiceException("${entity.chinese}不存在", ErrorCode.BAD_REQUEST);
+        }
+        
+        <#list entity.properties as p>
+        orginal${entity.big}.${p.english} = ${entity.small}.${p.english};
+        </#list>
+        
+        ${entity.small}Dao.save(orginal${entity.big});
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        ${entity.big} ${entity.small} = ${entity.small}Dao.findOne(id);
+
+        if (${entity.small} == null) {
+            throw new ServiceException("${entity.chinese}不存在", ErrorCode.BAD_REQUEST);
+        }
+
+        ${entity.small}Dao.delete(id);
+    }
+
+}

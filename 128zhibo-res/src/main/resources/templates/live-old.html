@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>直播8-足球直播_篮球直播_2018世界杯直播_CCTV5在线直播</title>
+    <meta name="keywords" content="直播吧,直播8,足球直播,篮球直播,NBA直播,世界杯直播,在线直播,体育直播" />
+    <meta name="description" content="直播吧是国内最好的体育直播平台,主要提供足球直播、篮球直播、NBA直播、CBA直播、世界杯直播、球赛直播、比分直播、英超直播以及CCTV5在线直播等体育赛事。" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
+    <link rel="stylesheet" th:href="@{../styles_1/common.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/detail.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/details_ft.min.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/details_common.min.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/login.css}" />
+    <!-- <link rel="stylesheet" href="../static/styles_1/common.css" />
+  <link rel="stylesheet" href="../static/styles_1/detail.css" />
+  <link rel="stylesheet" href="../static/styles_1/details_ft.min.css" />
+  <link rel="stylesheet" href="../static/styles_1/details_common.min.css" />
+  <link rel="stylesheet" href="../static/styles_1/login.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <!-- <script th:src="@{js_1/index.js}"></script> -->
+    <meta name="baidu-site-verification" content="FeM2EtCC8T" />
+    <!-- <link href="http://vjs.zencdn.net/5.5.3/video-js.css" rel="stylesheet" /> -->
+    <!-- If you'd like to support IE8 -->
+    <!-- <script src="http://vjs.zencdn.net/ie8/1.1.1/videojs-ie8.min.js"></script> -->
+    <!--<script th:src="@{../js_1/TcPlayer-2.2.2.js}" charset="utf-8"></script>;-->
+    <script type="text/javascript" th:src="@{../js_1/ckplayer.js}"></script>
+    <script th:src="@{../js_1/md5.js}"></script>
+    <!-- <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aab079013b60296378945e415582815d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script> -->
+    <style>
+        .pllist * {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="top-container">
+    <div class="top-body">
+        <a href="/" target="_self" class="_self">
+            <img src="/image_1/logo.png" />
+        </a>
+        <div class="top-right _self">
+            <a href="/" target="_self">首页</a>
+            <!-- <a href="/pindao/CCTV5" target="_self">CCTV5</a> -->
+        </div>
+    </div>
+</div>
+<div class="container1">
+    <div class="body">
+        <div class="play-left">
+            <div class="play-info play-info-soccer">
+                <span class="getId" style="display:none;" th:text="${matchDTO.id}"></span>
+                <div th:if="${matchDTO.teamFlag=='FALSE'}">
+                    <span th:text="${matchDTO.name}"></span>
+                </div>
+                <div th:if="${matchDTO.teamFlag!='FALSE'}">
+
+                        <span class="play-home" th:text="${matchDTO.masterTeamName}">
+                        </span>
+                    <img th:if="${matchDTO.masterTeamLink!=null}" th:src="${matchDTO.masterTeamLink}" />
+
+                    <span class="play-vs" th:text="${matchDTO.playDateStr}"></span>
+                    <img th:if="${matchDTO.guestTeamLink!=null}" th:src="${matchDTO.guestTeamLink}" />
+
+
+                        <span class="play-away" th:text="${matchDTO.guestTeamName}">
+                        </span>
+                </div>
+            </div>
+            <div class="wrap-detail">
+                <div class="left-content">
+                    <ul>
+                        <span  class="left-top" th:each="l:${matchDTO.lives}">
+                        <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
+                            <span th:text="${l.name}"></span>(
+                            <a th:each="s:${l.signals}" th:href="${s.playFlag!='INNER'?s.link:'/live_play_inner/'+s.liveId+'.html'}"
+                               th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
+                        </div>
+                        <div th:if="${l.signals.size() == 1}" th:remove="tag">
+                            <a th:href="${l.signals[0].playFlag!='INNER'?l.signals[0].link:'/live_play_inner/'+l.signals[0].liveId+'.html'}"
+                               th:text="${l.signals[0].name}" target="_blank"></a>
+                        </div>
+                        </span>
+                    </ul>
+                    <div class="play-player" id="play_player">
+                        <div class="play-animate"></div>
+                        <div class="play-nosignal"></div>
+                        <div th:if="${liveDTO.link!=null}" id="id_test_video" style="width:100%; height:100%; background-color: rgb(0, 0, 0); overflow: hidden; position: relative;">
+                            <div class="ckplayerchcibnbibhcozinnmu" style="background-color: rgb(0, 0, 0); width: 100%; height: 100%;"><object
+                                    pluginspage="http://www.macromedia.com/go/getflashplayer" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+                                    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=11,3,0,0"
+                                    width="100%" height="100%" id="chzwhoybbhsxakofwl" name="chzwhoybbhsxakofwl" align="middle">
+                                <param name="allowScriptAccess" value="always" />
+                                <param name="allowFullScreen" value="true" />
+                                <param name="quality" value="high" />
+                                <param name="bgcolor" value="#000" />
+                                <param name="movie" value="https://douyuplayer.gz.bcebos.com/ckplayer/ckplayer.swf" />
+                                <param name="flashvars" value="variable=player&amp;volume=0.8&amp;autoplay=1&amp;live=1&amp;video=http%3A%2F%2Fpull.stager.jp.8686c.com%2Fstager%2F822427%2Fplaylist.m3u8&amp;playbackrate=1&amp;width=16&amp;height=9" />
+                                <embed
+                                        allowscriptaccess="always" allowfullscreen="true" quality="high" bgcolor="#000" src="https://douyuplayer.gz.bcebos.com/ckplayer/ckplayer.swf"
+                                        flashvars="variable=player&amp;volume=0.8&amp;autoplay=1&amp;live=1&amp;video=http%3A%2F%2Fpull.stager.jp.8686c.com%2Fstager%2F822427%2Fplaylist.m3u8&amp;playbackrate=1&amp;width=16&amp;height=9"
+                                        width="100%" height="100%" id="chzwhoybbhsxakofwl" name="chzwhoybbhsxakofwl" align="middle"
+                                        type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"/></object></div>
+                        </div>
+                        <span class="geturl" th:text="${liveDTO.link}" style="display:none;"></span>
+                        <script>
+                            $(function () {
+                                var dataurl = $(".geturl").html();
+                                // 腾讯 TcPlayer
+                                // var player = new TcPlayer('id_test_video', {
+                                //   "m3u8": dataurl, //请替换成实际可用的播放地址
+                                //   "autoplay": true, //iOS下safari浏览器，以及大部分移动端浏览器是不开放视频自动播放这个能力的
+                                //   "coverpic": 'https://www.zhibo8.net/image_1/default.png',
+                                //   "width": '1000', //视频的显示宽度，请尽量使用视频分辨率宽度
+                                //   "height": '500' //视频的显示高度，请尽量使用视频分辨率高度
+                                // });
+
+                                var videoObject = {
+                                    container: '#id_test_video', //“#”代表容器的ID，“.”或“”代表容器的class
+                                    variable: 'player', //该属性必需设置，值等于下面的new chplayer()的对象
+                                    autoplay: true, //自动播放
+                                    live: true,
+                                    width: 16,
+                                    height: 9,
+                                    video: dataurl //视频地址
+                                };
+                                var player = new ckplayer(videoObject);
+
+                                function browserRedirect() {
+                                    var sUserAgent = navigator.userAgent.toLowerCase();
+                                    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+                                    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+                                    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+                                    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+                                    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+                                    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+                                    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+                                    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+                                    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE ||
+                                            bIsWM) {
+                                        var showplayer = document.getElementById("video");
+                                        showplayer.style.height = "100%";
+                                        showplayer.style.width = "100%";
+                                    } else {
+                                        var showplayer = document.getElementById("video");
+                                        showplayer.style.height = "100%";
+                                        showplayer.style.width = "100%";
+                                    }
+                                }
+                                browserRedirect();
+                            })
+                        </script>
+                        <div class="noData" th:if="${matchDTO.matchStreamUrl==null}">
+                            <p>如果上面的链接无法观看比赛,请点击下方的【回到首页】选择其他信号观看</p>
+                            <p>【
+                                <a href="/" target="_blank">回到首页</a>】</p>
+                        </div>
+                        <div class="player-ad-close"></div>
+                    </div>
+                </div>
+                <div class="zb_right">
+                    <div id="pl_box" file="2018-zuqiu-0916135020" avalonctrl="pl_app">
+                        <div data-include-rendered="onrendered">
+                            <!--ms-include-->
+                            <div class="clear"></div>
+                            <!--ms-if-->
+                            <div id="logindiv" style="display:none;width:100%; height:40px; line-height:40px; position: relative; ">
+                                <span class="login-info">登录后才能发表评论和回复</span>
+                                    <span class="login-btn-area">
+                                        <a href="javascript:;" class="l-b-l">登录</a> |
+                                        <a class="l-b-r" href="javascript:;">注册</a>
+                                    </span>
+                                <!-- <font color="red">请使用直播吧论坛账号
+                      <a href="javascript:void(0);">登录</a> |
+                      <a href="#">
+                          <img src="http://tu.zhibo8.cc/uploads/qqimages/qq_login.gif" />
+                      </a> 或者
+                      <a href="#">注册</a>,登录后才能发表评论和回复</font> -->
+                            </div>
+
+
+
+                            <style>
+                                .light {
+                                    background: none;
+                                }
+
+                                .light>div {
+                                    background: white !important;
+                                }
+
+                                #re .face_img {
+                                    display: block;
+                                }
+
+                                #face_cat .current {
+                                    background: #ffffff;
+                                }
+
+                                .faces img {
+                                    cursor: pointer;
+                                }
+
+                                .close_btn {
+                                    height: auto;
+                                    width: auto;
+                                    padding: 0 5px;
+                                    line-height: 20px;
+                                    font-size: 12px;
+                                    position: absolute;
+                                    top: 2px;
+                                    right: 2px;
+                                    border: solid #666666 1px;
+                                    background: #ffffff;
+                                    cursor: pointer;
+                                }
+
+                                .bigimg {
+                                    top: 40px;
+                                }
+
+                                .btn_loadmore {
+                                    width: 100%;
+                                    height: 30px;
+                                    line-height: 30px;
+                                    font-size: 14px;
+                                    color: #fff;
+                                    cursor: pointer;
+                                    text-align: center;
+                                    background: #57aff3;
+                                }
+
+                                .btn_more_height {
+                                    height: 60px !important;
+                                    line-height: 60px !important;
+                                }
+
+                                .light {
+                                    background: none;
+                                }
+
+                                .advert_p_editor_bottom {
+                                    display: inline-block;
+                                    text-align: right;
+                                    color: blue;
+                                    width: 295px;
+                                }
+
+                                .login-info {
+                                    text-align: center;
+                                    color: #888;
+                                    line-height: 25px;
+                                    font-size: 14px;
+                                }
+
+                                /*.login-btn{background-color:#5BC0DE;padding:3px 5px 3px 29px;color:#fff;cursor:pointer;margin-right:4px;font-size:12px;font-family: "Microsoft YaHei","simsun","宋体"}
+.login-btn > span{font-size:12px;}
+.login-m{position:relative;background:#E6A146 url(http://bbsimg.zhibo8.cc/bbsimg/2017-09-30/20170930144658_8576.png) no-repeat left 5px center;}
+.login-qq{background:#03a4db url(http://bbsimg.zhibo8.cc/bbsimg/2017-06-05/20170605104131_7020.png) no-repeat left 5px center;}
+.login-weibo{background:#d9534f url(http://bbsimg.zhibo8.cc/bbsimg/2017-06-05/20170605104131_7062.png) no-repeat left 5px center;}
+.login-wechat{background:#6eb244 url(http://bbsimg.zhibo8.cc/bbsimg/2017-06-05/20170605104131_5241.png) no-repeat left 5px center;}
+.login-forum{background:#2e9fff url(http://bbsimg.zhibo8.cc/bbsimg/2017-06-05/20170605104131_7634.png) no-repeat left 5px center;}
+.login-info{text-align:center;color:#888;line-height:25px;font-size:14px;}
+.m-login-box{position:absolute;top:40px;z-index:11;}
+.m-login-box:after{content:'';position:absolute;top:-16px;left:50px;border-color:transparent transparent #ddd transparent;border-width:8px 8px;border-style:solid;}
+.m-login-box:before{content:'';position:absolute;top:-14px;left:50px;border-color:transparent transparent #fff transparent;border-width:8px 8px;border-style:solid;z-index:1000;}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+input[type="number"]{-moz-appearance:textfield;}
+.login-box{width:300px;padding:15px;background:#fff;cursor:default;border:2px solid #ddd;}
+.login-box .fl{float:left;}.login-box .fr{float:right;}
+.login-box .b-clear:after,.login-box .b-clear:before{content:'';display: block;clear: both;}
+.mobile-login .m-li{margin:10px 0;}
+.mobile-login h1{text-align: center;font-size:18px;margin-bottom:10px;font-weight: normal;color:#a3a3a3;}
+.mobile-login .m-tel{position:relative;padding:8px 0;border:1px solid #EEEEEE;}
+.mobile-login .m-tel input{display:block;margin:0;padding:0;margin-left:40px;height:34px;width:220px;border:none;border-left:1px solid #EEEEEE;text-indent:5px;outline:0;}
+.mobile-login .m-tel:before{content:'';position: absolute;top:0;bottom:0;left:0;width:40px;background:url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_5285.png) no-repeat center center;}
+.mobile-login .ck-status{position:absolute;top:0;right:8px;bottom:0;padding-right:20px;}
+.mobile-login .ck-success{background:url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_1269.png) no-repeat center center;}
+.mobile-login .ck-error{background:url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_7698.png) no-repeat center center;}
+.mobile-login .input-code{position:relative;padding:8px 0;border:1px solid #EEEEEE;}
+.mobile-login .blue-box{border:1px solid #2E9FFF;}
+.mobile-login .error-box{border:1px solid #FE0000;}
+.mobile-login .input-code input{display:block;margin-left:40px;padding:0;width:120px;border:none;border-left:1px solid #EEEEEE;text-indent:5px;height:34px;outline:0;}
+.mobile-login .input-code:before{content:'';position: absolute;top:0;bottom:0;left:0;width:40px;background:url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_2809.png) no-repeat center center;}
+.mobile-login .get-code{width:120px;height:50px;line-height:50px;text-align:center;background:#F5F5F5;border:1px solid #EEEEEE;}
+.mobile-login .get-code a{display:block;color:#a3a3a3;line-height:50px;}
+.mobile-login .get-code a.hadSend{background:#ff9657;color:#fff;}
+.mobile-login .get-code a.count-down{background:#bebebe;color:#fff;}
+.mobile-login .validate-code .tip-info{color:#fe0000;padding-top:5px;line-height:20px;}
+.mobile-login .m-login-btn{height:48px;line-height:48px;background:#2E9FFF;text-align: center;}
+.mobile-login .m-login-btn a{display: block;color:#fff;font-size:14px;line-height:48px;}
+.mobile-login .reg{text-align:right;}
+.mobile-login .reg a{color:#2E9FFF;}
+.mobile-login .reg a:hover{text-decoration: underline;}
+#nouserinfo .fl-box{float:left;width:33.333%;text-align:center;line-height:30px;}*/
+
+                                .login-btn-area {
+                                    margin-top: 10px;
+                                    color: #2E9FFE;
+                                    font-size: 14px;
+                                    text-align: center;
+                                }
+
+                                .login-btn-area a {
+                                    color: inherit;
+                                    font-size: inherit;
+                                }
+
+                                .login-btn-area a:hover {
+                                    color: #ff3232;
+                                }
+
+                                /*用户名显示*/
+
+                                .yhm a {
+                                    float: left;
+                                    line-height: 21px;
+                                }
+
+                                .yhm a span {
+                                    line-height: 21px;
+                                }
+
+                                .yhm .user-cn {
+                                    display: inline-block;
+                                    *display: inline;
+                                    *zoom: 1;
+                                    max-width: 72px;
+                                    max-height: 21px;
+                                    padding-right: 3px;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    white-space: nowrap;
+                                }
+                            </style>
+
+                            <!--ms-if-->
+                            <div th:replace="layout/login :: login"></div>
+
+                            <!--绑定手机 start-->
+                            <style type="text/css">
+                                .tel_check a {
+                                    text-decoration: none;
+                                    color: #333;
+                                }
+
+                                .tel_check .fr {
+                                    float: right;
+                                }
+
+                                .tel_check .fl {
+                                    float: left;
+                                }
+
+                                .tel_check .b-clear:after,
+                                .tel_check .b-clear:before {
+                                    content: '';
+                                    display: block;
+                                    clear: both;
+                                }
+
+                                .tel_check .body-bg {
+                                    position: fixed;
+                                    top: 0;
+                                    left: 0;
+                                    right: 0;
+                                    bottom: 0;
+                                    z-index: 1110;
+                                    background: rgba(0, 0, 0, .3);
+                                }
+
+                                .model_view .close-btn {
+                                    position: absolute;
+                                    right: 5px;
+                                    top: 5px;
+                                    width: 30px;
+                                    height: 30px;
+                                    background: url("http://bbsimg.zhibo8.cc/bbsimg/2017-09-30/20170930124728_1483.png") no-repeat center center;
+                                    cursor: pointer;
+                                    border-left: 2px solid #EEEEEE;
+                                }
+
+                                .model_view .close-btn:hover {
+                                    background: url("http://bbsimg.zhibo8.cc/bbsimg/2017-09-30/20170930124728_5328.png") no-repeat center center;
+                                }
+
+                                .tel_check .mobile-tel {
+                                    position: fixed;
+                                    top: 50%;
+                                    left: 50%;
+                                    height: 450px;
+                                    -webkit-transform: translate(-50%, -50%);
+                                    transform: translate(-50%, -50%);
+                                    z-index: 11;
+                                    background: rgb(255, 255, 255)
+                                }
+
+                                .tel_check .mobile-tel {
+                                    width: 300px;
+                                    border-right: 1px solid #EEEEEE;
+                                    padding: 0 20px;
+                                }
+
+                                .tel_check .m-li {
+                                    margin: 20px 0px;
+                                }
+
+                                .tel_check h1 {
+                                    text-align: center;
+                                    font-size: 24px;
+                                    font-weight: normal;
+                                    color: #a3a3a3;
+                                    padding: 30px 0;
+                                    margin: 0;
+                                }
+
+                                .tel_check .m-tel {
+                                    position: relative;
+                                    padding: 8px 0;
+                                    border: 1px solid #EEEEEE;
+                                }
+
+                                .tel_check .m-tel input {
+                                    margin: 0;
+                                    padding: 0;
+                                    margin-left: 40px;
+                                    height: 34px;
+                                    width: 250px;
+                                    border: none;
+                                    border-left: 1px solid #EEEEEE;
+                                    text-indent: 5px;
+                                    outline: 0;
+                                }
+
+                                .tel_check .m-tel:before {
+                                    content: '';
+                                    position: absolute;
+                                    top: 0;
+                                    bottom: 0;
+                                    left: 0;
+                                    width: 40px;
+                                    background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_5285.png) no-repeat center center;
+                                }
+
+                                .tel_check .ck-status {
+                                    position: absolute;
+                                    top: 0;
+                                    right: 8px;
+                                    bottom: 0;
+                                    padding-right: 20px;
+                                }
+
+                                .tel_check .ck-success {
+                                    background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_1269.png) no-repeat center center;
+                                }
+
+                                .tel_check .ck-error {
+                                    background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_7698.png) no-repeat center center;
+                                }
+
+                                .tel_check .input-code {
+                                    position: relative;
+                                    padding: 8px 0;
+                                    border: 1px solid #EEEEEE;
+                                    margin-right: 130px;
+                                }
+
+                                .tel_check .blue-box {
+                                    border: 1px solid #2E9FFF;
+                                }
+
+                                .tel_check .error-box {
+                                    border: 1px solid #FE0000;
+                                }
+
+                                .tel_check .input-code .code-box {
+                                    margin-left: 40px;
+                                }
+
+                                .tel_check .input-code input {
+                                    padding: 0;
+                                    width: 99%;
+                                    border: none;
+                                    border-left: 1px solid #EEEEEE;
+                                    text-indent: 5px;
+                                    height: 34px;
+                                    outline: 0;
+                                }
+
+                                .tel_check .input-code:before {
+                                    content: '';
+                                    position: absolute;
+                                    top: 0;
+                                    bottom: 0;
+                                    left: 0;
+                                    width: 40px;
+                                    background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_2809.png) no-repeat center center;
+                                }
+
+                                .tel_check .get-code {
+                                    width: 120px;
+                                    height: 50px;
+                                    line-height: 50px;
+                                    text-align: center;
+                                    background: #F5F5F5;
+                                    border: 1px solid #EEEEEE;
+                                }
+
+                                .tel_check .get-code a {
+                                    display: block;
+                                }
+
+                                .tel_check .get-code a.hadSend {
+                                    background: #ff9657;
+                                    color: #fff;
+                                }
+
+                                .tel_check .get-code a.count-down {
+                                    background: #bebebe;
+                                    color: #fff;
+                                }
+
+                                .tel_check .validate-code .tip-info {
+                                    color: #fe0000;
+                                    padding-top: 5px;
+                                }
+
+                                .tel_check .validate-code .real-name {
+                                    color: #2E9FFF;
+                                    padding-top: 5px;
+                                }
+
+                                .tel_check .m-login-btn {
+                                    height: 48px;
+                                    line-height: 48px;
+                                    background: #2E9FFF;
+                                    text-align: center;
+                                }
+
+                                .tel_check .m-login-btn a {
+                                    display: block;
+                                    color: #fff;
+                                    font-size: 14px;
+                                }
+
+                                .tel_check .code-tip {
+                                    color: #a3a3a3;
+                                    font-size: 13px;
+                                }
+                            </style>
+                            <!--手机号验证-->
+                            <!--ms-if-->
+                            <!--绑定手机 end-->
+
+                            <div>
+                                <div id="pinglun_nav">
+                                    <ul>
+                                        <!--repeat034531500670827556869833140770922-->
+                                        <li>
+                                            <a href="javascript:void(0);" class="current">聊天室</a>
+                                        </li>
+                                        <!--repeat034531500670827556869833140770922-->
+                                        <!-- <li>
+                                  <a href="javascript:void(0);">彩迷房间</a>
+                              </li> -->
+                                        <!--repeat034531500670827556869833140770922:end-->
+                                    </ul>
+                                </div>
+
+                                <div class="pllist">
+
+                                    <div id="hotdiv" class="hot_huifu" style="display: none;">
+                                        <div class="hot_huifuT">热门评论
+                                            <span class="down">点击展开</span>
+                                        </div>
+                                        <div style="border:1px solid #dedede;border-top:2px solid #64AFE9;margin-top:5px;"
+                                             id="hotpp">
+                                            <!--repeat99061799158222330744952147122171:end-->
+                                        </div>
+                                    </div>
+
+                                    <div id="re">
+                                        <div id="re_box" class="input_l_rel">
+                                            <div class="input" style="margin-top:5px;">
+                                                <div style="border-top:1px solid #ccc;border-left:1px solid #ccc;border-right:1px solid #ccc;">
+
+                                                        <textarea class="textfb" style="border:0;" id="post_content"
+                                                                  name="content"></textarea>
+                                                    <div id="nouserinfo" style="z-index:9;padding: 5px 10px 10px 10px; background:#fff;width: calc(100% - 32px); height: 70px; position:absolute; left:10px; top:10px;">
+                                                        <!--<div class="fl-box">
+                          <span class="rad5 login-btn login-m">
+                              <span>手机登录</span>
+                              <div class="m-login-box" style="display:none;">
+                                  <div class="login-box">
+                                      <div class="mobile-login">
+                                          <h1>登录</h1>
+                                          <div class="m-li m-tel set_border" ms-class-2="{{ck_status===false?'error-box':''}}"><input type="number" ms-duplex="tel" name="tel" ms-blur="setBlur(tel)" ms-focus="getFocus()" placeholder="请输入手机号"/><span class="ck-status" ms-class-1="{{ck_status?'ck-success':''}}" ms-class-2="{{ck_status===false?'ck-error':''}}"></span></div>
+                                          <div class="m-li validate-code b-clear ">
+                                              <div class="fl input-code set_border"><input type="number" ms-duplex="code" name="code" ms-blur="setBlur()" ms-focus="getFocus()" placeholder="请输入验证码"/></div>
+                                              <div class="fr get-code"><a href="javascript:;" ms-class-1="{{ck_status?'hadSend':''}}" ms-class-2="{{btn_able?'':'count-down'}}" ms-text="btn_status" ms-click="getCode(tel)"></a></div>
+                                              <span class="fr tip-info" ms-text="m_info"></span>
+                                          </div>
+                                          <div class="m-li m-login-btn"><a href="javascript:;" ms-click="telLogin(tel,code)">登录</a></div>
+                                          <div class="reg"><a href="http://bbs.zhibo8.cc/regist" target="_blank">没有账号？立即注册</a></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </span>
+                      </div>
+                      <div class="fl-box">
+                          <span class="rad5 login-btn login-qq" onclick="location.href='https:http://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101169587&amp;state=test&amp;scope=get_user_info,add_share,get_info,add_t&amp;redirect_uri=http%3A%2F%2Fpl.zhibo8.cc%2Fusercenter%2Foauth%2Findex.php%3FredirectURL%3D'+location.href">QQ登录</span>
+                      </div>
+                      <div class="fl-box">
+                          <span class="rad5 login-btn login-wechat" onclick="window.location.href='http://pl.zhibo8.cc/usercenter/oauth/weixin_url.php?url='+encodeURIComponent(window.location.href)">微信登录</span>
+                      </div>
+                      <div class="fl-box">
+                          <span class="rad5 login-btn login-sao">扫码登录</span>
+                      </div>
+                      <div class="fl-box">
+                          <span class="rad5 login-btn login-weibo" onclick="location.href='https:http://api.weibo.com/oauth2/authorize?client_id=1475264871&amp;response_type=code&amp;redirect_uri=http%3A%2F%2Fpl.zhibo8.cc%2Fusercenter%2Foauth%2Fweibo.php%3FredirectURL%3D'+location.href">微博登录</span>
+                      </div>
+                      <div class="fl-box">
+                          <span class="rad5 login-btn login-forum" ms-click="showloginBox($event)">论坛登录</span>
+                      </div>-->
+                                                        <div>
+                                                            <div class="login-info">登录后才能发表评论和回复</div>
+                                                            <div class="login-btn-area">
+                                                                <a href="javascript:;" class="l-b-l">登录</a> |
+                                                                <a class="l-b-r" href="javascript:;">注册</a>
+                                                            </div>
+                                                        </div>
+                                                        <!--<span style="line-height: 25px; color:red;">请使用 <span onclick="location.href='https:http://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101169587&amp;state=test&amp;scope=get_user_info,add_share,get_info,add_t&amp;redirect_uri=http%3A%2F%2Fpl.zhibo8.cc%2Fusercenter%2Foauth%2Findex.php%3FredirectURL%3D'+location.href" class="rad5" style="background-color:#5BC0DE;padding:3px 5px 3px 6px;color:#fff;cursor:pointer;margin-right:10px;"> QQ账号登录 </span> |
+
+                      <span onclick="location.href='https:http://api.weibo.com/oauth2/authorize?client_id=1475264871&amp;response_type=code&amp;redirect_uri=http%3A%2F%2Fpl.zhibo8.cc%2Fusercenter%2Foauth%2Fweibo.php%3FredirectURL%3D'+location.href" class="rad5" style="background-color:#D9534F;padding:3px 5px 3px 6px;color:#fff;cursor:pointer;margin-left:10px;"> 微博账号登录 </span>
+
+                      　　　或者用论坛账号<a ms-click="showloginBox($event)" href="javascript:;" style="">登录</a>,登录后才能发表评论和回复</span>-->
+                                                    </div>
+
+                                                    <div id="editortip" style=" height:70px;line-height: 23px;color:#A6CAF0;position:absolute;left: 0;top: 0;text-align:left;width: 360px;padding: 20px 0 0 20px;">
+                                                        1.电脑端新用户可以发表评论了！<br />
+                                                        2.发言请遵守国家法律法规.<br />
+                                                        3.禁止发布任何宣传、广告、侮辱攻击他人、刷屏等信息.<br />
+                                                        <!-- 评论功能即将开放，敬请期待 -->
+                                                    </div>
+
+                                                    <!--表情-->
+                                                    <!--ms-if-->
+
+
+                                                    <!--<div id="face_lable" class="face_img" ms-if="is_show_smiley">
+                      <div id="face_cat" class="face_cat_wrap">
+                          <div class="face_cat"  ms-click="change_smiley(1)" ms-class="current:smiley_index==1">默认</div>
+                          <div class="face_cat"  ms-click="change_smiley(2)" ms-class="current:smiley_index==2">酷猴</div>
+                          <div class="face_cat"  ms-click="change_smiley(3)" ms-class="current:smiley_index==3">呆呆男</div>
+                      </div>
+                      <div id="faces01" ms-if="smiley_index==1"  class="faces"  >
+                          <img ms-repeat-img="images.default" ms-click="insert_to_text(img.no)" ms-mouseover="showbigimg(img.img_src)" ms-src="http://bbs.zhibo8.cc/static/image/smiley/{{img.img_src}}">
+                      </div>
+                      <div id="faces02" ms-if="smiley_index==2"  class="faces" >
+                          <img ms-repeat-img="images.coolmonkey" ms-click="insert_to_text(img.no)" ms-mouseover="showbigimg(img.img_src)" ms-src="http://bbs.zhibo8.cc/static/image/smiley/{{img.img_src}}">
+                      </div>
+                      <div id="faces03" ms-if="smiley_index==3"  class="faces" >
+                          <img ms-repeat-img="images.grapeman" ms-click="insert_to_text(img.no)" ms-mouseover="showbigimg(img.img_src)" ms-src="http://bbs.zhibo8.cc/static/image/smiley/{{img.img_src}}">
+                      </div>
+                      <div id="bigimg" class="bigimg">
+                          <img ms-src="bigimg_src"  width="100" height="100">
+                      </div>
+                      <div class="close_btn" ms-click="show_smiley_box(false)">关闭</div>
+                  </div>-->
+                                                </div>
+
+
+                                                <div class="fbbx">
+
+                                                    <table width="100%" style="">
+                                                        <tbody>
+                                                        <tr id="userinfo">
+                                                            <!--ms-if-->
+                                                            <td class="yhm" width="104" style="">请登录</td>
+                                                            <td class="xie">
+
+                                                                <!--ms-if-->
+                                                            </td>
+                                                            <td class="you">
+                                                                        <span style="cursor:pointer;">
+                                                                            <b id="submit_btn" class="rad3" style="background-color:#089CEF;color:#fff;height:20px;line-height:20px;font-size:12px;padding:0 10px;margin-bottom:1px;">发
+                                                                                表</b>
+                                                                        </span>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+
+
+
+
+
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <style>
+                                        .tip-pos {
+                                            position: relative;
+                                        }
+
+                                        .post-tip {
+                                            position: absolute;
+                                            left: 0px;
+                                            top: -36px;
+                                            right: 0;
+                                            text-align: center;
+                                            padding: 5px;
+                                            color: #333;
+                                            z-index: 11;
+                                            /*display:none;*/
+                                        }
+
+                                        .post-tip span {
+                                            display: inline-block;
+                                            padding: 6px 12px;
+                                            border-radius: 5px;
+                                            background-color: #fff;
+                                            border: 1px solid #ddd;
+                                            box-shadow: 2px 2px 8px #999;
+                                        }
+                                    </style>
+                                    <div class="tip-pos">
+                                        <!--ms-if-->
+                                    </div>
+                                    <div class="hot_feresh">
+                                        全部记录
+                                        <!-- <span>已有0条评论</span> -->
+                                        <a href="javascript:void(0);" class="reloadData">刷新</a>
+                                    </div>
+
+
+                                    <script id="tmpl" type="avalon">
+                                            <div class="yinyong" ms-repeat-el="el.children">
+                                      <div class="info">
+                                          <div class="left">
+                                              <a ms-href="" target="_blank" class="user_name">{{el.username | del_pendent}}</a>
+                                              <a ms-if="el.u_verified==1" target="_blank" href="http://home.zhibo8.cc/degree">
+                                                  <i title="认证用户" class="icon_approve"></i>
+                                              </a>
+                                              <span class="dev_info">{{el.createtime | date("MM-dd HH:mm")}}</span>
+
+                                              <span style="cursor:pointer; color:#4E84AE;" class="report_btn" ms-attr-cid="{{el.id}}">举报</span>
+                                          </div>
+                                          <div class="right">
+                                              <span style="cursor:pointer; color:#4E84AE;" class="up_btn" ms-attr-cid="{{el.id}}" ms-attr-uid="{{el.userid}}" ms-click="updown(el.id, 'up')">顶(
+                                                  <font class="up_cnt">{{el.up}}</font>)</span>
+                                              <span style="cursor:pointer; color:#4E84AE;" class="down_btn" ms-attr-cid="{{el.id}}" ms-attr-uid="{{el.userid}}" ms-click="updown(el.id, 'down')">踩(
+                                                  <font class="down_cnt">{{el.down}}</font>)</span>
+                                              <a class="reply" ms-attr-cid="{{el.id}}" href="javascript:void(0);" ms-click="reply(el.id, el.username)">回复</a>
+                                          </div>
+                                      </div>
+                                      <p class="word">{{el.content|html}}</p>
+                                      <div ms-include="'tmpl'" ms-visible="el.children.length" data-include-rendered='addClass'></div>
+                                  </div>
+                              </script>
+
+
+
+                                    <!--ms-if-->
+
+                                    <div id="pltpl" style="display:none;">
+                                        <!--repeat199467195323114205467185054893697:end-->
+                                    </div>
+
+                                    <div id="pllist" class="pllist" style="width:378px;border:1px solid #ccc;border-top:2px solid #64AFE9;padding:5px;height: 305px;overflow-y: scroll; overflow-x: hidden;">
+                                        <!--repeat88149713599525335082435126407154:end-->
+                                    </div>
+
+                                    <div class="btn_loadmore">点击加载更多记录</div>
+                                    <!--ms-if-->
+                                </div>
+                            </div>
+
+
+                            <!--旧论坛登录<div class="overlay" ms-visible="isshowloginbox" style="width:200px; height:100px; z-index:999; line-height: 20px; font-size:12px; padding:15px; position:absolute;  background:#E8F3FD; border:solid 4px #09F;" ms-css-left="box_x" ms-css-top="box_y">
+<span style="display:inline-block; width:80px;">用户名:</span><input class="username_input" name="username" type="text" ms-duplex="input_username" ms-keydown="keyprocess2($event)" /><br>
+<span style="display:inline-block; width:80px;">密码:</span><input class="password_input" name="password" type="password" ms-duplex="input_password" ms-keydown="keyprocess2($event)" /><br>
+
+<div style="position:relative;margin-top:5px;">
+  <input class="login_input" type="button" value="登录"  ms-click="login" ms-visible="!loging"  style=""  >
+
+  <span onclick="location.href='http://bbs.zhibo8.cc/connect.php?mod=login&amp;op=init&amp;referer='+location.href+'&amp;statfrom=login_simple'" style="cursor:pointer;position:absolute;left:45px;top:0px; ">
+      <img src="http://tu.zhibo8.cc/uploads/qqimages/qq_login.gif" >
+  </span>
+</div>
+
+
+<span ms-visible="loging">登录中。。。</span>
+<a class="close" style="background-image:url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img%2Fclose.png);position:absolute; right:5px; top:5px;cursor:pointer;height:35px;width:35px;" ms-click="hideloginbox($event)" ></a>
+</div>-->
+
+                            <style>
+                                .full_screen {
+                                    width: 100%;
+                                    height: 100%;
+                                    display: table;
+                                    left: 0;
+                                    top: 0;
+                                    z-index: 1000;
+                                    position: fixed;
+                                    text-align: center;
+                                    vertical-align: middle;
+                                }
+
+                                .full_screen .center {
+                                    display: table-cell;
+                                    vertical-align: middle;
+                                    /*color: #fff;*/
+                                }
+
+                                .modal_box {
+                                    width: 400px;
+                                    height: 300px;
+                                    margin: 0 auto;
+                                    background-color: #FFFFFF;
+                                    border-radius: 10px;
+                                    border: solid 1px #222222;
+                                    overflow: hidden;
+                                }
+
+                                .modal_box .titlebar {
+                                    height: 40px;
+                                    line-height: 40px;
+                                    background: none;
+                                    /*background-color: #4184F3;*/
+                                    position: relative;
+                                }
+
+                                .modal_box .titlebar a.cancle_btn {
+                                    position: absolute;
+                                    bottom: 5px;
+                                    right: 5px;
+                                    color: #AAAAAA;
+                                }
+
+                                .modal_box .titlebar .more {
+                                    float: right;
+                                    margin-right: 10px;
+                                }
+
+                                .modal_box .box_content {
+                                    padding: 10px;
+                                    position: relative;
+                                    height: 240px;
+                                    border-top: solid 1px #eeeeee;
+                                }
+
+                                .modal_box .box_content .cancle_btn {
+                                    position: absolute;
+                                    bottom: 5px;
+                                    right: 5px;
+                                    color: #AAAAAA;
+                                }
+
+                                .show_bind_box {
+                                    color: red !important;
+                                }
+                            </style>
+                            <style>
+                                .rad5 {
+                                    border-radius: 5px;
+                                    -webkit-border-radius: 5px;
+                                }
+
+                                .mtop10 {
+                                    margin-top: 10px;
+                                }
+
+                                .phonenum {
+                                    border: 1px solid #ccc;
+                                    padding: 0 10px;
+                                }
+
+                                .lh35 {
+                                    height: 35px;
+                                    line-height: 35px;
+                                }
+
+                                .input_100 {
+                                    width: 100%;
+                                    padding: 0;
+                                    border: 0;
+                                }
+
+                                .wd48 {
+                                    float: left;
+                                    width: 48%;
+                                }
+
+                                .wd48_div {
+                                    border: 1px solid #ccc;
+                                    padding: 0 10px;
+                                }
+
+                                .wd48_input {
+                                    width: 100%;
+                                    padding: 0;
+                                    border: 0;
+                                }
+
+                                .wd52 {
+                                    width: 52%;
+                                    float: left;
+                                }
+
+                                .wd52_div {
+                                    cursor: pointer;
+                                    margin-left: 20px;
+                                    background-color: #FA8B15;
+                                    color: white;
+                                    text-align: center;
+                                }
+
+                                .bind_phone {
+                                    background-color: #C9C9C9;
+                                    color: white;
+                                    text-align: center;
+                                    cursor: pointer;
+                                }
+
+                                .msg {
+                                    margin-top: 10px;
+                                    color: red;
+                                    display: none;
+                                }
+
+                                input {
+                                    font-size: 1.0em;
+                                }
+                            </style>
+                            <!-- <div class="full_screen" style="display: none;">
+                  <div class="center">
+                      <div class="modal_box">
+                          <div class="titlebar">
+                              <span>绑定手机后可进行评论发表</span>
+                              <a class="cancle_btn" href="javascript:void(0);">关闭</a>
+                          </div>
+
+                          <div class="box_content">
+                              <div class="msg">请输入正确的手机号码</div>
+                              <div id="varea">
+                                  <div class="phonenum rad5 mtop10">
+                                      <div class="lh35">
+                                          <input type="text" class="input_100 lh35" placeholder="请输入手机号" id="phone" maxlength="11" />
+                                      </div>
+                                  </div>
+
+                                  <div class="mtop10">
+                                      <div class="wd48">
+                                          <div class="rad5 wd48_div">
+                                              <input type="text" class="wd48_input lh35" placeholder="请输入验证码" maxlength="4" id="vcode" />
+                                          </div>
+                                      </div>
+
+                                      <div class="wd52">
+                                          <div class="rad5 wd52_div lh35" id="getvcode">
+                                              获取验证码
+                                          </div>
+                                      </div>
+
+                                      <div style="clear:both"></div>
+                                  </div>
+
+                                  <div class="rad5 mtop10 bind_phone lh35" id="bind">点击绑定手机</div>
+                              </div>
+                              <a class="cancle_btn" href="javascript:void(0);">取消</a>
+                          </div>
+                      </div>
+                  </div>
+              </div> -->
+                            <!--ms-include-end-->
+                        </div>
+                    </div>
+                    <script th:src="@{../js_1/pinglun.js}"></script>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="play-right">
+    <a href="http://wx3.sinaimg.cn/large/dd29666egy1ftt1j5elw9j20780i2n0y.jpg">
+      这里是广告位,尺寸260*650
+    </a>
+  </div> -->
+    </div>
+</div>
+
+
+
+<div th:replace="layout/footer :: footer"></div>
+</body>
+<script>
+    $(function () {
+        var userChooseType = '1';
+
+        checkLogin();
+        getAllList();
+
+        function checkLogin() {
+            $.ajax({
+                url: '/checkUser',
+                type: 'POST',
+                // data: JSON.stringify(data),
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (resp) {
+                    if (resp.code == '0000') {
+                        $('.loginBox').fadeOut(); // 隐藏登录弹窗
+                        $("#nouserinfo").hide(); // 隐藏登录注册框
+                        $('.yhm').hide(); // 图文直播页用户信息
+                    }
+                },
+                fail: function (err) {
+                    // alert(err)
+                }
+            });
+        }
+
+        function getAllList() {
+            var data = {
+                type: '1',
+                userType: userChooseType,
+                relId: $('.getId').html() || ''
+            };
+            if (!data.relId) {
+                alert('系统异常，请稍后重试')
+                return false
+            }
+            $.ajax({
+                url: '/api/user/getCommentAllList',
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (response) {
+                    var str = '';
+                    response.map(function (arr, i) {
+                        if (arr) {
+                            str +=
+                                    '<table style="width:95%;" data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="378"><tbody><tr><td class="userPro" valign="top"><div class="left"><a target="_blank" href="javascript:;"><img class="lazy" src="'+arr.userLink+'" /></a></div></td><td class="commentTextList" valign="top"><div class="comment"><div class="info"><div class="left"><a target="_blank" class="user_name" href="javascript:;">用户：' +
+                                    arr.userName +
+                                    '</a></div><div class="right"><span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="130017433" uid="0">顶(<font class="up_cnt">0</font>)</span><span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="130017433" uid="0">踩(<font class="down_cnt">0</font>)</span>' +
+                                    (response.length - i) + '楼</div></div><p class="word">' +
+                                    arr.comment + '</p><p><span class="dev_info">' + arr.addTimeStr +
+                                    '</span><span style="cursor:pointer; color:#4E84AE;" class="report_btn" cid="130017433">举报</span><span style="float:right;"><a class="reply" href="javascript:void(0);">回复</a></span></p></div></td></tr></tbody></table>'
+                        }
+                    });
+                    $('#pllist').html(str);
+                },
+                fail: function (err) {
+                    // alert(err)
+                }
+            });
+        };
+
+        $('.reloadData').click(function () {
+            getAllList();
+        })
+
+        $('#submit_btn').click(function () {
+            var data = {
+                type: '1',
+                userType: userChooseType,
+                relId: $('.getId').html() || '',
+                comment: $('#post_content').val() || ''
+            };
+            if (!data.relId) {
+                alert('系统异常，请稍后重试')
+                return false
+            } else if (!data.comment) {
+                alert('请输入评论信息')
+                return false
+            }
+            $.ajax({
+                url: '/api/user/addComment',
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (resp) {
+                    if (resp.code == '0000') {
+                        console.log(resp)
+                        $('#post_content').val('');
+                        getAllList();
+                    }
+                },
+                fail: function (err) {
+                    // alert(err)
+                }
+            });
+        });
+    })
+</script>
+<script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
+
+</html>

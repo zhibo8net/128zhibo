@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>登录</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico"/>
+    <style type="text/css">
+        /**reset**/
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            font-size: 100%;
+            font-family: "microsoft yahei", arial;
+        }
+
+        h1,
+        h2,
+        p,
+        ul,
+        ol,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+            /*-webkit-tap-highlight-color: transparent;*/
+        }
+
+        a:link,
+        a:visited,
+        a:active,
+        a:hover {
+            color: #333;
+        }
+
+        image {
+            vertical-align: middle;
+        }
+
+        input {
+            outline: none;
+            padding: 0;
+            border: 0;
+            -webkit-appearance: none;
+            font-family: "microsoft yahei";
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none !important;
+        }
+
+        input::-ms-clear {
+            display: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-width: 0;
+        }
+
+        td,
+        th {
+            border: 0;
+        }
+
+        /***common*****/
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .rd50 {
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        .rd5 {
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .b-clear:after,
+        .b-clear:before {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .body-bg {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 9;
+            background: rgba(0, 0, 0, .3);
+        }
+
+        .v-h-ct {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            z-index: 10;
+            /*background:rgb(255,255,255);*/
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .v-h-flex {
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*移动端*/
+        .touch-scroll {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /*移动端实现 触摸滑动流畅 */
+
+        .global {
+            min-width: 320px;
+            max-width: 640px;
+            min-height: 100%;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 0 12px;
+            height: 100%;
+        }
+
+        .dis_none {
+            display: none;
+        }
+
+        .dis_show {
+            display: block;
+        }
+
+        .rd5-line {
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        body,
+        html,
+        .global {
+            height: 100%
+        }
+
+        .global {}
+
+        .content {
+            padding: 0;
+        }
+
+        .login {
+            padding: 15px 25px 50px;
+        }
+
+        .login h2 {
+            padding: 10px 0;
+            font-size: 24px;
+        }
+
+        .login p {
+            color: #999999;
+            font-size: 14px;
+        }
+
+        .form {
+            padding: 0 25px;
+            background: #fff;
+        }
+
+        .form table {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .form .form-row {
+            text-align: center;
+        }
+
+        .form .form-row:first-child {
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        .form .form-row {
+            background: #fff;
+        }
+
+        .form .form-row td {
+            padding: 5px 0px;
+        }
+
+        .form .form-row .l-pd {
+            padding-left: 30px;
+        }
+
+        .form .form-row .c-pd {
+            padding: 5px;
+        }
+
+        .form .form-row .tel-pd {
+            background: url(http://bbsimg.zhibo8.cc/bbsimg/2018-05-08/20180508103728_9917.png) no-repeat left center;
+            background-size: auto 50%;
+        }
+
+        .form .form-row .vcode-pd {
+            background: url(http://bbsimg.zhibo8.cc/bbsimg/2018-10-17/20181017170929_1950.png) no-repeat left center;
+            background-size: auto 44%;
+        }
+
+        .form .form-row .code-pd {
+            background: url(http://bbsimg.zhibo8.cc/bbsimg/2018-05-08/20180508103728_8824.png) no-repeat left center;
+            background-size: auto 36%;
+        }
+
+        /*.form .form-row .login-pd{padding:0 15px;}*/
+        .form .form-input {
+            width: 100%;
+            height: 40px;
+            text-indent: 5px;
+            box-sizing: border-box;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            min-width: 80px;
+            height: 40px;
+            line-height: 40px;
+            background: #2E9FFF;
+            color: #fff;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form .btn-get-code {
+            display: block;
+            width: 100%;
+            height: 32px;
+            line-height: 32px;
+            margin: 0 auto;
+            background: #EEEEEE;
+            color: #333;
+            font-size: 12px !important;
+            box-sizing: border-box;
+        }
+
+        @media only screen and (min-width: 320px) and (max-width: 340px) {
+            .form .btn-get-code {
+                font-size: 12px;
+            }
+        }
+
+        .to-login {
+            padding: 0 15px;
+        }
+
+        .to-login .btn-login {
+            width: 100%;
+            margin: 20px auto;
+            text-align: center;
+            color: #fff;
+            background: #bcbecc;
+        }
+
+        .to-login .able-login {
+            background: #2E9FFF;
+        }
+
+        .to-login .count-down {}
+
+        #code-img img {
+            width: 80px;
+            max-height: 40px;
+            vertical-align: middle;
+        }
+
+        .alert-box {}
+
+        .alert-box .alert-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, .3);
+        }
+
+        .alert-box .alert-ent {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 280px;
+            z-index: 3;
+            background: #fff;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .alert-box .alert-mesg {
+            padding: 25px 0 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: inherit;
+        }
+
+        .alert-box .alert-btn {
+            display: block;
+            height: 36px;
+            line-height: 36px;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid #f2f2f2;
+        }
+
+        .register {
+            margin: 10px 0 0;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        .register a {
+            color: #2E9FFF;
+            font-size: 14px;
+            padding: 5px;
+        }
+
+        .b-o-login {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .b-o-tip {
+            text-align: center;
+            border-top: 1px solid #ddd;
+            height: 1px;
+            line-height: 20px;
+            margin: 0 15px 30px;
+        }
+
+        .b-o-tip span {
+            position: relative;
+            top: -10px;
+            height: 20px;
+            padding: 0 20px;
+            background: #fff;
+            color: #BCBECC;
+        }
+
+        .b-o-login ul {
+            width: 100%;
+        }
+
+        .b-o-login li {
+            display: inline;
+            padding-right: 20px;
+        }
+
+        .b-o-login li:last-child {
+            padding-right: 0;
+        }
+
+        .b-o-login li img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <script th:src="@{./js_1/md5.js}"></script>
+    <script th:src="@{./js_1/mlogin.js?version=0011000}"></script>
+    <!--<script src="//static.geetest.com/static/tools/gt.js" type="text/javascript" charset="utf-8"></script>-->
+    <!-- <script type="text/javascript" src="//acstatic-dun.126.net/tool.min.js"></script> -->
+    <!-- <script type="text/javascript" charset="UTF-8" async="" src="https://acstatic-dun.126.net/2.4.1_7f64cfa3/watchman.min.js"></script> -->
+</head>
+
+<body style="">
+    <div class="global">
+        <div class="content">
+            <div class="c-box" style="height: 540px;">
+                <div style="position:relative;height:40px;line-height:40px;text-align:center;font-size:18px;color:#fff;background:#77B7F9;">
+                    <a href="javascript:history.go(-1);" class="check_tel_back" style="position:absolute;left:0;top:0;bottom:0;width:40px;background: url(http://bbs.zhibo8.cc/mobile/images/return.png) no-repeat center center;"></a>
+                    <span class="pageName">登录</span>
+                </div>
+                <div class="form">
+                    <table>
+                        <tbody>
+                            <tr class="form-row">
+                                <td colspan="6" class="l-pd tel-pd"><input type="text" class="form-input tel"
+                                        placeholder="手机号" /></td>
+                            </tr>
+                            <!--<tr class="form-row"><td colspan="3" class="l-pd vcode-pd"><input type="text" class="form-input vcode" placeholder="图形验证码" /></td><td colspan="3" class="c-pd" ><a href="javascript:;" id="code-img"></a></td></tr>-->
+                            <tr class="form-row">
+                                <td colspan="3" class="l-pd code-pd"><input type="password" class="form-input code"
+                                        placeholder="密码" /></td>
+                                <!-- <td colspan="3" class="c-pd"><a href="javascript:;" class="btn btn-get-code">获取验证码</a></td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="to-login">
+                    <a href="javascript:;" class="btn btn-login pageName">登录</a>
+                </div>
+            </div>
+            <div class="b-o-login" style="position: relative;">
+                <div class="b-o-tip"><span>其他登录方式</span></div>
+                <ul>
+                    <li><a href="javascript:;" src="//bbs.zhibo8.cc/images/login/qq-hover.png" alt="">
+                            <img src="http://bbs.zhibo8.cc/images/login/qq-hover.png" alt="" /></a></li>
+                    <li><a href="javascript:;" src="//bbs.zhibo8.cc/images/login/sina-hover.png" alt="">
+                            <img src="http://bbs.zhibo8.cc/images/login/sina-hover.png" alt="" /></a></li>
+                </ul>
+                <p class="register"><a href="javascript:;" class="to-jump reg-jump">注册</a></p>
+            </div>
+            <div id="popup-captcha"></div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

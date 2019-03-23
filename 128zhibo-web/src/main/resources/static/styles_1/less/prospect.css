@@ -1,0 +1,50 @@
+.container {
+  margin: 0 auto;
+  padding: 0;
+}
+.container .row {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.container .breadcrumbs {
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-top: 10px;
+}
+.container ul,
+.container li {
+  list-style: none;
+}
+.container .list {
+  padding: 20px 20px 30px !important;
+  border: 1px solid #ccc;
+}
+.container .row ul {
+  width: 100%;
+  height: auto;
+  margin-bottom: 50px !important;
+}
+.container .row ul li {
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+}
+.container .row ul li.cur {
+  font-weight: bold;
+  color: #4184f3;
+}
+.container .row ul li .col-md-3,
+.container .row ul li .col-md-9 {
+  margin-bottom: 0;
+  padding-left: 0;
+}
+.container .row ul li .col-md-3 {
+  color: #f00;
+  text-align: right;
+  padding-right: 0;
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 990px;
+  }
+}

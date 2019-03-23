@@ -1,0 +1,1122 @@
+<div class="footervideo_right" th:fragment="footervideo_right">
+    <div class="m_right">
+        <div id="hot_video">
+            <div class="li_light">热门视频</div>
+            <ul>
+                <li th:each="v,iterStat:${hotVideos}">
+                    <span th:text="${iterStat.count}"></span>
+                    <a th:href="${v.link}" target="_blank" th:text="${v.name}"></a>
+                </li>
+
+            </ul>
+        </div>
+        <div id="jfb">
+            <div class="m_r_t">
+                <ul class="fl">
+                    <li class="li_light">积分榜</li>
+                    <li class="r_t_more turn_left more_left_h"></li>
+                    <div class="r_t_team">
+                        <ul class="m_r_team" style="left: 0px;">
+                            <li class="a_cur">中超</li>
+                            <li>英超</li>
+                            <li>西甲</li>
+                            <li>意甲</li>
+                            <li>德甲</li>
+                            <li>法甲</li>
+
+                        </ul>
+                    </div>
+                    <li class="r_t_more turn_right more_right"></li>
+                </ul>
+            </div>
+            <table cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr>
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even"  th:each="rank,iterStat:${zcFootballJsbList}">
+                        <td th:text="${iterStat.count}"></td>
+                        <td class="teamNameText">
+                            <a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>
+                        </td>
+                        <td  th:text="${rank.matchNum}"></td>
+                        <td  th:text="${rank.score}"></td>
+                        <td  th:text="${rank.ballNum}"></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr>
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even"  th:each="rank,iterStat:${ycFootballJsbList}">
+                        <td th:text="${iterStat.count}"></td>
+                        <td class="teamNameText">
+                            <a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>
+                        </td>
+                        <td  th:text="${rank.matchNum}"></td>
+                        <td  th:text="${rank.score}"></td>
+                        <td  th:text="${rank.ballNum}"></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr>
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even"  th:each="rank,iterStat:${xjFootballJsbList}">
+                        <td th:text="${iterStat.count}"></td>
+                        <td class="teamNameText">
+                            <a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>
+                        </td>
+                        <td  th:text="${rank.matchNum}"></td>
+                        <td  th:text="${rank.score}"></td>
+                        <td  th:text="${rank.ballNum}"></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr>
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even"  th:each="rank,iterStat:${yjFootballJsbList}">
+                        <td th:text="${iterStat.count}"></td>
+                        <td class="teamNameText">
+                            <a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>
+                        </td>
+                        <td  th:text="${rank.matchNum}"></td>
+                        <td  th:text="${rank.score}"></td>
+                        <td  th:text="${rank.ballNum}"></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr>
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even"  th:each="rank,iterStat:${djFootballJsbList}">
+                        <td th:text="${iterStat.count}"></td>
+                        <td class="teamNameText">
+                            <a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>
+                        </td>
+                        <td  th:text="${rank.matchNum}"></td>
+                        <td  th:text="${rank.score}"></td>
+                        <td  th:text="${rank.ballNum}"></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr>
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even"  th:each="rank,iterStat:${fjFootballJsbList}">
+                        <td th:text="${iterStat.count}"></td>
+                        <td class="teamNameText">
+                            <a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>
+                        </td>
+                        <td  th:text="${rank.matchNum}"></td>
+                        <td  th:text="${rank.score}"></td>
+                        <td  th:text="${rank.ballNum}"></td>
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+        <div id="ssb">
+            <div class="m_r_t">
+                <ul class="fl">
+                    <li class="li_light">射手榜</li>
+                    <li class="r_t_more more_left_h turn_left"></li>
+                    <div class="r_t_team">
+                        <ul class="m_r_team">
+                            <li class="a_cur">中超</li>
+                            <li>英超</li>
+                            <li>西甲</li>
+                            <li>意甲</li>
+                            <li>德甲</li>
+                            <li>法甲</li>
+
+                            <li>欧冠</li>
+                            <li>亚冠</li>
+                        </ul>
+                    </div>
+                    <li class="r_t_more more_right turn_right"></li>
+                </ul>
+            </div>
+            <table cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>球队</th>
+                        <th>总进球</th>
+                        <th>点球</th>
+
+                    </tr>
+                    <tr class="even"  th:each="rank,iterStat:${zcFootballSsbList}">
+                        <td th:text="${iterStat.count}"></td>
+                        <td class="teamNameText">
+                            <a href="javascript:;" target="_blank" th:text="${rank.teamMember}"></a>
+                        </td>
+                        <td  th:text="${rank.teamName}"></td>
+                        <td  th:text="${rank.sumNum}"></td>
+                        <td  th:text="${rank.dianBallNum}"></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <table  class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr class="colHeader">
+
+                    <th></th>
+                    <th></th>
+                    <th>球队</th>
+                    <th>总进球</th>
+                    <th>点球</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${ycFootballSsbList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamMember}"></a>
+                    </td>
+                    <td  th:text="${rank.teamName}"></td>
+                    <td  th:text="${rank.sumNum}"></td>
+                    <td  th:text="${rank.dianBallNum}"></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+            <table  class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr class="colHeader">
+
+                    <th></th>
+                    <th></th>
+                    <th>球队</th>
+                    <th>总进球</th>
+                    <th>点球</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${xjFootballSsbList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamMember}"></a>
+                    </td>
+                    <td  th:text="${rank.teamName}"></td>
+                    <td  th:text="${rank.sumNum}"></td>
+                    <td  th:text="${rank.dianBallNum}"></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+            <table  class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr class="colHeader">
+
+                    <th></th>
+                    <th></th>
+                    <th>球队</th>
+                    <th>总进球</th>
+                    <th>点球</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${yjFootballSsbList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamMember}"></a>
+                    </td>
+                    <td  th:text="${rank.teamName}"></td>
+                    <td  th:text="${rank.sumNum}"></td>
+                    <td  th:text="${rank.dianBallNum}"></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+
+            <table  class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr class="colHeader">
+
+                    <th></th>
+                    <th></th>
+                    <th>球队</th>
+                    <th>总进球</th>
+                    <th>点球</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${djFootballSsbList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamMember}"></a>
+                    </td>
+                    <td  th:text="${rank.teamName}"></td>
+                    <td  th:text="${rank.sumNum}"></td>
+                    <td  th:text="${rank.dianBallNum}"></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+
+            <table  class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr class="colHeader">
+
+                    <th></th>
+                    <th></th>
+                    <th>球队</th>
+                    <th>总进球</th>
+                    <th>点球</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${fjFootballSsbList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamMember}"></a>
+                    </td>
+                    <td  th:text="${rank.teamName}"></td>
+                    <td  th:text="${rank.sumNum}"></td>
+                    <td  th:text="${rank.dianBallNum}"></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+
+            <table  class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr class="colHeader">
+
+                    <th></th>
+                    <th></th>
+                    <th>球队</th>
+                    <th>总进球</th>
+                    <th>点球</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${ogFootballSsbList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamMember}"></a>
+                    </td>
+                    <td  th:text="${rank.teamName}"></td>
+                    <td  th:text="${rank.sumNum}"></td>
+                    <td  th:text="${rank.dianBallNum}"></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+            <table  class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr class="colHeader">
+
+                    <th></th>
+                    <th></th>
+                    <th>球队</th>
+                    <th>总进球</th>
+                    <th>点球</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${ygFootballSsbList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamMember}"></a>
+                    </td>
+                    <td  th:text="${rank.teamName}"></td>
+                    <td  th:text="${rank.sumNum}"></td>
+                    <td  th:text="${rank.dianBallNum}"></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+        <div id="ogjfb">
+            <div class="m_r_t">
+                <ul class="fl">
+                    <li class="li_light">欧冠积分榜</li>
+                    <div class="r_t_team a_r_t_team">
+                        <ul class="m_r_team">
+                            <li class="a_cur">A</li>
+                            <li>B</li>
+                            <li>C</li>
+                            <li>D</li>
+                            <li>E</li>
+                            <li>F</li>
+                            <li>G</li>
+                            <li>H</li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+            <table cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">多特蒙德</td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>4</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">马竞</td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>3</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">布鲁日</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>-3</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">摩纳哥</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>-4</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">巴塞罗那</td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>6</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">国际米兰</td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">热刺</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>-3</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">PSV埃因霍温</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>-5</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">那不勒斯</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>1</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">利物浦</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>0</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">巴黎</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">贝尔格莱德红星</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>-5</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">波尔图</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>1</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">沙尔克</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>1</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">加拉塔萨</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">莫斯科火车头</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>-4</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">阿贾克斯</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>3</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">拜仁</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">本菲卡</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>-1</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">雅典AEK</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>-4</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">里昂</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>1</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">曼城</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>0</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">矿工</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>0</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">霍芬海姆</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>-1</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">莫斯科中央陆军</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>1</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">皇马</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">罗马</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">比尔森</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>-5</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">尤文图斯</td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>5</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">曼联</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>3</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">瓦伦西亚</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>-2</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">年轻人</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>-6</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="ygjfb">
+            <div class="m_r_t">
+                <ul class="fl">
+                    <li class="li_light">亚冠积分榜</li>
+                    <div class="r_t_team a_r_t_team">
+                        <ul class="m_r_team">
+                            <li class="a_cur">E</li>
+                            <li>F</li>
+                            <li>G</li>
+                            <li>H</li>
+                            <li>A</li>
+                            <li>B</li>
+                            <li>C</li>
+                            <li>D</li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">水原三星</td>
+                        <td>6</td>
+                        <td>10</td>
+                        <td>1</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">鹿岛鹿角</td>
+                        <td>6</td>
+                        <td>9</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">悉尼FC</td>
+                        <td>6</td>
+                        <td>6</td>
+                        <td>-1</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">上海申花</td>
+                        <td>6</td>
+                        <td>5</td>
+                        <td>-2</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">德黑兰独立</td>
+                        <td>6</td>
+                        <td>12</td>
+                        <td>4</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">阿尔艾因</td>
+                        <td>6</td>
+                        <td>10</td>
+                        <td>4</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">赖扬</td>
+                        <td>6</td>
+                        <td>6</td>
+                        <td>-4</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">利雅得希拉尔</td>
+                        <td>6</td>
+                        <td>2</td>
+                        <td>-4</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">全北现代</td>
+                        <td>6</td>
+                        <td>15</td>
+                        <td>13</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">天津权健</td>
+                        <td>6</td>
+                        <td>13</td>
+                        <td>4</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">柏太阳神</td>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>-4</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">杰志</td>
+                        <td>6</td>
+                        <td>3</td>
+                        <td>-13</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">波斯波利斯</td>
+                        <td>6</td>
+                        <td>13</td>
+                        <td>5</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">多哈萨德</td>
+                        <td>6</td>
+                        <td>12</td>
+                        <td>6</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">纳萨夫</td>
+                        <td>6</td>
+                        <td>10</td>
+                        <td>-4</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">阿瓦斯</td>
+                        <td>6</td>
+                        <td>0</td>
+                        <td>-7</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">广州恒大</td>
+                        <td>6</td>
+                        <td>12</td>
+                        <td>6</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">武里南联</td>
+                        <td>6</td>
+                        <td>9</td>
+                        <td>1</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">大阪樱花</td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>-2</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">济州联队</td>
+                        <td>6</td>
+                        <td>3</td>
+                        <td>-5</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">上海上港</td>
+                        <td>6</td>
+                        <td>11</td>
+                        <td>4</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">蔚山现代</td>
+                        <td>6</td>
+                        <td>9</td>
+                        <td>4</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">墨尔本胜利</td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>-5</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">川崎前锋</td>
+                        <td>6</td>
+                        <td>3</td>
+                        <td>-3</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">杜海勒</td>
+                        <td>6</td>
+                        <td>18</td>
+                        <td>7</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">扎巴汉</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>-2</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">塔什干火车头</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>4</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">阿布扎比瓦赫达</td>
+                        <td>6</td>
+                        <td>3</td>
+                        <td>-9</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                    <tr class="colHeader">
+
+                        <th></th>
+                        <th></th>
+                        <th>场次</th>
+                        <th>积分</th>
+                        <th>净胜球</th>
+
+                    </tr>
+                    <tr class="even">
+                        <td>1</td>
+                        <td class="teamNameText">吉达国民</td>
+                        <td>6</td>
+                        <td>14</td>
+                        <td>5</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>2</td>
+                        <td class="teamNameText">阿布扎比贾兹拉</td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>0</td>
+                    </tr>
+                    <tr class="even">
+                        <td>3</td>
+                        <td class="teamNameText">阿尔加拉法</td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>3</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td class="teamNameText">大不里士拖拉机</td>
+                        <td>6</td>
+                        <td>2</td>
+                        <td>-8</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,188 @@
+<div th:fragment="login">
+    <div class="loginBox">
+        <div class="body-bg"></div>
+        <div class="loginView model_view" style="position: absolute;">
+            <span class="close-btn"></span>
+            <div class="fl mobile-login" style="margin-top:0;">
+                <h1>登录中心</h1>
+                <div class="m-li m-tel set_border">
+                    <input type="number" name="tel" maxlength="11" placeholder="请输入手机号" />
+                    <span class="ck-status"></span>
+                </div>
+                <div class="m-li m-tel set_border">
+                    <input type="password" name="password" placeholder="请输入密码" />
+                    <span class="ck-status"></span>
+                </div>
+                <!-- <div class="m-li b-clear v-code">
+                <div class="fl input-code set_border">
+                    <input type="text" name="vcode" placeholder="请输入图形验证码"/>
+                </div>
+                <div class="fr get-code">
+                    <a href="javascript:;" id="code-img">
+                        <img src="http://bbsimg.zhibo8.cc/bbsimg/data/image/2018-10-20/6fe89da828ba42ebe664421f7d3aa0ff.jpg"/>
+                    </a>
+                </div>
+            </div> -->
+                <!-- <div class="m-li validate-code b-clear">
+                <div class="fl input-code set_border">
+                    <input type="number" name="code" placeholder="请输入验证码"/>
+                </div>
+                <div class="fr get-code">
+                    <a href="javascript:;">发送验证码</a>
+                </div>
+                <span class="fr tip-info"></span>
+            </div> -->
+                <div class="m-li m-login-btn">
+                    <a href="javascript:;">登录</a>
+                </div>
+                <div class="m-li mobile-tip"></div>
+                <div class="reg">
+                    <a href="javascript:;" target="_blank">没有账号？立即注册</a>
+                </div>
+                <div class="reg-login-text">
+                    <a href="javascript:;" target="_blank">已有账号？立即登录</a>
+                </div>
+            </div>
+            <div class="fr onekey-login">
+                <ul>
+                    <li>
+                        <span>一键登录</span>
+                    </li>
+                    <li>
+                        <a href="javascript:;" onclick="">
+                            <span class="li li-qq"></span>
+                            <br />QQ登录</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" onclick="">
+                            <span class="li li-wechat"></span>
+                            <br />微信登录</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" onclick="">
+                            <span class="li li-weibo"></span>
+                            <br />微博登录</a>
+                    </li>
+                    <li class="sao-index">
+                        <a href="javascript:;" class="login-sao">
+                            <span class="li li-sao"></span>
+                            <br />扫码登录</a>
+                    </li>
+                    <!-- <li>
+                    <a href="javascript:;" class="fr forumLogin">旧版论坛登录</a>
+                </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            var nowType = 1;
+            $('.close-btn').click(function () {
+                $('.loginBox').fadeOut();
+            });
+            $('.l-b-l').click(function () {
+                $('.loginBox').fadeIn();
+            })
+            $('.l-b-r').click(function () {
+                nowType = 0;
+                $('.loginBox').fadeIn();
+                $('.reg').hide();
+                $('.m-login-btn a').html('注册');
+                $('.mobile-login h1').html('注册中心');
+                $('.reg-login-text').show();
+            })
+            $('.reg').click(function () {
+                nowType = 0;
+                $(this).hide();
+                $('.m-login-btn a').html('注册');
+                $('.mobile-login h1').html('注册中心');
+                $('.reg-login-text').show();
+            });
+            $('.reg-login-text').click(function () {
+                nowType = 1;
+                $(this).hide();
+                $('.m-login-btn a').html('登录');
+                $('.mobile-login h1').html('登录中心');
+                $('.reg').show();
+            });
+            $('.m-login-btn').click(function () {
+                if (!nowType) {
+                    login('/api/user/register')
+                } else {
+                    login('/api/user/login')
+                }
+            })
+            $('.onekey-login li').click(function () {
+                alert('此功能正在路上')
+            })
+
+            function checkPhone(phone) {
+                if (!(/^1[34578]\d{9}$/.test(phone))) {
+                    alert("手机号码有误，请重填");
+                    return false;
+                } else {
+                    return true
+                }
+            }
+            // 评论输入区域点击 隐藏提示语 评论区获取焦点
+            $('#editortip').click(function(){
+                // $(this).hide();
+                // $('#post_content').focus();
+                // alert('评论功能即将开放，敬请期待')
+            });
+            $('#submit_btn').click(function(){
+                // alert('评论功能即将开放，敬请期待')
+            })
+            $("#editortip").click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).remove();
+                $('.textfb,.post_content').focus();
+             })
+            function login(url) {
+                var phone = $('input[name="tel"]').val(),
+                    password = $('input[name="password"]').val();
+                if (phone == '') {
+                    alert('请输入手机号码')
+                    return false;
+                } else if (!checkPhone(phone)) {
+                    $('input[name="tel"]').val('');
+                    return false;
+                } else if (password == '') {
+                    alert('请输入密码')
+                    return false;
+                }
+                var data = {
+                    userName: phone,
+                    password: hex_md5(password)
+                }
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.code == '0000') {
+                            if (!nowType) {
+                                alert('注册成功')
+                            } else {
+                                alert('登录成功')
+                            }
+                            // window.location.reload();
+                            $('.loginBox').fadeOut();// 隐藏登录弹窗
+                            $("#nouserinfo").hide(); // 隐藏登录注册框
+                            $('.yhm').hide(); // 图文直播页用户信息
+                        } else {
+                            alert(resp.message)
+                        }
+                    },
+                    fail: function (err) {
+                        alert(err)
+                    }
+                })
+            }
+        })
+    </script>
+</div>

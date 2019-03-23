@@ -1,0 +1,28 @@
+.collection-gallery {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px #4184f3 solid;
+}
+.collection-gallery:last-child {
+  border-bottom: none;
+}
+.collection-gallery .title {
+  margin-bottom: 5px;
+}
+.collection-gallery .title b {
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  font-size: 14px;
+  line-height: 14px;
+}
+.collection-gallery .collection-item img {
+  width: 168px;
+  height: 108px;
+}
+.collection-gallery .collection-item a {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

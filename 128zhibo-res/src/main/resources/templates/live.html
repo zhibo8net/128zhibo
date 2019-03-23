@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout">
+<head>
+    <title th:text="|${project=='篮球'?'篮球直播_NBA直播_CBA直播_篮球视频直播-直播8':''}${project=='足球'?'足球直播_世界杯直播_英超直播_足球比赛直播-直播8':''}|"></title>
+	<meta name="keywords" th:content="|${project=='篮球'?'篮球直播,篮球视频直播,篮球直播吧,NBA直播,CBA直播':''}${project=='足球'?'足球直播,世界杯直播,足球比赛直播,英超直播,欧冠直播':''}|" />
+    <meta name="description" th:content="|${project=='篮球'?'篮球直播频道为您提供最新的NBA直播、CBA直播、篮球视频直播、篮球比分直播等，更多精彩篮球赛事直播尽在直播吧。':''}${project=='足球'?'足球直播频道为您提供最新的足球直播、世界杯直播、英超直播、欧冠直播、德甲直播、意甲直播等赛事，更多精彩足球赛事尽在直播吧':''}|" />
+    <link rel="stylesheet" th:href="@{styles_1/index.css}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <script th:src="@{js_1/index.js}"></script>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-9 left-content">
+            <div class="row">
+           <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  > <a th:href="${'/live_1?project='+project}"><span style="color:#4184f3" th:text="${project + '直播'}"></span></a> <span th:text="${'&gt; ' + game + '直播'}" th:if="${project != game}"></span></div>
+          </div>
+            <div class="hidden-xs hidden-sm">
+                <div class="row collection-title">
+                    <div class="col-md-6">
+                        <b><img th:src="${'image_1/icon/'+projectEnglish+'.png'}" class="icon-24"/><span th:text="${game+'集锦'}"></span></b>
+                    </div>
+                </div>
+                <div class="row collections">
+                    <div class="col-md-3 col-sm-12" th:each="p:${projectEndeds}"><span th:text="${p.name}"></span> <a th:href="'/video_1/'+${p.id}" th:if="${p.hasJijin}">集锦</a> <a th:href="'/video_1/'+${p.id}" th:if="${p.hasLuxiang}">录像</a></div>
+                    <div class="col-md-6 col-sm-12" th:each="p:${projectEndeds2}"><span th:text="${p.name}"></span> <a th:href="'/video_1/'+${p.id}" th:if="${p.hasJijin}">集锦</a> <a th:href="'/video_1/'+${p.id}" th:if="${p.hasLuxiang}">录像</a></div>
+                </div>
+            </div>
+
+            <div id="js-schedule" class="row">
+                <div class="col-md-12">
+                    <div class="scroller">
+                        <ul>
+                            <li th:each="d:${days}"><a href="#" th:classappend="${d=='今天'?'active':''}" th:text="${d}"></a></li>
+                        </ul>
+                        <div class="up"><a href="javascript:void(0);"><img th:src="@{image_1/icon/up.png}"/></a></div>
+                    </div>
+                    <div class="schedule max-height-600">
+                        <div th:each="dl:${dailyLives}" class="day-div">
+                            <label th:text="${dl.dateStr}" class="day"></label>
+                            <ul class="list-unstyled">
+                                <li th:each="m:${dl.matches}" th:classappend="|${m.emphasis==1 ? 'emphasis' : ''} ${m.important==1 ? 'important' : ''} ${m.project=='足球' ? 'football' : ''} ${m.project=='篮球' ? 'basketball' : ''}|">
+                                    <span class="list-style">•</span>
+                                    <span class="time" th:text="${m.playTime}"></span>
+                                    <span class="game" th:text="${m.game}"></span>
+                                    <span class="match" th:text="${m.name}"></span>
+                                    <span class="live" th:each="l:${m.lives}">
+                                        <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
+                                            <span th:text="${l.name}"></span>(<a th:each="s:${l.signals}" th:href="${'/match_1/'+m.id}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
+                                        </div>
+                                        <div th:if="${l.signals.size() == 1}" th:remove="tag">
+                                            <a th:href="${'/match_1/'+m.id}" th:text="${l.signals[0].name}"></a>
+                                        </div>
+
+                                    </span>
+                                     <span th:if="${m.sinaShujuUrl!=null}">
+                                       <div  th:remove="tag">
+                                           <a th:href="${'/match_1/'+m.id}" >图文直播</a>
+                                       </div>
+                                    </span>
+                                    <a th:each="a:${m.ads}" th:href="${a.link}" th:text="${a.name}" th:classappend="|${a.light==1 ? 'important' : ''}|" target="_blank"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="loadMore"><a href="javascript:void(0)">加载更多<img th:src="@{/image_1/icon/arrow-loadmore.png}"/></a></div>
+                    <div id="scrollToTop"><a href="javascript:void(0)">返回顶部<img th:src="@{/image_1/icon/arrow-up.png}"/></a></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 right-content">
+            <div th:replace="layout/right :: channel"></div>
+            <div th:replace="layout/right :: gameCollection"></div>
+            <div th:replace="layout/right :: gameVideo"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

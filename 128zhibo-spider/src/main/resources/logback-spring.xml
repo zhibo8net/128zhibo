@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+
+    <!-- 参考http://tengj.top/2017/04/05/springboot7/ -->
+    <contextName>logback-spider</contextName>
+    
+    <!-- 写相对路径，则以SpringBoot的jar包为准相对 -->
+    <property name="log.path" value="128zhibo-logs" />
+    
+    <!--输出到控制台-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+       <!-- <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>-->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--输出到文件-->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 使用filter限制只有ERROR级别日志输出到文件 -->
+	    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+	        <level>WARN</level>
+	    </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/logback-spider.%d{yyyy-MM-dd}.log</fileNamePattern>
+	        <maxHistory>30</maxHistory>
+	        <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 全局的输出级别 -->
+    <root level="INFO">
+        <appender-ref ref="console" />
+        <appender-ref ref="file" />
+    </root>
+
+    <!-- 指定包来设置级别 -->
+    <logger name="com.dudu.controller"/>
+    
+    <!-- 指定类来设置级别 -->
+    <logger name="website2018.base.BaseEndPoint" level="DEBUG" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
+</configuration>

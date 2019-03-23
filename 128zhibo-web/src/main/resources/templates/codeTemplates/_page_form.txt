@@ -1,0 +1,79 @@
+<template>
+  <div>
+    <form>
+      <#list entity.properties as p>
+      <div :class="{'form-group':true, 'has-error':errors.has('${p.chinese}')}">
+        <label>${p.chinese}</label>
+        <input type="text" class="form-control" placeholder="输入${p.chinese}" v-model="${entity.small}.${p.english}" v-validate="'required'" name="${p.chinese}">
+        <span class="help-block" v-show="errors.has('${p.chinese}')">{{ errors.first('${p.chinese}') }}</span>
+      </div>
+      </#list>
+      <button type="button" class="btn btn-default" v-on:click="submit()">提交</button>
+    </form>
+  </div>
+</template>
+
+<script>
+import g from '../../global.js'
+import Vue from 'vue'
+import VueResource from 'vue-resource'
+import zhcn from 'vee-validate/dist/locale/zh_CN'
+import VeeValidate, { Validator } from 'vee-validate'
+
+Vue.use(VueResource)
+
+Validator.localize('zh_CN', zhcn)
+Vue.use(VeeValidate)
+
+export default {
+  name: '${entity.big}',
+  data () {
+    return {
+      ${entity.small}: {}
+    }
+  },
+  methods: {
+    submit: function () {
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          let ${entity.small} = this.$data.${entity.small}
+          if (!${entity.small}.id) {
+            Vue.http.post(g.t('/api/admin/${entity.small}s'), JSON.stringify(${entity.small})).then(function (response) {
+              g.href('/${entity.small}List')
+            }, function (response) {
+              g.toLogin()
+            })
+          } else {
+            Vue.http.put(g.t('/api/admin/${entity.small}s/' + ${entity.small}.id), JSON.stringify(${entity.small})).then(function (response) {
+              g.href('/${entity.small}List')
+            }, function (response) {
+              g.toLogin()
+            })
+          }
+        }
+      })
+    }
+  },
+  created () {
+    let ${entity.small} = this.$data.${entity.small}
+    let ${entity.small}Id = this.$route.params.id
+    if (${entity.small}Id) {
+      Vue.http.get(g.t('/api/admin/${entity.small}s/' + ${entity.small}Id)).then((response) => {
+        let ${entity.small}Entity = response.data
+        this.$set(${entity.small}, 'id', ${entity.small}Entity.id)
+        <#list entity.properties as p>
+        this.$set(${entity.small}, '${p.english}', ${entity.small}Entity.${p.english})
+        </#list>
+      }, function (response) {
+        g.toLogin()
+      })
+    }
+  }
+}
+</script>
+
+<style scoped>
+body{
+  background-color: #CCC;
+}
+</style>

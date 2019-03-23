@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout">
+<head>
+    <title th:text="|${project=='篮球'?'篮球集锦_NBA视频_CBA视频_NBA视频集锦_篮球比赛录像-直播8':''}${project=='足球'?'足球集锦_足球视频_足球录像回放_足球比赛录像-直播8':''}|"></title>
+	<meta name="keywords" th:content="|${project=='篮球'?'篮球集锦,NBA视频集锦,NBA视频,CBA视频,篮球比赛录像':''}${project=='足球'?'足球集锦,足球视频,足球回放,足球比赛录像,足球录像回放':''}|" />
+    <meta name="description" th:content="|${project=='篮球'?'篮球集锦频道为您提供最新的篮球比赛集锦、NBA视频、CBA视频等赛事，更多精彩篮球视频集锦尽在直播吧':''}${project=='足球'?'足球集锦频道为您提供最新的足球比赛录像、足球视频、全场集锦回放，更多精彩足球集锦尽在直播吧':''}|" />
+    <link rel="stylesheet" th:href="@{styles_1/collection.css}" />
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-9 left-content">
+            <div class="row">
+           <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  > <a th:href="${'/projectVideo_1?project='+project}"><span style="color:#4184f3" th:text="${project+'集锦'}"></span></a></div>
+          </div>
+            <div class="collection-gallery" th:each="pv:${projectVideos}">
+                <div class="row">
+                    <div class="col-md-12 title">
+                        <img class="icon-24" th:src="${'image_1/icon/'+projectEnglish+'.png'}"/>
+                        <b><span th:text="${pv.name}"></span>集锦</b>
+                        <a class="pull-right" th:href="${'/gameVideo_1?project='+project+'&amp;game='+pv.name}">更多>></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 collection-item" th:each="v:${pv.videos}">
+                        <a th:href="${v.link}" target="_blank"><img class="img-responsive" th:src="${webImageBase + (v.image!=''?v.image:(projectEnglish+'-default.png'))}"/></a>
+                        <a th:href="${v.link}" th:text="${v.name}" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 right-content">
+            <div th:replace="layout/right :: channel"></div>
+            <div th:replace="layout/right :: projectCollection"></div>
+            <div th:replace="layout/right :: projectVideo"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

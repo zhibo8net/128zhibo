@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title th:text="${news.title}"></title>
+    <meta name="keywords" content="直播吧,直播8,足球直播,篮球直播,NBA直播,世界杯直播,在线直播,体育直播" />
+    <meta name="description" th:content="${newsPageDesc}" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
+    <meta name="baidu-site-verification" content="FeM2EtCC8T" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{../styles_1/common.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/news_detail.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/login.css}" />
+    <!-- <link rel="stylesheet" href="../static/styles_1/common.css" />
+    <link rel="stylesheet" href="../static/styles_1/news_detail.css" />
+    <link rel="stylesheet" href="../static/styles_1/login.css" /> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <script th:src="@{/js_1/news_detail.js}"></script>
+    <script th:src="@{/js_1/md5.js}"></script>
+    <!-- <script src="../static/js_1/news_detail.js"></script>
+    <script src="../static/js_1/md5.js"></script> -->
+    <!-- <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?aab079013b60296378945e415582815d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script> -->
+</head>
+
+<body>
+    <div th:replace="layout/header :: header"></div>
+
+
+    <div class="container margin_top_20">
+        <div id="main">
+            <div class="breadcrumbs">
+                <a href="http://www.zhibo8.net">直播首页</a>&gt;
+                <a href="/nba_news.html">足球新闻</a>&gt;<spn th:text="${news.title}"></spn>
+                <span class="getId" style="display:none;" th:text="${news.id}"></span>
+            </div>
+            <div class="box margin_top_10">
+                <div class="title">
+                    <h1 th:text="${news.title}"></h1>
+                    <span avalonctrl="title_controller" th:text="${news.createTime}">
+                    </span>
+                    <span avalonctrl="title_controller" th:text="' 浏览次数:'+${news.readCount}">
+                    </span>
+                </div>
+                <div class="Line"></div>
+                <div id="signals" class="content" th:utext="${news.content}">
+
+                </div>
+
+                <div class="nextbot">
+                    <a th:if="${preNews!=null}" th:href="'/news_detail/'+${preNews.id}+'.html'" class="left">
+                        上一篇:
+                        <span th:text="${preNews.title}"></span>
+                    </a>
+                    <a th:if="${nextNews!=null}" th:href="'/news_detail/'+${nextNews.id}+'.html'" class="right">
+                        下一篇:
+                        <span th:text="${nextNews.title}"></span>
+                    </a>
+                </div>
+                <!-- Baidu Button BEGIN -->
+                <!--repeat62137193235885540080864223876429:end-->
+                <div id="bdshare">
+                </div>
+                <!-- Baidu Button END -->
+
+                <div class="margin_top_20" style="height: 0; float: none; clear: both;"></div>
+                <div id="pl_box" file="2018_10_20-news-zuqiu-5bcaa47bef94f" avalonctrl="pl_app">
+                    <div data-include-rendered="onrendered">
+                        <!--ms-include-->
+                        <style type="text/css">
+                            .login-btn {
+                                background-color: #5BC0DE;
+                                padding: 3px 5px 3px 29px;
+                                color: #fff;
+                                cursor: pointer;
+                                margin-right: 4px;
+                                font-size: 12px;
+                                font-family: "Microsoft YaHei", "simsun", "宋体"
+                            }
+
+                            #logindiv .login-btn {
+                                margin-right: 0;
+                            }
+
+                            #logindiv .login-m {
+                                margin-right: 6px;
+                            }
+
+                            .login-m {
+                                position: relative;
+                                background: #E6A146 url(http://bbsimg.zhibo8.cc/bbsimg/2017-09-30/20170930144658_8576.png) no-repeat left 8px center;
+                                padding-right: 0;
+                                margin-right: 6px;
+                            }
+
+                            .login-qq {
+                                background: #03a4db url(http://bbsimg.zhibo8.cc/bbsimg/2017-06-05/20170605104131_7020.png) no-repeat left 5px center;
+                            }
+
+                            .login-weibo {
+                                background: #d9534f url(http://bbsimg.zhibo8.cc/bbsimg/2017-06-05/20170605104131_7062.png) no-repeat left 5px center;
+                            }
+
+                            .login-wechat {
+                                background: #6eb244 url(http://bbsimg.zhibo8.cc/bbsimg/2017-06-05/20170605104131_5241.png) no-repeat left 5px center;
+                            }
+
+                            .login-forum {
+                                background: #2e9fff url(http://bbsimg.zhibo8.cc/bbsimg/2017-06-05/20170605104131_7634.png) no-repeat left 5px center;
+                            }
+
+                            .login-info {
+                                margin-top: 5px;
+                                text-align: center;
+                                color: #888;
+                                line-height: 25px;
+                                font-size: 14px;
+                            }
+
+                            .m-login-box {
+                                position: absolute;
+                                top: 40px;
+                                z-index: 11;
+                            }
+
+                            .m-login-box:after {
+                                content: '';
+                                position: absolute;
+                                top: -16px;
+                                left: 50px;
+                                border-color: transparent transparent #ddd transparent;
+                                border-width: 8px 8px;
+                                border-style: solid;
+                            }
+
+                            .m-login-box:before {
+                                content: '';
+                                position: absolute;
+                                top: -14px;
+                                left: 50px;
+                                border-color: transparent transparent #fff transparent;
+                                border-width: 8px 8px;
+                                border-style: solid;
+                                z-index: 1000;
+                            }
+
+                            input::-webkit-outer-spin-button,
+                            input::-webkit-inner-spin-button {
+                                -webkit-appearance: none !important;
+                                margin: 0;
+                            }
+
+                            input[type="number"] {
+                                -moz-appearance: textfield;
+                            }
+
+                            .login-box {
+                                width: 300px;
+                                padding: 15px;
+                                background: #fff;
+                                cursor: default;
+                                border: 2px solid #ddd;
+                            }
+
+                            .login-box .fl {
+                                float: left;
+                            }
+
+                            .login-box .fr {
+                                float: right;
+                            }
+
+                            .login-box .b-clear:after,
+                            .login-box .b-clear:before {
+                                content: '';
+                                display: block;
+                                clear: both;
+                            }
+
+                            .mobile-login .m-li {
+                                margin: 10px 0;
+                            }
+
+                            .mobile-login h1 {
+                                text-align: center;
+                                font-size: 18px;
+                                margin-bottom: 10px;
+                                font-weight: normal;
+                                color: #a3a3a3;
+                            }
+
+                            .mobile-login .m-tel {
+                                position: relative;
+                                padding: 8px 0;
+                                border: 1px solid #EEEEEE;
+                            }
+
+                            .mobile-login .m-tel input {
+                                display: block;
+                                margin: 0;
+                                padding: 0;
+                                margin-left: 40px;
+                                height: 34px;
+                                width: 220px;
+                                border: none;
+                                border-left: 1px solid #EEEEEE;
+                                text-indent: 5px;
+                                outline: 0;
+                            }
+
+                            .mobile-login .m-tel:before {
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                left: 0;
+                                width: 40px;
+                                background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_5285.png) no-repeat center center;
+                            }
+
+                            .mobile-login .ck-status {
+                                position: absolute;
+                                top: 0;
+                                right: 8px;
+                                bottom: 0;
+                                padding-right: 20px;
+                            }
+
+                            .mobile-login .ck-success {
+                                background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_1269.png) no-repeat center center;
+                            }
+
+                            .mobile-login .ck-error {
+                                background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_7698.png) no-repeat center center;
+                            }
+
+                            .mobile-login .input-code {
+                                position: relative;
+                                padding: 8px 0;
+                                border: 1px solid #EEEEEE;
+                            }
+
+                            .mobile-login .blue-box {
+                                border: 1px solid #2E9FFF;
+                            }
+
+                            .mobile-login .error-box {
+                                border: 1px solid #FE0000;
+                            }
+
+                            .mobile-login .input-code input {
+                                display: block;
+                                margin-left: 40px;
+                                padding: 0;
+                                width: 120px;
+                                border: none;
+                                border-left: 1px solid #EEEEEE;
+                                text-indent: 5px;
+                                height: 34px;
+                                outline: 0;
+                            }
+
+                            .mobile-login .input-code:before {
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                left: 0;
+                                width: 40px;
+                                background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_2809.png) no-repeat center center;
+                            }
+
+                            .mobile-login .get-code {
+                                width: 120px;
+                                height: 50px;
+                                line-height: 50px;
+                                text-align: center;
+                                background: #F5F5F5;
+                                border: 1px solid #EEEEEE;
+                            }
+
+                            .mobile-login .get-code a {
+                                display: block;
+                                color: #a3a3a3;
+                                line-height: 50px;
+                            }
+
+                            .mobile-login .get-code a.hadSend {
+                                background: #ff9657;
+                                color: #fff;
+                            }
+
+                            .mobile-login .get-code a.count-down {
+                                background: #bebebe;
+                                color: #fff;
+                            }
+
+                            .mobile-login .validate-code .tip-info {
+                                color: #fe0000;
+                                padding-top: 5px;
+                                line-height: 20px;
+                            }
+
+                            .mobile-login .m-login-btn {
+                                height: 48px;
+                                line-height: 48px;
+                                background: #2E9FFF;
+                                text-align: center;
+                            }
+
+                            .mobile-login .m-login-btn a {
+                                display: block;
+                                color: #fff;
+                                font-size: 14px;
+                                line-height: 48px;
+                            }
+
+                            .mobile-login .reg {
+                                text-align: right;
+                            }
+
+                            .mobile-login .reg a {
+                                color: #2E9FFF;
+                            }
+
+                            .mobile-login .reg a:hover {
+                                text-decoration: underline;
+                            }
+
+                            #nouserinfo .fl-box {
+                                float: left;
+                                width: 33.333%;
+                                text-align: center;
+                                line-height: 30px;
+                            }
+
+                            #nouserinfo .login-m {
+                                padding-right: 5px;
+                            }
+
+                            #nouserinfo .login-info {
+                                float: left;
+                                width: 100%;
+                            }
+
+                            /*扫码登录窗口*/
+
+                            /*.login-sao{position: relative;background:#2E9FFF url(http://bbsimg.zhibo8.cc/bbsimg/2018-02-24/20180224142818_509.png) no-repeat left 5px center;background-size:20px;}
+         .sao-code {position:absolute;top:40px;left:0;z-index:11;color:#333;}
+         .sao-code .sao-box{padding:15px;border:2px solid #ddd;-webkit-box-sizing: border-box;box-sizing: border-box;background: #fff;}
+         .sao-code .sao-flex{display:-webkit-flex;display:flex;justify-content: center;align-items: center;width:300px;height:260px;}
+         .sao-code .code-area{width:140px;min-height:120px;margin-top:-20px;}
+         .sao-code .code-area > p{line-height:20px;margin-bottom:10px;}
+        .sao-code .code-area .code-tip{margin:0 0 15px 0;}
+        .sao-code .code-area .code-img{position:relative;min-height:120px;text-align: center;}
+        .sao-code .code-area .refresh-mk:before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background: url(http://bbsimg.zhibo8.cc/bbsimg/2018-03-01/20180301170809_7766.png) no-repeat center center;background-size:40px;
+        -moz-animation:rotateMK 1s  linear infinite;-webkit-animation:rotateMK 1s  linear infinite;animation:rotateMK 1s linear infinite;-webkit-border-radius:50%;border-radius:50%;}
+        @-webkit-keyframes rotateMK{
+            from{-webkit-transform: rotate(0deg);}
+            to{-webkit-transform: rotate(360deg);}
+        }
+        @keyframes rotateMK{
+            from{transform: rotate(0deg);}
+            to{transform: rotate(360deg);}
+        }
+        @-moz-keyframes name{
+            from{-moz-transform: rotate(0deg);}
+            to{-moz-transform: rotate(360deg);}
+        }
+        .sao-code .code-img .code-bg{position:absolute;top:0;right: 0;bottom: 0;left:0;z-index:9;background: rgba(0,0,0,.3);text-align: center;color:#fff;}
+        .sao-code .code-img .code-pass{display:flex;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;justify-content: center;align-items: center;}
+        .sao-code .code-area .c-img{max-width:100%;vertical-align:middle;border:1px solid #ccc;}
+        .sao-code .pass-refresh a{color:#fff;}
+         .sao-code .img-tip{height:90%;width:50%;background: url(http://bbsimg.zhibo8.cc/bbsimg/2018-02-26/20180226175615_1338.png) no-repeat center center;background-size:contain;}
+        .sao-code:after{content:'';position:absolute;top:-16px;left:50px;border-color:transparent transparent #ddd transparent;border-width:8px 8px;border-style:solid;}
+        .sao-code:before{content:'';position:absolute;top:-14px;left:50px;border-color:transparent transparent #fff transparent;border-width:8px 8px;border-style:solid;z-index:1000;}
+        */
+
+                            .login-btn-area {
+                                margin-top: 10px;
+                                color: #2E9FFE;
+                                font-size: 14px;
+                                text-align: center;
+                            }
+
+                            .login-btn-area a {
+                                color: inherit;
+                                font-size: inherit;
+                            }
+
+                            .login-btn-area a:hover {
+                                color: #ff3232;
+                            }
+
+                            .mobile-login .v-code .input-code:before {
+                                background-image: url(http://bbsimg.zhibo8.cc/bbsimg/2018-10-17/20181017170929_1950.png);
+                            }
+                        </style>
+                        <div class="clear"></div>
+                        <div id="logindiv" style="width:100%; height:40px; line-height:40px; position: relative; ">
+                            <span class="login-info">登录后才能发表评论和回复</span>
+                            <span class="login-btn-area">
+                                <a href="javascript:;" class="l-b-l">登录</a> |
+                                <a class="l-b-r" href="javascript:;">注册</a>
+                            </span>
+                            <!--<font color="red">请使用 <a class="btn btn-info" ms-href="{{m_qq_url}}">QQ账号登录</a> |
+            <a class="btn btn-danger" ms-href="{{m_weibo_url}}">微博账号登录</a>  或者 论坛账号<a  href="javascript:void(0);" ms-click="showloginBox($event)">登录</a>,登录后才能发表评论和回复</font>-->
+                        </div>
+
+                        <div th:replace="layout/login :: login"></div>
+
+                        <!--绑定手机 start-->
+                        <style type="text/css">
+                            .tel_check a {
+                                text-decoration: none;
+                                color: #333;
+                            }
+
+                            .tel_check .fr {
+                                float: right;
+                            }
+
+                            .tel_check .fl {
+                                float: left;
+                            }
+
+                            .tel_check .b-clear:after,
+                            .tel_check .b-clear:before {
+                                content: '';
+                                display: block;
+                                clear: both;
+                            }
+
+                            .tel_check .body-bg {
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                z-index: 10;
+                                background: rgba(0, 0, 0, .3);
+                            }
+
+                            .model_view .close-btn {
+                                position: absolute;
+                                right: 5px;
+                                top: 5px;
+                                width: 30px;
+                                height: 30px;
+                                background: url("http://bbsimg.zhibo8.cc/bbsimg/2017-09-30/20170930124728_1483.png") no-repeat center center;
+                                cursor: pointer;
+                                border-left: 2px solid #EEEEEE;
+                            }
+
+                            .model_view .close-btn:hover {
+                                background: url("http://bbsimg.zhibo8.cc/bbsimg/2017-09-30/20170930124728_5328.png") no-repeat center center;
+                            }
+
+                            .tel_check .mobile-tel {
+                                position: fixed;
+                                top: 50%;
+                                left: 50%;
+                                height: 450px;
+                                -webkit-transform: translate(-50%, -50%);
+                                transform: translate(-50%, -50%);
+                                z-index: 11;
+                                background: rgb(255, 255, 255)
+                            }
+
+                            .tel_check .mobile-tel {
+                                width: 300px;
+                                border-right: 1px solid #EEEEEE;
+                                padding: 0 20px;
+                            }
+
+                            .tel_check .m-li {
+                                margin: 20px 0px;
+                            }
+
+                            .tel_check h1 {
+                                text-align: center;
+                                font-size: 24px;
+                                font-weight: normal;
+                                color: #a3a3a3;
+                                padding: 30px 0;
+                                margin: 0;
+                            }
+
+                            .tel_check .m-tel {
+                                position: relative;
+                                padding: 8px 0;
+                                border: 1px solid #EEEEEE;
+                            }
+
+                            .tel_check .m-tel input {
+                                margin: 0;
+                                padding: 0;
+                                margin-left: 40px;
+                                height: 34px;
+                                width: 250px;
+                                border: none;
+                                border-left: 1px solid #EEEEEE;
+                                text-indent: 5px;
+                                outline: 0;
+                            }
+
+                            .tel_check .m-tel:before {
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                left: 0;
+                                width: 40px;
+                                background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_5285.png) no-repeat center center;
+                            }
+
+                            .tel_check .ck-status {
+                                position: absolute;
+                                top: 0;
+                                right: 8px;
+                                bottom: 0;
+                                padding-right: 20px;
+                            }
+
+                            .tel_check .ck-success {
+                                background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_1269.png) no-repeat center center;
+                            }
+
+                            .tel_check .ck-error {
+                                background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_7698.png) no-repeat center center;
+                            }
+
+                            .tel_check .input-code {
+                                position: relative;
+                                padding: 8px 0;
+                                border: 1px solid #EEEEEE;
+                                margin-right: 130px;
+                            }
+
+                            .tel_check .blue-box {
+                                border: 1px solid #2E9FFF;
+                            }
+
+                            .tel_check .error-box {
+                                border: 1px solid #FE0000;
+                            }
+
+                            .tel_check .input-code .code-box {
+                                margin-left: 40px;
+                            }
+
+                            .tel_check .input-code input {
+                                padding: 0;
+                                width: 99%;
+                                border: none;
+                                border-left: 1px solid #EEEEEE;
+                                text-indent: 5px;
+                                height: 34px;
+                                outline: 0;
+                            }
+
+                            .tel_check .input-code:before {
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                left: 0;
+                                width: 40px;
+                                background: url(http://bbsimg.zhibo8.cc/bbsimg/2017-07-13/20170713092142_2809.png) no-repeat center center;
+                            }
+
+                            .tel_check .get-code {
+                                width: 120px;
+                                height: 50px;
+                                line-height: 50px;
+                                text-align: center;
+                                background: #F5F5F5;
+                                border: 1px solid #EEEEEE;
+                            }
+
+                            .tel_check .get-code a {
+                                display: block;
+                            }
+
+                            .tel_check .get-code a.hadSend {
+                                background: #ff9657;
+                                color: #fff;
+                            }
+
+                            .tel_check .get-code a.count-down {
+                                background: #bebebe;
+                                color: #fff;
+                            }
+
+                            .tel_check .validate-code .tip-info {
+                                color: #fe0000;
+                                padding-top: 5px;
+                            }
+
+                            .tel_check .validate-code .real-name {
+                                color: #2E9FFF;
+                                padding-top: 5px;
+                            }
+
+                            .tel_check .m-login-btn {
+                                height: 48px;
+                                line-height: 48px;
+                                background: #2E9FFF;
+                                text-align: center;
+                            }
+
+                            .tel_check .m-login-btn a {
+                                display: block;
+                                color: #fff;
+                                font-size: 14px;
+                            }
+
+                            .tel_check .code-tip {
+                                color: #a3a3a3;
+                                font-size: 13px;
+                            }
+                        </style>
+                        <!--手机号验证-->
+
+                        <style>
+                            .btn {
+                                display: inline-block;
+                                padding: 2px 10px;
+                                font-size: 14px;
+                                font-weight: 400;
+                                line-height: 1.42857143;
+                                text-align: center;
+                                white-space: nowrap;
+                                vertical-align: middle;
+                                -ms-touch-action: manipulation;
+                                touch-action: manipulation;
+                                cursor: pointer;
+                                -webkit-user-select: none;
+                                -moz-user-select: none;
+                                -ms-user-select: none;
+                                user-select: none;
+                                background-image: none;
+                                border: 1px solid transparent;
+                                border-radius: 4px;
+                                width: 100px;
+                            }
+
+                            .btn-info {
+                                color: #fff !important;
+                                background-color: #5bc0de;
+                                border-color: #46b8da;
+                            }
+
+                            .btn-danger {
+                                color: #fff !important;
+                                background-color: #d9534f;
+                                border-color: #d43f3a;
+                            }
+
+                            .icon_approve {
+                                background-position: center 4px;
+                                background-repeat: no-repeat;
+                                background-image: url("//static4style.oss-cn-hangzhou.aliyuncs.com/common%2Fimg%2Fv.png");
+                                background-size: 15px 15px;
+                                display: inline-block;
+                                width: 14px;
+                                height: 25px;
+                            }
+                        </style>
+
+                        <style>
+                            .light {
+                                background: none;
+                            }
+
+                            .light>div {
+                                background: white !important;
+                            }
+
+                            #re .face_img {
+                                display: block;
+                            }
+
+                            #face_cat .current {
+                                background: #ffffff;
+                            }
+
+                            .faces img {
+                                cursor: pointer;
+                            }
+
+                            .close_btn {
+                                height: auto;
+                                width: auto;
+                                padding: 0 5px;
+                                line-height: 20px;
+                                font-size: 12px;
+                                position: absolute;
+                                top: 2px;
+                                right: 2px;
+                                border: solid #666666 1px;
+                                background: #ffffff;
+                                cursor: pointer;
+                            }
+
+                            .bigimg {
+                                top: 40px;
+                            }
+
+                            .btn_loadmore {
+                                width: 100%;
+                                height: 30px;
+                                line-height: 30px;
+                                font-size: 14px;
+                                color: #000033;
+                                cursor: pointer;
+                                text-align: center;
+                                background: #A6CAF0;
+                            }
+
+                            .btn_more_height {
+                                height: 60px !important;
+                                line-height: 60px !important;
+                            }
+
+                            .light {
+                                background: none;
+                            }
+
+                            .advert_editor_bottom {
+                                display: inline-block;
+                                color: blue;
+                                margin-left: 80px;
+                            }
+                        </style>
+
+
+                        <!-- 登陆评论区 -->
+                        <div class="pllist">
+
+                            <div id="hotdiv" class="hot_huifu" style="display: none;">
+                                <div class="hot_huifuT">热门评论</div>
+                                <!--repeat92799197306660699992001186580488:end-->
+                            </div>
+
+                            <div id="re">
+                                <div id="re_box" class="input_l_rel">
+                                    <div class="left">
+                                        <a class="headpic" target="_blank" href="//home.zhibo8.net/">
+                                            <!--旧方式获取头像：<img class="lazy" ms-src="//uc.zhibo8.cc/avatar.php?size=small&uid={{userid}}" width="45" height="45"/>-->
+                                            <img class="lazy" width="45" height="45" src="http://tu.zhibo8.cc/uploads/qqimages/logo_small.png" />
+                                        </a>
+                                    </div>
+                                    <div class="input">
+                                        <!--ms-if-->
+                                        <!--<a class="advert_p_editor"></a>-->
+                                        <div class="plate_03">发表评论:</div>
+                                        <!--ms-if-->
+                                        <textarea id="post_content" name="content" rows="8" onkeydown="if(event.keyCode==13){document.getElementById('submit_btn').click();return false};"></textarea>
+                                        <div id="nouserinfo" style="z-index:9;padding: 10px 10px 30px 10px; background:#fff; width:528px; height: 82px; position:absolute; left:0; top:20px;text-align:center;">
+
+                                            <div>
+                                                <div class="login-info">登录后才能发表评论和回复</div>
+                                                <div class="login-btn-area">
+                                                    <a href="javascript:;" class="l-b-l">登录</a> |
+                                                    <a class="l-b-r" href="javascript:;">注册</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="editortip" style="width:525px; height:88px;line-height:25px; color:#A6CAF0; position:absolute; left:0px; top:25px; text-align:left; padding: 20px 0 0 20px;">
+                                            1.电脑端新用户可以发表评论了！
+                                            <br />2.发言请遵守国家法律法规.
+                                            <br />3.禁止发布任何宣传、广告、侮辱攻击他人、刷屏等信息.
+                                            <br />
+                                            <!-- 评论功能即将开放，敬请期待 -->
+                                        </div>
+
+                                        <!--表情-->
+                                        <!--<div class="pl-emoji" style="display:none;">-->
+                                        <!--&lt;!&ndash;repeat94649307830618385651042927249896&ndash;&gt;-->
+                                        <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                        <!--<div class="e-area">-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="微笑"><img src="https://tu.qiumibao.com/emoji/common/ic_weixiao@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="再见"><img src="https://tu.qiumibao.com/emoji/common/ic_zaijian@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="笑哭"><img src="https://tu.qiumibao.com/emoji/common/ic_xiaoku@2x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="爱慕"><img src="https://tu.qiumibao.com/emoji/common/ic_xianmu@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="捂脸"><img src="https://tu.qiumibao.com/emoji/common/ic_wulian@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="睡觉"><img src="https://tu.qiumibao.com/emoji/common/ic_shuijiao@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="衰"><img src="https://tu.qiumibao.com/emoji/common/ic_shuai@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="呕吐"><img src="https://tu.qiumibao.com/emoji/common/ic_outu@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="震惊"><img src="https://tu.qiumibao.com/emoji/common/ic_zhenjing@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="眩晕"><img src="https://tu.qiumibao.com/emoji/common/ic_xuanyun@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="流汗"><img src="https://tu.qiumibao.com/emoji/common/ic_liuhan@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="厉害"><img src="https://tu.qiumibao.com/emoji/common/ic_lihai@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="酷"><img src="https://tu.qiumibao.com/emoji/common/ic_ku@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="可怜"><img src="https://tu.qiumibao.com/emoji/common/ic_kelian@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="滑稽"><img src="https://tu.qiumibao.com/emoji/common/ic_huaji@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="哈哈"><img src="https://tu.qiumibao.com/emoji/common/ic_haha@2x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="愤怒"><img src="https://tu.qiumibao.com/emoji/common/ic_fennu@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="大哭"><img src="https://tu.qiumibao.com/emoji/common/ic_daku@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="加油"><img src="https://tu.qiumibao.com/emoji/common/ic_jiayou@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109&ndash;&gt;-->
+                                        <!--<div class="img" title="祈祷"><img src="https://tu.qiumibao.com/emoji/common/ic_qidao@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat40374341037096765339595004683109:end&ndash;&gt;-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash;repeat94649307830618385651042927249896&ndash;&gt;-->
+                                        <!--<div class="e-area">-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="黑锅"><img src="https://tu.qiumibao.com/emoji/sport/ic_heiguo@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="xjbd"><img src="https://tu.qiumibao.com/emoji/sport/ic_xjbd@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="xjbt"><img src="https://tu.qiumibao.com/emoji/sport/ic_xjbt@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="下课"><img src="https://tu.qiumibao.com/emoji/sport/ic_xiake@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="mvp"><img src="https://tu.qiumibao.com/emoji/sport/ic_mvp@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="黄牌"><img src="https://tu.qiumibao.com/emoji/sport/ic_huangpai@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="红牌"><img src="https://tu.qiumibao.com/emoji/sport/ic_hongpai@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="助威"><img src="https://tu.qiumibao.com/emoji/sport/ic_zhuwei@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="背锅"><img src="https://tu.qiumibao.com/emoji/sport/ic_beiguo@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="奖杯"><img src="https://tu.qiumibao.com/emoji/sport/ic_jiangbei@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="饮水机"><img src="https://tu.qiumibao.com/emoji/sport/ic_yinshuiji@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="哨子"><img src="https://tu.qiumibao.com/emoji/sport/ic_shaozi@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="足球"><img src="https://tu.qiumibao.com/emoji/sport/ic_zuqiu@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="篮球"><img src="https://tu.qiumibao.com/emoji/sport/ic_lanqiu@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="投降"><img src="https://tu.qiumibao.com/emoji/sport/ic_touxiang@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="战术板"><img src="https://tu.qiumibao.com/emoji/sport/ic_zhanshuban@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="啤酒"><img src="https://tu.qiumibao.com/emoji/sport/ic_pijiu@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="金牌"><img src="https://tu.qiumibao.com/emoji/sport/ic_jinpai@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="撸串"><img src="https://tu.qiumibao.com/emoji/sport/ic_luchuan@3x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254&ndash;&gt;-->
+                                        <!--<div class="img" title="击掌"><img src="https://tu.qiumibao.com/emoji/sport/ic_jizhang@2x.png"></div>-->
+                                        <!--&lt;!&ndash;repeat0763009477249043744408128911502254:end&ndash;&gt;-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash;repeat94649307830618385651042927249896:end&ndash;&gt;-->
+                                        <!--<div class="pl-e-s">-->
+                                        <!--&lt;!&ndash;repeat079879934352972147348297080005337&ndash;&gt;<span class="e-switch">通用</span>-->
+                                        <!--&lt;!&ndash;repeat079879934352972147348297080005337&ndash;&gt;<span class="e-switch e-cur">体育</span>-->
+                                        <!--&lt;!&ndash;repeat079879934352972147348297080005337:end&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<span class="e-close" ms-click="show_smiley_box(false)">X</span>&ndash;&gt;-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!-- '+face_lable_end+' -->
+                                        <input id="submit_btn" type="button" name="submit" value="回 复" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <!--ms-if-->
+                                        <span>按Ctrl+Enter发表回复</span>
+
+                                        <span style="color: rgb(0, 128, 0); display: none;"></span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <style>
+                                .tip-pos {
+                                    position: relative;
+                                }
+
+                                .post-tip {
+                                    position: absolute;
+                                    left: 0px;
+                                    top: -36px;
+                                    right: 0;
+                                    text-align: center;
+                                    padding: 5px;
+                                    color: #333;
+                                    z-index: 11;
+                                    /*display:none;*/
+                                }
+
+                                .post-tip span {
+                                    display: inline-block;
+                                    padding: 6px 12px;
+                                    border-radius: 5px;
+                                    background-color: #fff;
+                                    border: 1px solid #ddd;
+                                    box-shadow: 2px 2px 8px #999;
+                                }
+
+                            </style>
+                            <div class="tip-pos">
+                                <!--ms-if-->
+                            </div>
+                            <div>
+                                <!-- 已有0条评论。 -->
+                                <a href="javascript:void(0);" class="reloadData">刷新评论</a>
+                            </div>
+
+
+                            <!--ms-if-->
+
+                            <div id="pltpl">
+                                <!--repeat58184936326359644244358400558539:end-->
+                            </div>
+
+                            <div id="pllist" class="pllist">
+
+                                <!--<table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">-->
+                                <!--<tbody>-->
+                                <!--<tr>-->
+                                <!--<td class="userPro" valign="top">-->
+                                <!--<div class="left">-->
+                                <!--<a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3265204">-->
+                                <!--<img class="lazy" src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"-->
+                                <!--data-src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"-->
+                                <!--/>-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--</a>-->
+                                <!--</div>-->
+                                <!--</td>-->
+                                <!--<td class="commentTextList" valign="top">-->
+                                <!--<div class="comment">-->
+                                <!--<div class="info">-->
+                                <!--<div class="left">-->
+                                <!--<a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3265204">春哥也有事业线</a>-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--<span class="dev_info">2018-10-20 11:59:50-->
+                                <!--<span>-->
+                                <!--<a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自安卓客户端</a>-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--</span>-->
+                                <!--</span>-->
+
+                                <!--</div>-->
+                                <!--<div class="right">-->
+                                <!--<span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123596666" uid="0">顶(-->
+                                <!--<font class="up_cnt">0</font>)</span>-->
+                                <!--<span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123596666" uid="0">踩(-->
+                                <!--<font class="down_cnt">0</font>)</span>-->
+                                <!--<a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>-->
+                                <!--<span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123596666">举报</span> 9楼</div>-->
+                                <!--</div>-->
+                                <!--<p class="word">这货到曼联几年了，有过正常表现么？！这还能续约？！</p>-->
+                                <!--<div data-include-rendered="addClass" style="display: none;" class="dark">-->
+                                <!--&lt;!&ndash;ms-include&ndash;&gt;-->
+                                <!--&lt;!&ndash;repeat513559921760873738887156706113024:end&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-include-end&ndash;&gt;-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;<span ng-bind-html="echoChildrenOld(p.id)"></span>&ndash;&gt;-->
+                                <!--</div>-->
+                                <!--</td>-->
+                                <!--</tr>-->
+                                <!--</tbody>-->
+                                <!--</table>-->
+
+                            </div>
+
+                            <div class="btn_loadmore">评论已全部加载完成</div>
+                            <!--ms-if-->
+                        </div>
+
+                        <!-- 绑定手机 start -->
+                        <style>
+                            .full_screen {
+                                width: 100%;
+                                height: 100%;
+                                display: table;
+                                left: 0;
+                                top: 0;
+                                z-index: 1000;
+                                position: fixed;
+                                text-align: center;
+                                vertical-align: middle;
+                            }
+
+                            .full_screen .center {
+                                display: table-cell;
+                                vertical-align: middle;
+                                /*color: #fff;*/
+                            }
+
+                            .modal_box {
+                                width: 400px;
+                                height: 300px;
+                                margin: 0 auto;
+                                background-color: #FFFFFF;
+                                border-radius: 10px;
+                                border: solid 1px #222222;
+                                overflow: hidden;
+                            }
+
+                            .modal_box .titlebar {
+                                height: 40px;
+                                line-height: 40px;
+                                background: none;
+                                /*background-color: #4184F3;*/
+                            }
+
+                            .modal_box .titlebar .more {
+                                float: right;
+                                margin-right: 10px;
+                            }
+
+                            .modal_box .box_content {
+                                padding: 10px;
+                                position: relative;
+                                height: 240px;
+                                border-top: solid 1px #eeeeee;
+                            }
+
+                            .modal_box .box_content .cancle_btn {
+                                position: absolute;
+                                bottom: 5px;
+                                right: 5px;
+                                color: #AAAAAA;
+                            }
+
+                            .show_bind_box {
+                                color: red !important;
+                            }
+                        </style>
+                        <style>
+                            .rad5 {
+                                border-radius: 5px;
+                                -webkit-border-radius: 5px;
+                            }
+
+                            .mtop10 {
+                                margin-top: 10px;
+                            }
+
+                            .phonenum {
+                                border: 1px solid #ccc;
+                                padding: 0 10px;
+                            }
+
+                            .lh35 {
+                                height: 35px;
+                                line-height: 35px;
+                            }
+
+                            .input_100 {
+                                width: 100%;
+                                padding: 0;
+                                border: 0;
+                            }
+
+                            .wd48 {
+                                float: left;
+                                width: 48%;
+                            }
+
+                            .wd48_div {
+                                border: 1px solid #ccc;
+                                padding: 0 10px;
+                            }
+
+                            .wd48_input {
+                                width: 100%;
+                                padding: 0;
+                                border: 0;
+                            }
+
+                            .wd52 {
+                                width: 52%;
+                                float: left;
+                            }
+
+                            .wd52_div {
+                                cursor: pointer;
+                                margin-left: 20px;
+                                background-color: #FA8B15;
+                                color: white;
+                                text-align: center;
+                            }
+
+                            .bind_phone {
+                                background-color: #C9C9C9;
+                                color: white;
+                                text-align: center;
+                                cursor: pointer;
+                            }
+
+                            .msg {
+                                margin-top: 10px;
+                                color: red;
+                                display: none;
+                            }
+
+                            input {
+                                font-size: 1.0em;
+                            }
+                        </style>
+                        <div class="full_screen" style="display: none;">
+                            <div class="center">
+                                <div class="modal_box">
+                                    <div class="titlebar">
+                                        <span>绑定手机后可进行评论发表</span>
+                                        <a class="cancle_btn" style="background-image:url(//pl.zhibo8.cc/css/images/overlay/close.png);position:absolute; right:0px; top:0px;cursor:pointer;height:35px;width:35px;"></a>
+                                    </div>
+                                    <!--<div class="more">-->
+                                    <!--<button class="btn_cls">关闭</button>-->
+                                    <!--</div>-->
+                                    <div class="box_content">
+                                        <div class="msg">请输入正确的手机号码</div>
+                                        <div id="varea">
+                                            <div class="phonenum rad5 mtop10">
+                                                <div class="lh35">
+                                                    <input type="text" class="input_100 lh35" placeholder="请输入手机号" id="phone"
+                                                        maxlength="11" />
+                                                </div>
+                                            </div>
+
+                                            <div class="mtop10">
+                                                <div class="wd48">
+                                                    <div class="rad5 wd48_div">
+                                                        <input type="text" class="wd48_input lh35" placeholder="请输入验证码"
+                                                            maxlength="4" id="vcode" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="wd52">
+                                                    <div class="rad5 wd52_div lh35" id="getvcode">
+                                                        获取验证码
+                                                    </div>
+                                                </div>
+
+                                                <div style="clear:both"></div>
+                                            </div>
+
+                                            <div class="rad5 mtop10 bind_phone lh35" id="bind">点击绑定手机</div>
+                                        </div>
+                                        <a class="cancle_btn" href="javascript:void(0);">取消</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 绑定手机 end -->
+                        <!--ms-include-end-->
+                    </div>
+                </div>
+                <!-- <script src="http://news.zhibo8.cc/js/pinglunApp.js?version=v1" type="text/javascript"></script> -->
+            </div>
+        </div>
+        <div id="siderbar">
+            <div class="advert last">
+                <!-- 广告位：内页上方250*250 -->
+                <!--            <iframe src="//www.zhibo8.cc/proxy.html?id=292149" width="250" height="250" scrolling="no" frameborder="0" style="display:block;margin:0"></iframe>-->
+                <!-- 推广位Id:67224586 推广位名称:内页顶部方块 类型：固定 尺寸：250x250-->
+                <img th:src="@{/image_1/20181227203944.jpg}" alt="" />
+            </div>
+        </div>
+    </div>
+
+
+
+    <div th:replace="layout/footer :: footer"></div>
+    <script>
+        $(function () {
+
+            checkLogin();
+            getAllList();
+
+            function checkLogin() {
+                $.ajax({
+                    url: '/checkUser',
+                    type: 'POST',
+                    // data: JSON.stringify(data),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.code == '0000') {
+                            $('.loginBox').fadeOut(); // 隐藏登录弹窗
+                            $("#nouserinfo").hide(); // 隐藏登录注册框
+                            $('#logindiv').hide(); // 用户信息
+                        }
+                    },
+                    fail: function (err) {
+                        // alert(err)
+                    }
+                });
+            }
+
+            function getAllList() {
+                var data = {
+                    type: '2',
+                    relId: $('.getId').html() || ''
+                };
+                if (!data.relId) {
+                    alert('系统异常，请稍后重试')
+                    return false
+                }
+                $.ajax({
+                    url: '/api/user/getCommentAllList',
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response)
+                        var str = '';
+                        response.map(function (arr, i) {
+                            if (arr) {
+                                str +=
+                                    '<table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680"><tbody><tr><td class="userPro" valign="top"><div class="left"><a target="_blank" href="javascript:;"><img class="lazy" src="'+arr.userLink+'" /></a></div></td><td class="commentTextList" valign="top"><div class="comment"><div class="info"><div class="left"><a target="_blank" class="user_name" href="javascript:;">用户：' +
+                                    arr.userName + '</a><span class="dev_info">' + arr.addTimeStr +
+                                    '</span></div><div class="right"><span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="130037598" uid="0">顶(<font class="up_cnt">0</font>)</span><span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="130037598" uid="0">踩(<font class="down_cnt">0</font>)</span><a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a><span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="130037598">举报</span>' +
+                                    (response.length - i) + '楼</div></div><p class="word">' +
+                                    arr.comment + '</p></div></td></tr></tbody></table>'
+                            }
+                        });
+                        $('#pllist').html(str);
+                    },
+                    fail: function (err) {
+                        // alert(err)
+                    }
+                });
+            };
+
+            $('#submit_btn').click(function () {
+                var data = {
+                    type: '2',
+                    relId: $('.getId').html() || '',
+                    comment: $('#post_content').val() || ''
+                };
+                if (!data.relId) {
+                    alert('系统异常，请稍后重试')
+                    return false
+                } else if (!data.comment) {
+                    alert('请输入评论信息')
+                    return false
+                }
+                $.ajax({
+                    url: '/api/user/addComment',
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.code == '0000') {
+                            console.log(resp)
+                            $('#post_content').val('');
+                            getAllList();
+                        }
+                    },
+                    fail: function (err) {
+                        // alert(err)
+                    }
+                });
+            });
+
+            $('.reloadData').click(function () {
+                getAllList();
+            })
+            $('.close-btn').click(function () {
+                $('.loginBox').fadeOut();
+            });
+            $('.l-b-l').click(function () {
+                $('.loginBox').fadeIn();
+            })
+
+        })
+    </script>
+    <script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
+
+</body>
+
+</html>

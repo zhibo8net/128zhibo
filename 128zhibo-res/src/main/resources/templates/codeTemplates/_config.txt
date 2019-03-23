@@ -1,0 +1,44 @@
+以下内容添加到router/index.js
+
+import ${entity.big}List from '@/components/admin/${entity.big}List'
+import ${entity.big}Form from '@/components/admin/${entity.big}Form'
+
+,
+{
+  path: '/${entity.small}List',
+  name: '${entity.big}List',
+  components: {
+    'header': Header,
+    'menu': Menu,
+    'default': ${entity.big}List,
+    'footer': Footer
+  }
+},
+{
+  path: '/${entity.small}Form',
+  name: '${entity.big}CreateForm',
+  components: {
+    'header': Header,
+    'menu': Menu,
+    'default': ${entity.big}Form,
+    'footer': Footer
+  }
+},
+{
+  path: '/${entity.small}Form/:id',
+  name: '${entity.big}UpdateForm',
+  components: {
+    'header': Header,
+    'menu': Menu,
+    'default': ${entity.big}Form,
+    'footer': Footer
+  }
+}
+
+
+
+以下内容添加到Menu.vue
+
+<li :class="{'active' : path == '/${entity.small}List' || path.startsWith('/${entity.small}Form')}">
+  <a href="javascript:void(0);" v-on:click="href('/${entity.small}List')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> ${entity.chinese}管理</a>
+</li>

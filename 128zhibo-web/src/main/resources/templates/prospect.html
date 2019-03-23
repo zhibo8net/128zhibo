@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout">
+
+<head>
+    <title>直播8-JRS直播|足球直播|NBA直播 –全网免费超清无延时直播网</title>
+    <meta name="keywords" content="直播8，直播吧，JRS直播，足球直播，NBA直播，英超直播 " />
+    <meta name="description" content="直播8是知名体育赛事汇聚平台，主要提供免费赛事直播、足球集锦、NBA录像、英超直播等直播服务，直播8以全网最超清信号让您免费畅享五大联赛和NBA直播,并且打造国内最好体育赛事直播吧。" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <meta name="baidu-site-verification" content="FeM2EtCC8T" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="../static/styles_1/less/prospect.css"> -->
+    <link rel="stylesheet" th:href="@{../styles_1/less/prospect.css}" />
+</head>
+
+<body>
+    <div th:replace="layout/header :: header"></div>
+    <div class="container" layout:fragment="content">
+        <div class="row">
+            <div class="col-md-12 breadcrumbs"><a href="/">首页</a> > <a href="/">赛事前瞻</a></div>
+        </div>
+        <div class="row list">
+            <ul class="row">
+                <li   th:each="ib:${page.content}">
+
+                        <p class="col-md-9">
+                            <span class="list-style">•</span>
+                            [<span th:text="${ib.game}"></span>]
+                            <span>赛事前瞻:</span>
+                            <a  th:href="'/news_detail/'+${ib.id}+'.html'"  th:text="${ib.title}" target="_blank">  </a>
+
+                        </p>
+                        <p class="col-md-3" th:text="${#strings.substring(ib.updateTime,0,10)}"></p>
+
+                </li>
+
+            </ul>
+            <div th:replace="layout/pagination :: pagination"></div>
+        </div>
+
+    </div>
+    <div th:replace="layout/footer :: footer"></div>
+</body>
+
+</html>

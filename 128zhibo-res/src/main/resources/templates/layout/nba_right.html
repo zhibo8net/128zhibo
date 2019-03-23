@@ -1,0 +1,299 @@
+<div class="nba_right" th:fragment="nba_right">
+    <div class="m_right">
+
+        <div id="hot_video">
+            <div class="li_light">热门视频</div>
+            <ul>
+
+                <li th:each="v,iterStat:${hotVideos}">
+                    <span th:text="${iterStat.count}"></span>
+                    <a th:href="${v.link}" target="_blank" th:text="${v.name}"></a>
+                </li>
+            </ul>
+        </div>
+        <div>
+
+            <div class="m_r_t">
+                <ul class="fl">
+                    <li class="li_light">NBA西部</li>
+                </ul>
+            </div>
+
+            <table cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr class="colHeader">
+
+                    <th></th>
+                    <th></th>
+                    <th>胜</th>
+                    <th>负</th>
+                    <th>胜率</th>
+                    <th style="padding:0;">胜差</th>
+                    <th>近况</th>
+
+                </tr>
+                <tr class="even"  th:each="west,iterStat:${NBAWestMatchRankList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${west.teamName}"></a>
+                    </td>
+                    <td  th:text="${west.winNum}">0</td>
+                    <td  th:text="${west.failNum}">0</td>
+                    <td  th:text="${west.winRate}">0%</td>
+                    <td style="padding:0;"  th:text="${west.victories=='' ? west.victories : '-'}" ></td>
+                    <td th:text="${west.currentRemark =='' ?  west.currentRemark : '-'}"></td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+        <div>
+
+            <div class="m_r_t">
+                <ul class="fl">
+                    <li class="li_light">NBA东部</li>
+                </ul>
+            </div>
+
+            <table cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr class="colHeader">
+
+                    <th></th>
+                    <th></th>
+                    <th>胜</th>
+                    <th>负</th>
+                    <th>胜率</th>
+                    <th style="padding:0;">胜差</th>
+                    <th>近况</th>
+
+                </tr>
+                <tr class="even"  th:each="west,iterStat:${NBAEastMatchRankList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${west.teamName}"></a>
+                    </td>
+                    <td  th:text="${west.winNum}">0</td>
+                    <td  th:text="${west.failNum}">0</td>
+                    <td  th:text="${west.winRate}">0%</td>
+                    <td style="padding:0;"  th:text="${west.victories==''? west.victories : '-'}" ></td>
+                    <td th:text="${west.currentRemark =='' ?  west.currentRemark : '-'}"></td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+        <div id="ssb">
+
+            <div class="m_r_t">
+                <ul class="fl">
+                    <li class="li_light">NBA技术排名</li>
+                    <div class="r_t_team v_r_t_team">
+                        <ul class="m_r_team">
+                            <li class="a_cur">得分</li>
+                            <li>篮板</li>
+                            <li>助攻</li>
+                            <li>抢断</li>
+                            <li>盖帽</li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+            <table cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr>
+
+                    <th></th>
+                    <th></th>
+                    <th>得分</th>
+                    <th>命中率</th>
+                    <th>场次</th>
+                    <th>时间</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${DSMatchTelRankList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>
+                    </td>
+                    <td  th:text="${rank.score}"></td>
+                    <td  th:text="${rank.rate}"></td>
+                    <td  th:text="${rank.matchNum}"></td>
+                    <td  th:text="${rank.timeNum}" ></td>
+                </tr>
+
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr>
+
+                    <th></th>
+                    <th></th>
+                    <th>篮板</th>
+                    <th>总数</th>
+                    <th>时间</th>
+                    <th>场次</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${LBMatchTelRankList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>
+                    </td>
+                    <td  th:text="${rank.backboard}"></td>
+                    <td  th:text="${rank.sumNum}"></td>
+                    <td  th:text="${rank.timeNum}"></td>
+                    <td  th:text="${rank.matchNum}" ></td>
+                </tr>
+
+
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr>
+
+                    <th></th>
+                    <th></th>
+                    <th>场均</th>
+                    <th>总数</th>
+                    <th>时间</th>
+                    <th>场次</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${ZGMatchTelRankList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>
+                    </td>
+                    <td  th:text="${rank.matchAvg}"></td>
+                    <td  th:text="${rank.sumNum}"></td>
+                    <td  th:text="${rank.timeNum}"></td>
+                    <td  th:text="${rank.matchNum}" ></td>
+                </tr>
+
+                </tbody>
+            </table>
+            <!--<table class="dis_none" cellpadding="0" cellspacing="0">-->
+
+            <!--<tbody>-->
+            <!--<tr>-->
+
+            <!--<th></th>-->
+            <!--<th></th>-->
+            <!--<th>场均</th>-->
+            <!--<th>总数</th>-->
+            <!--<th>时间</th>-->
+            <!--<th>场次</th>-->
+
+            <!--</tr>-->
+            <!--<tr class="even"  th:each="rank,iterStat:${QDMatchTelRankList}">-->
+            <!--<td th:text="${iterStat.count}"></td>-->
+            <!--<td class="teamNameText">-->
+            <!--<a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>-->
+            <!--</td>-->
+            <!--<td  th:text="${rank.matchAvg}"></td>-->
+            <!--<td  th:text="${rank.sumNum}"></td>-->
+            <!--<td  th:text="${rank.timeNum}"></td>-->
+            <!--<td  th:text="${rank.matchNum}" ></td>-->
+            <!--</tr>-->
+
+            <!--</tbody>-->
+            <!--</table>-->
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr>
+
+                    <th></th>
+                    <th></th>
+                    <th>场均</th>
+                    <th>总数</th>
+                    <th>时间</th>
+                    <th>场次</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${QDMatchTelRankList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>
+                    </td>
+                    <td  th:text="${rank.matchAvg}"></td>
+                    <td  th:text="${rank.sumNum}"></td>
+                    <td  th:text="${rank.timeNum}"></td>
+                    <td  th:text="${rank.matchNum}" ></td>
+                </tr>
+
+                </tbody>
+            </table>
+            <table class="dis_none" cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr>
+
+                    <th></th>
+                    <th></th>
+                    <th>场均</th>
+                    <th>总数</th>
+                    <th>时间</th>
+                    <th>场次</th>
+
+                </tr>
+                <tr class="even"  th:each="rank,iterStat:${GMMatchTelRankList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${rank.teamName}"></a>
+                    </td>
+                    <td  th:text="${rank.matchAvg}"></td>
+                    <td  th:text="${rank.sumNum}"></td>
+                    <td  th:text="${rank.timeNum}"></td>
+                    <td  th:text="${rank.matchNum}" ></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <div class="m_r_t">
+                <ul class="fl">
+                    <li class="li_light">CBA排名</li>
+                </ul>
+            </div>
+            <table cellpadding="0" cellspacing="0">
+
+                <tbody>
+                <tr>
+
+                    <th></th>
+                    <th></th>
+                    <th>胜</th>
+                    <th>负</th>
+                    <th>胜率</th>
+                    <th>近况</th>
+
+                </tr>
+                <tr class="even"  th:each="west,iterStat:${CBAMatchRankList}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td class="teamNameText">
+                        <a href="javascript:;" target="_blank" th:text="${west.teamName}"></a>
+                    </td>
+                    <td  th:text="${west.winNum}">0</td>
+                    <td  th:text="${west.failNum}">0</td>
+                    <td  th:text="${west.winRate}">0%</td>
+                    <td style="padding:0;"  th:text="${west.victories=='' ? west.victories : '-'}" ></td>
+                    <td th:text="${west.currentRemark =='' ?  west.currentRemark : '-'}"></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="baidu-site-verification" content="FeM2EtCC8T" />
+    <title>直播8-直播8|JRS直播|足球直播|NBA直播 –全网免费超清无延时直播网</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
+    <meta name="keywords" content="直播8，直播8，JRS直播，足球直播，NBA直播，英超直播 " />
+    <meta name="description" content="直播8是知名体育赛事汇聚平台，主要提供免费赛事直播、足球集锦、NBA录像、英超直播等直播服务，直播8以全网最超清信号让您免费畅享五大联赛和NBA直播,并且打造国内最好体育赛事直播8。" />
+    <link rel="stylesheet" th:href="@{styles_1/mlist.css?version=2224}" />
+    <!-- <link rel="stylesheet" href="../static/styles_1/mlist.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <script th:src="@{js_1/mlist.js?version=1111}"></script>
+    <!-- <script src="../static/js_1/mlist.js"></script> -->
+    <!-- <script>
+        $(function () {
+            var gotop_btn_elem = $(".gotop");
+            gotop_btn_elem.on('click',  function(e){
+                window.scroll(0, 0);
+            });
+        });
+    </script> -->
+</head>
+
+<body>
+    <div class="global">
+        <!-- header/S -->
+        <div class="header">
+            <h1 class="logo"><a href="https://www.zhibo8.net/mindex.html">直播8</a></h1>
+            <div class="global_line"><a href="javascript:;" class="global_sel">篮球</a></div>
+            <a href="https://www.zhibo8.net/" class="setting"><img src="https://www.zhibo8.net/image_1/towww.png"/></a>
+        </div>
+        <!-- header/E -->
+        <!-- nav/S -->
+        <div class="nav nav_sticky">
+            <ul>
+                <li><a href="/mindex.html">直播</a></li>
+                <!-- <li class="isend"><a href="v2/record.html">完赛</a></li> -->
+                <li><a href="/mvideo.html">视频</a></li>
+                <li class="current"><a href="/#">新闻</a></li>
+                <!-- <li><a href="//m.zhibo8.cc/json/paihang/v2/main.html">数据</a></li> -->
+                <li><a href="/image_1.html">图片</a></li>
+                <!-- <li><a href="//bbs.zhibo8.cc/">论坛</a></li> -->
+            </ul>
+        </div>
+        <!-- nav/E -->
+
+        <div class="module" id="news_top">
+            <div class="head">
+                <h2>推荐新闻</h2>
+            </div>
+            <div class="content">
+                <div class="panel nba_p showtime">
+                    <div class="list">
+                        <ul class="ent">
+                            <li th:each="news:${mnewsList}" class="lite" th:type="${news.project=='足球' ? 'zuqiu' : 'nba'}" >
+                                <div class="icon_video">
+                                    <a th:href="'/mdetail/'+${news.id}+'.html'">
+                                        <img th:src="${webImageBase+news.image}" onerror="this.src='https://www.zhibo8.net/image_1/defaultImg.jpg'" /></a>
+                                </div>
+                                <h2>
+                                    <a th:href="'/mdetail/'+${news.id}+'.html'" th:text="${news.title}"></a>
+                                </h2>
+                                <p class="lite_bot">
+                                    <span class="pass_time" th:text="${news.addTime}"></span>
+                                    <span class="pinglun" val="2019_01_05-news-nba-5c2ff314d3712" th:if="${news.readCount}" th:text="${news.readCount}"></span>
+                                </p>
+                            </li>
+                            <!-- <li class="lite" type="zuqiu" style="">
+                                <div class="icon_video"><a href="//m.zhibo8.cc/news/web/zuqiu/2019-01-05/5c30172411b25.htm"><img
+                                            src="http://tu.qiumibao.com/uploads/day_190105/201901051034538627_thumb.jpg" /></a></div>
+                                <h2><a href="//m.zhibo8.cc/news/web/zuqiu/2019-01-05/5c30172411b25.htm">官方：穆里奇加盟石家庄永昌</a></h2>
+                                <p class="lite_bot"><span class="pass_time">01-05 10:32</span><span class="pinglun" val="2019_01_05-news-zuqiu-5c30172411b25"
+                                        flag="true">232</span></p>
+                            </li> -->
+                        </ul>
+                    </div>
+                    <!--end list-->
+
+                </div>
+                <!--end panel-->
+
+            </div>
+            <!--end content-->
+        </div>
+
+        <!-- footer/S -->
+        <div class="footer">
+            <!-- <div class="links">
+                <a href="//www.zhibo8.cc/baocuo.htm" class="repweb">报错反馈</a>
+                <a href="//www.zhibo8.cc/" class="pcs">电脑版</a>
+            </div> -->
+            <div class="copyright">
+                直播8是一个体育导航，所有直播和视频链接均由网友提供，并链接到其他网站播放，如有异议请与我们取得联系。
+            </div>
+            <div class="gotop">返回顶部</div>
+        </div>
+        <!-- footer/E -->
+
+    </div>
+</body>
+
+</html>

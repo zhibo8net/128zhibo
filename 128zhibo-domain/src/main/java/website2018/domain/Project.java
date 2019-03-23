@@ -1,0 +1,26 @@
+package website2018.domain;
+
+import website2018.base.BaseEntity;
+
+import javax.persistence.*;
+import java.util.Date;
+
+/**
+ * Created by Administrator on 2018/8/5.
+ */
+@Entity
+@Table(name = "zhibo_project")
+public class Project extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
+
+    public Date addTime;
+    public Date updateTime;
+
+    public String  projectZh ;
+    public String projectEn ;
+    public String projectImgLink;
+    public Integer leagueNum;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout">
+<head>
+    <title th:text="${project+'图片'}"></title>
+    <link rel="stylesheet" th:href="@{/styles_1/collection.css}" />
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-9 left-content">
+            <div class="row">
+              <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  > <a href="/image_1">体育图片</a> > <span th:text="${project}"></span>图片</div>
+            </div>
+            <div class="collection-gallery">
+                <div class="row">
+                    <div class="col-md-12 title">
+                        <img class="icon-24" th:src="${'image_1/icon/'+projectEnglish+'.png'}"/>
+                        <b><span th:text="${project}"></span>图片</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 collection-item" th:each="ib:${page.content}">
+                        <a th:href="${'/viewImage_1/'+ib.id + '/1'}"><img class="img-responsive" th:src="${webImageBase + ib.images[0].name}" th:alt="${ib.title}"/></a>
+                        <a th:href="${'/viewImage_1/'+ib.id + '/1'}" th:text="${ib.title}" target="_blank"></a>
+                    </div>
+                </div>
+                <div th:replace="layout/pagination :: pagination"></div>
+            </div>
+            
+        </div>
+        <div class="col-md-3 right-content">
+            <div th:replace="layout/right :: channel"></div>
+            <div th:replace="layout/right :: projectCollection"></div>
+            <div th:replace="layout/right :: projectVideo"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

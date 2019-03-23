@@ -1,0 +1,19 @@
+<div th:fragment="pagination">
+    <nav aria-label="Page navigation" th:if="${page.totalPages>0}">
+      <ul class="pagination">
+        <li>
+          <a th:href="${pageUrl+'&amp;pageNumber=0'}" aria-label="Previous">
+            <span aria-hidden="true">&lt;&lt;</span>
+          </a>
+        </li>
+        <li th:each="p:${#numbers.sequence(0,page.totalPages-1)}" th:if="${p &gt; page.number - 12 &amp;&amp; p &lt; page.number + 10}" th:classappend="${p==page.number?'active':''}">
+            <a th:href="${pageUrl+'&amp;pageNumber='+p}" th:text="${p+1}"></a>
+        </li>
+        <li>
+          <a th:href="${pageUrl+'&amp;pageNumber='+(page.totalPages-1)}" aria-label="Next">
+            <span aria-hidden="true">&gt;&gt;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+</div>

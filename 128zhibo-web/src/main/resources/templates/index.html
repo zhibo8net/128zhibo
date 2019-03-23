@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout">
+
+<head>
+    <title>直播8-JRS直播|足球直播|NBA直播 –全网免费超清无延时直播网</title>
+    <meta name="keywords" content="直播8，直播吧，JRS直播，足球直播，NBA直播，英超直播 " />
+    <meta name="description" content="直播8是知名体育赛事汇聚平台，主要提供免费赛事直播、足球集锦、NBA录像、英超直播等直播服务，直播8以全网最超清信号让您免费畅享五大联赛和NBA直播,并且打造国内最好体育赛事直播吧。" />
+    <link rel="stylesheet" th:href="@{styles_1/index.css}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <script th:src="@{js_1/index.js}"></script>
+    <meta name="baidu-site-verification" content="FeM2EtCC8T" />
+    <!-- <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?aab079013b60296378945e415582815d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script> -->
+    <script>
+        $(function(){
+            if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                window.location.href = "https://www.zhibo8.net/mindex.html";
+            }
+        })
+    </script>
+    <style>
+        .pop-autoapp * {
+            box-sizing: content-box;
+        }
+
+        .pop-autoapp {
+            width: 130px;
+            height: 180px;
+            /*position: fixed;*/
+            left: 50%;
+            margin-left: 510px;
+            top: 90px;
+            /*top:690px;*/
+            position: absolute;
+            display: none;
+        }
+
+        .pop-autoapp a:link,
+        .pop-autoapp a:visited {
+            color: #666666;
+            background-color: #efefef;
+            text-decoration: none;
+        }
+
+        .pop-autoapp a:hover {
+            color: #666666;
+            background-color: #d0d0d0;
+            text-decoration: none;
+        }
+
+        .pop-autoapp a {
+            display: block;
+            width: 130px;
+            height: 190px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .pop-autoapp a div {
+            line-height: 24px;
+        }
+
+        .pop-autoapp img {
+            width: 116px;
+            height: 116px;
+        }
+
+        .pop-autoapp span.icon16 {
+            width: 30px;
+            height: 15px;
+            display: inline-block;
+            padding: 0;
+            overflow: hidden;
+            cursor: pointer;
+            border: solid 1px #ccc;
+            margin-bottom: 1px;
+            text-align: center;
+        }
+
+        .pop-autoapp a .pop-autoapp-close {
+            line-height: 15px;
+            height: 18px;
+            margin-bottom: 3px;
+            text-align: right;
+            background-color: #ffffff;
+        }
+
+        .pop-autoapp a .pop-autoapp-close {
+            text-align: right;
+        }
+
+        @media (min-width: 1200px) {
+            .pop-autoapp {
+                display: block;
+            }
+        }
+        a[title='站长统计']{
+            display:none;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container" layout:fragment="content">
+    <div class="pop-autoapp" id="popautoapp">
+        <a href="/download.html" target="_blank">
+            <div class="pop-autoapp-close">
+                <span class="icon16 icon16-close">关闭</span>
+            </div>
+            <div>直播8手机客户端</div>
+            <img th:src="@{/image_1/QRcode.jpg}" />
+            <!-- <img src="../static/image_1/QRcode.png" /> -->
+            <div>点击或扫描下载</div>
+        </a>
+        <script>
+            $(function () {
+                $('.pop-autoapp-close').click(function () {
+                    $('.pop-autoapp').hide();
+                })
+            })
+        </script>
+    </div>
+    <div class="row indexTop">
+        <div class="hidden-xs hidden-sm">
+            <div class="container container-padding0">
+                <div id="recommend" class="left">
+                    <div class="r_video left">
+                        <ul th:each="upEnds:${upList}">
+
+                            <div th:if="${upEnds.leftEndedDTO!=null}">
+                                <li th:if="${upEnds.leftEndedDTO.isFirstRow}" class="head ico_fb">
+                                    <a th:if="${upEnds.leftEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'"
+                                       target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 集锦 '"></a>
+                                    <a th:if="${upEnds.leftEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'"
+                                       target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 录像 '"></a>
+                                    <a th:if="${upEnds.leftEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'"
+                                       target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 视频 '"></a>
+                                    <a th:if="${upEnds.leftEndedDTO.other}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'"
+                                       target="_blank" th:text="${upEnds.leftEndedDTO.name}"></a>
+                                        <span th:if="${upEnds.rightEndedDTO!=null}">
+
+                                            <a th:if="${upEnds.rightEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'"
+                                               target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 集锦 '"></a>
+                                            <a th:if="${upEnds.rightEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'"
+                                               target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 录像 '"></a>
+                                            <a th:if="${upEnds.rightEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'"
+                                               target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 视频 '"></a>
+                                            <a th:if="${upEnds.rightEndedDTO.other}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'"
+                                               target="_blank" th:text="${upEnds.rightEndedDTO.name}"></a>
+                                        </span>
+                                </li>
+                                <li th:if="${!upEnds.leftEndedDTO.isFirstRow}">
+                                    <a th:if="${upEnds.leftEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'"
+                                       target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 集锦 '"></a>
+                                    <a th:if="${upEnds.leftEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'"
+                                       target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 录像 '"></a>
+                                    <a th:if="${upEnds.leftEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'"
+                                       target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 视频 '"></a>
+                                    <a th:if="${upEnds.leftEndedDTO.other}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'"
+                                       target="_blank" th:text="${upEnds.leftEndedDTO.name}"></a>
+                                        <span th:if="${upEnds.rightEndedDTO!=null}">|
+
+                                            <a th:if="${upEnds.rightEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'"
+                                               target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 集锦 '"></a>
+                                            <a th:if="${upEnds.rightEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'"
+                                               target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 录像 '"></a>
+                                            <a th:if="${upEnds.rightEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'"
+                                               target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 视频 '"></a>
+                                            <a th:if="${upEnds.rightEndedDTO.other}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'"
+                                               target="_blank" th:text="${upEnds.rightEndedDTO.name}"></a>
+                                        </span>
+                                </li>
+                            </div>
+
+                        </ul>
+                    </div>
+                    <div class="r_news right">
+                        <ul th:each="upNews:${upNewList}">
+
+                            <div th:if="${upNews.leftNewsDTO!=null}">
+                                <li th:if="${upNews.leftNewsDTO.isFirstRow}" class="head">
+                                    <a th:href="'/news_detail/'+${upNews.leftNewsDTO.id}+'.html'" target="_blank"
+                                       th:text="${upNews.leftNewsDTO.title}"></a>
+                                    <span></span>
+                                    <a th:if="${upNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${upNews.rightNewsDTO.id}+'.html'"
+                                       target="_blank" th:text="${upNews.rightNewsDTO.title}"></a>
+
+                                </li>
+                                <li th:if="${!upNews.leftNewsDTO.isFirstRow}">
+                                    <a th:href="'/news_detail/'+${upNews.leftNewsDTO.id}+'.html'" target="_blank"
+                                       th:text="${upNews.leftNewsDTO.title}"></a>
+                                    <span>|</span>
+                                    <a th:if="${upNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${upNews.rightNewsDTO.id}+'.html'"
+                                       target="_blank" th:text="${upNews.rightNewsDTO.title}"></a>
+
+                                </li>
+                            </div>
+
+                        </ul>
+
+                    </div>
+                    <div class="line clear"></div>
+                    <div class="r_video left">
+                        <ul th:each="downEnds:${downList}">
+
+                            <div th:if="${downEnds.leftEndedDTO!=null}">
+                                <li th:if="${downEnds.leftEndedDTO.isFirstRow}" class="head ico_bb">
+                                    <a th:href="'/video_1/'+${downEnds.leftEndedDTO.id}+'.html'" target="_blank"
+                                       th:text="${downEnds.leftEndedDTO.name}"></a>
+                                    <span></span>
+                                    <a th:if="${downEnds.rightEndedDTO!=null}" th:href="'/video_1/'+${downEnds.rightEndedDTO.id}+'.html'"
+                                       target="_blank" th:text="${downEnds.rightEndedDTO.name}"></a>
+
+                                </li>
+                                <li th:if="${!downEnds.leftEndedDTO.isFirstRow}">
+                                    <a th:href="'/video_1/'+${downEnds.leftEndedDTO.id}+'.html'" target="_blank"
+                                       th:text="${downEnds.leftEndedDTO.name}"></a>
+                                    <span>|</span>
+
+                                    <a th:if="${downEnds.rightEndedDTO!=null}" th:href="'/video_1/'+${downEnds.rightEndedDTO.id}+'.html'"
+                                       target="_blank" th:text="${downEnds.rightEndedDTO.name}"></a>
+
+                                </li>
+                            </div>
+
+                        </ul>
+
+                    </div>
+                    <div class="r_news right">
+                        <ul th:each="downNews:${downNewList}">
+
+                            <div th:if="${downNews.leftNewsDTO!=null}">
+                                <li th:if="${downNews.leftNewsDTO.isFirstRow}" class="head">
+                                    <a th:href="'/news_detail/'+${downNews.leftNewsDTO.id}+'.html'" target="_blank"
+                                       th:text="${downNews.leftNewsDTO.title}"></a>
+                                    <span></span>
+                                    <a th:if="${downNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${downNews.rightNewsDTO.id}+'.html'"
+                                       target="_blank" th:text="${downNews.rightNewsDTO.title}"></a>
+
+                                </li>
+                                <li th:if="${!downNews.leftNewsDTO.isFirstRow}">
+                                    <a th:href="'/news_detail/'+${downNews.leftNewsDTO.id}+'.html'" target="_blank"
+                                       th:text="${downNews.leftNewsDTO.title}"></a>
+                                    <span>|</span>
+                                    <a th:if="${downNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${downNews.rightNewsDTO.id}+'.html'"
+                                       target="_blank" th:text="${downNews.rightNewsDTO.title}"></a>
+
+                                </li>
+                            </div>
+
+                        </ul>
+                    </div>
+                </div>
+                <div id="ad_box" class="right">
+                    <div class="ad_box_250">
+                        <img th:src="@{/image_1/20181227203944.jpg}" alt="" />
+                    </div>
+                    <div class="other">
+                        <ul th:each="upImage:${upImageList}">
+
+                            <div th:if="${upImage.leftImageDTO!=null}">
+                                <li>
+                                    <a th:href="'/viewImage_1/'+${upImage.leftImageDTO.id}+'/1'+'.html'" target="_blank"
+                                       th:text="${upImage.leftImageDTO.title}"></a>
+                                    <span>|</span>
+                                    <a th:if="${upImage.rightImageDTO!=null}" th:href="'/viewImage_1/'+${upImage.rightImageDTO.id}+'/1'+'.html'"
+                                       target="_blank" th:text="${upImage.rightImageDTO.title}"></a>
+                                </li>
+                            </div>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9 left-content">
+            <div class="row collection-title margin-top-10" th:if="${pageAds['首页左侧顶部'].image != ''}">
+                <div class="col-md-12">
+                    <a th:href="${pageAds['首页左侧顶部'].link}" target="_blank">
+                        <img th:src="${pageAds['首页左侧顶部'].image}" class="img-responsive" />
+                    </a>
+                </div>
+            </div>
+            <!-- <div class="hidden-xs hidden-sm">
+            <div class="row collection-title margin-top-10">
+                <div class="col-md-6">
+                    <b>
+                        <img th:src="@{image_1/icon/football.png}" class="icon-24" />
+                        <span>足球集锦</span>
+                    </b>
+                </div>
+            </div>
+            <div class="row collections">
+                <div class="col-md-3 col-sm-12" th:each="f:${footballEndeds}">
+                    <span th:text="${f.name}"></span>
+                    <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a>
+                    <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a>
+                </div>
+                <div class="col-md-6 col-sm-12" th:each="f:${footballEndeds2}">
+                    <span th:text="${f.name}"></span>
+                    <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a>
+                    <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a>
+                </div>
+            </div>
+            <div class="row collection-title">
+                <div class="col-md-6">
+                    <b>
+                        <img th:src="@{image_1/icon/basketball.png}" class="icon-24" />
+                        <span>篮球集锦</span>
+                    </b>
+                </div>
+            </div>
+            <div class="row collections">
+                <div class="col-md-3 col-sm-12" th:each="f:${basketballEndeds}">
+                    <span th:text="${f.name}"></span>
+                    <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a>
+                    <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a>
+                </div>
+                <div class="col-md-6 col-sm-12" th:each="f:${basketballEndeds2}">
+                    <span th:text="${f.name}"></span>
+                    <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a>
+                    <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a>
+                </div>
+            </div>
+        </div> -->
+            <div class="row collection-title margin-top-10">
+                <div class="col-md-12" th:if="${pageAds['首页集锦下方'].image != ''}">
+                    <a th:href="${pageAds['首页集锦下方'].link}" target="_blank">
+                        <img th:src="${pageAds['首页集锦下方'].image}" class="img-responsive" />
+                    </a>
+                </div>
+            </div>
+            <div id="js-schedule" class="row">
+                <div class="col-md-12">
+                    <!-- 移动端导航 -->
+                    <ul class="nav nav-tabs schedule-tabs mobilenav">
+                        <li role="presentation" class="active tab-all" id="">
+                            <a href="javascript:switchTo('all')">
+                                <span class="iconfont icon0">&#xe636;</span>
+                                <span class="iconfont icon1">&#xe636;</span>
+                                全部</a>
+                        </li>
+                        <li role="presentation" class="tab-emphasis">
+                            <a href="javascript:switchTo('emphasis')">
+                                <!-- <img th:src="@{image_1/icon/important-0.png}" class="icon-20 icon0" /> -->
+                                <!-- <img th:src="@{image_1/icon/important-1.png}" class="icon-20 icon1" /> -->
+                                <span class="iconfont icon0">&#xe60a;</span>
+                                <span class="iconfont icon1">&#xe60a;</span>
+                                重要</a>
+                        </li>
+                        <li role="presentation" class="tab-football">
+                            <a href="javascript:switchTo('football')">
+                                <!-- <img th:src="@{image_1/icon/football-0.png}" class="icon-20 icon0" />
+                            <img th:src="@{image_1/icon/football-1.png}" class="icon-20 icon1" /> -->
+                                <span class="iconfont icon0">&#xe61a;</span>
+                                <span class="iconfont icon1">&#xe61a;</span>
+                                足球</a>
+                        </li>
+                        <li role="presentation" class="tab-basketball">
+                            <a href="javascript:switchTo('basketball')">
+                                <!-- <img th:src="@{image_1/icon/basketball-0.png}" class="icon-20 icon0" />
+                            <img th:src="@{image_1/icon/basketball-1.png}" class="icon-20 icon1" /> -->
+                                <span class="iconfont icon0">&#xe639;</span>
+                                <span class="iconfont icon1">&#xe639;</span>
+                                篮球</a>
+                        </li>
+                    </ul>
+                    <!-- 左侧时间悬浮导航 -->
+                    <div class="scroller">
+                        <ul>
+                            <li th:each="d:${days}">
+                                <a href="#" th:classappend="${d=='今天'?'active':''}" th:text="${d}"></a>
+                            </li>
+                        </ul>
+                        <div class="up">
+                            <a href="javascript:void(0);">
+                                <img th:src="@{image_1/icon/up.png}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="schedule max-height-600">
+                        <div th:each="dl,iter:${dailyLives}" class="day-div">
+                            <div class="day-div-top">
+                                <label th:text="${dl.dateStr}" class="day"></label>
+                                <ul class="nav nav-tabs schedule-tabs">
+                                    <li role="presentation" class="active tab-all" id="">
+                                        <a href="javascript:switchTo('all')">
+                                            <!-- <span class="iconfont icon0">&#xe636;</span> -->
+                                            <span class="iconImg"></span>
+                                            <!-- <span class="iconfont icon1">&#xe636;</span> -->
+                                            全部</a>
+                                    </li>
+                                    <li role="presentation" class=" tab-emphasis">
+                                        <a href="javascript:switchTo('emphasis')">
+                                            <!-- <img th:src="@{image_1/icon/important-0.png}" class="icon-20 icon0" /> -->
+                                            <!-- <img th:src="@{image_1/icon/important-1.png}" class="icon-20 icon1" /> -->
+                                            <!-- <span class="iconfont icon0">&#xe60a;</span> -->
+                                            <!-- <span class="iconfont icon1">&#xe60a;</span> -->
+                                            <span class="iconImg"></span>
+                                            重要</a>
+                                    </li>
+                                    <li role="presentation" class="tab-football">
+                                        <a href="javascript:switchTo('football')">
+                                            <!-- <img th:src="@{image_1/icon/football-0.png}" class="icon-20 icon0" />
+                                        <img th:src="@{image_1/icon/football-1.png}" class="icon-20 icon1" /> -->
+                                            <!-- <span class="iconfont icon0">&#xe61a;</span> -->
+                                            <span class="iconImg"></span>
+                                            <!-- <span class="iconfont icon1">&#xe61a;</span> -->
+                                            足球</a>
+                                    </li>
+                                    <li role="presentation" class="tab-basketball">
+                                        <a href="javascript:switchTo('basketball')">
+                                            <!-- <img th:src="@{image_1/icon/basketball-0.png}" class="icon-20 icon0" />
+                                        <img th:src="@{image_1/icon/basketball-1.png}" class="icon-20 icon1" /> -->
+                                            <!-- <span class="iconfont icon0">&#xe639;</span> -->
+                                            <span class="iconImg"></span>
+                                            <!-- <span class="iconfont icon1">&#xe639;</span> -->
+                                            篮球</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li th:each="m:${dl.matches}" th:classappend="|${m.emphasis==1 ? 'emphasis' : ''} ${m.important==1 ? 'important' : ''} ${m.project=='足球' ? 'football' : ''} ${m.project=='篮球' ? 'basketball' : ''}|">
+                                    <span class="list-style">•</span>
+                                    <span class="time" th:text="${m.playTime}"></span>
+                                    <span class="game" th:text="${m.game}"></span>
+                                    <span class="match" th:if="${m.teamFlag=='FALSE'}" th:text="${m.name}"></span>
+                                        <span th:if="${m.teamFlag=='TRUE'}">
+                                            <span class="match" th:text="${m.masterTeamName}"></span>
+                                            <img class="matchImg" th:src="${m.masterTeamLink}" height="30px" width="auto" />
+                                            <span class="match"> - </span>
+                                            <img class="matchImg" th:src="${m.guestTeamLink}" height="30px" width="auto" />
+                                            <span class="match" th:text="${m.guestTeamName}"></span>
+                                        </span>
+                                    <!--<span th:if="${m.matchStreamUrl!=null}">-->
+                                    <!--<div  th:remove="tag">-->
+                                    <!--<a th:href="${'/match_old_1/'+m.id+'.html'}" target="_blank">视频直播</a>-->
+                                    <!--</div>-->
+                                    <!--</span>-->
+
+                                     <span class="live" th:each="l:${m.lives}">
+                                            <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
+                                                <span th:text="${l.name}"></span>(
+                                                <a th:each="s:${l.signals}" th:href="${s.playFlag!='INNER'?'/match_1/'+m.id+'.html':'/live_play_inner/'+s.liveId+'.html'}"
+                                                   th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
+                                            </div>
+                                            <div th:if="${l.signals.size() == 1}" th:remove="tag">
+                                                <a th:href="${l.signals[0].playFlag!='INNER'?'/match_1/'+m.id+'.html':'/live_play_inner/'+l.signals[0].liveId+'.html'}"
+                                                   th:text="${l.signals[0].name}" target="_blank"></a>
+                                            </div>
+                                        </span>
+                                        <!--<span th:if="${m.sinaShujuUrl!=null}">-->
+                                            <!--<div th:remove="tag">-->
+                                                <!--<a th:href="${'/match_1/'+m.id+'.html'}" target="_blank">图文直播</a>-->
+                                            <!--</div>-->
+                                        <!--</span>-->
+                                     <!--<span th:if="${m.sinaShujuUrl==null}">-->
+                                            <div th:remove="tag">
+                                                <a th:href="${'/match_1/'+m.id+'.html'}" target="_blank">互动直播</a>
+                                            </div>
+                                        <!--</span>-->
+                                    <a th:each="a:${m.ads}" th:href="${a.link}" th:text="${a.name}" th:classappend="|${a.light==1 ? 'important' : ''}|"
+                                       target="_blank"></a>
+                                    <div th:if="${m.newsNoContentDTOList.size() == 1}" th:remove="tag">
+                                        <a th:each="a:${m.newsNoContentDTOList}" th:href="'/news_detail/'+${a.id}+'.html'" th:text="赛事前瞻" th:classappend="important"
+                                           target="_blank"></a>
+                                    </div>
+                                    <div th:if="${m.newsNoContentDTOList.size() &gt; 1}" th:remove="tag">
+                                        <a th:each="a,iterStat:${m.newsNoContentDTOList}" th:href="'/news_detail/'+${a.id}+'.html'" th:text="'赛事前瞻'+${iterStat.count}" th:classappend="important"
+                                           target="_blank"></a>
+                                    </div>
+
+                                </li>
+                            </ul>
+                            <div th:if="${iter.index==0 &amp;&amp; pageAds['首页第一日直播下方'].image != ''}">
+                                <a th:href="${pageAds['首页第一日直播下方'].link}" target="_blank">
+                                    <img th:src="${pageAds['首页第一日直播下方'].image}" class="img-responsive" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="loadMore">
+                        <a href="javascript:void(0)">加载更多
+                            <img th:src="@{/image_1/icon/arrow-loadmore.png}" />
+                        </a>
+                    </div>
+                    <div id="scrollToTop">
+                        <a href="javascript:void(0)">返回顶部
+                            <img th:src="@{/image_1/icon/arrow-up.png}" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 right-content index-right-content">
+            <div class="margin-top-10" th:if="${pageAds['首页右侧顶部'].image != ''}">
+                <a th:href="${pageAds['首页右侧顶部'].link}" target="_blank">
+                    <img th:src="${pageAds['首页右侧顶部'].image}" class="img-responsive" />
+                </a>
+            </div>
+            <!-- <div th:replace="layout/right :: channel"></div> -->
+            <!-- <div class="collection margin-top-20">
+            <label class="">
+                <span class="iconfont">&#xe615;</span>
+                <span class="padding-left-10">视频集锦</span>
+            </label>
+            <ul class="list-unstyled">
+                <li th:each="v:${videos}" class="video-li">
+                    <span class="list-style">•</span>
+                    <a th:href="${v.link}" th:text="${v.name}" target="_blank"></a>
+                </li>
+            </ul>
+        </div> -->
+            <div class="margin-top-10" th:if="${pageAds['首页右侧视频集锦下方'].image != ''}">
+                <a th:href="${pageAds['首页右侧视频集锦下方'].link}" target="_blank">
+                    <img th:src="${pageAds['首页右侧视频集锦下方'].image}" class="img-responsive" />
+                </a>
+            </div>
+            <div class="video margin-top-12">
+                <label class="">
+                    <!-- <img th:src="@{/image_1/icon/video-list.png}" class="icon-24" /> -->
+                    <!-- <span class="iconfont">&#xe615;</span> -->
+                    <span class="padding-left-10">天下足球</span>
+                </label>
+                <ul class="list-unstyled">
+                    <li th:each="f:${footballLuxiangs}" class="luxiang-li">
+                        <!-- <img th:src="@{image_1/icon/video.png}" class="icon-24" /> -->
+                        <span class="list-style">•</span>
+                        <a th:href="${'/video_1/'+f.ended.id}" th:text="${f.name}"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="video margin-top-20">
+                <label class="">
+                    <!-- <img th:src="@{/image_1/icon/video-list.png}" class="icon-24" /> -->
+                    <!-- <span class="iconfont">&#xe615;</span> -->
+                    <span class="padding-left-10">篮球公园</span>
+                </label>
+                <ul class="list-unstyled">
+                    <li th:each="b:${basketballLuxiangs}" class="luxiang-li">
+                        <!-- <img th:src="@{image_1/icon/video.png}" class="icon-24" /> -->
+                        <span class="list-style">•</span>
+                        <a th:href="${'/video_1/'+b.ended.id}" th:text="${b.name}"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="margin-top-10" th:if="${pageAds['首页右侧下方'].image != ''}">
+                <a th:href="${pageAds['首页右侧下方'].link}" target="_blank">
+                    <img th:src="${pageAds['首页右侧下方'].image}" class="img-responsive" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
+</div>
+</body>
+</html>

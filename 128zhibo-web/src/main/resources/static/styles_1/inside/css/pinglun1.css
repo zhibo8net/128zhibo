@@ -1,0 +1,191 @@
+/**************以下为评论功能样式*******************/
+.pllist{
+    width:98%;  height:auto; margin: 0 auto;
+}
+.pllist a{
+    text-decoration:none;
+}
+.pllist *{
+    line-height: 25px;
+    font-size: 14px;
+    vertical-align: bottom;
+}
+.userPro {
+    width: 75px; vertical-align:top;
+}
+.userPro img {
+    width:48px;padding: 2px; border:solid 1px #ddd; background:#FFFFFF;
+}
+.commentTextList{
+    font-size:14px; line-height:24px;
+}
+.comment {
+    border-bottom: 1px solid #DDD;
+    padding: 5px;
+}
+.yinyong {
+    background: #F2F2F2;
+    margin: 9px 0 5px 0;
+    padding: 5px 9px;
+    font-size: 12px;
+    border: 1px solid #DDD;
+}
+.info{
+    font-size:12px; color:#BBBBBB; width:100%; height:auto; line-height:30px; overflow:hidden; clear:both;
+}
+.info .right a{
+    font-size:10px; letter-spacing: -2px;
+}
+.info .right .reply{
+    font-size:14px !important; letter-spacing: 0 !important;
+}
+
+.word{
+    word-break:break-all;
+    text-indent: 0em;
+    margin: 0;
+    padding: 0;
+    height:auto;
+    overflow:hidden;
+}
+.word img{
+    display:inline-block; height:24px;vertical-align: middle;
+}
+.light {
+    background: white;
+}
+
+.login-btn-area{margin-top:10px;color:#2E9FFE;font-size:14px;text-align: center;}
+.login-btn-area a{color:inherit;font-size:inherit;}
+
+#re{width:auto; clear:both;margin:10px auto 20px;}
+#re #re_box{padding:24px 5px ;background:#f4f4fe;border:1px solid #e4e3f3;}
+#re #re_box .left{float:inherit;position:absolute;top:24px;left:13px;}
+#re .input{position:relative;z-index:1;}
+#re .input textarea{clear:both;width:99%;height:102px;background:#fff ;border:1px solid #ddd;margin:0;font-size:14px;zoom:1;}
+#re .face_button{border:0;background:#F4F4FE; font-size:12px; height:22px;width:35px;cursor:pointer;display:block; }
+#re .plate_03{position:absolute;top:0;right:0;_right:14px;font-size:14px;zoom:1}
+
+/*input login*/.input_l_rel{ position:relative; color:#666;_zoom:1}
+.input_l_rel textarea{ border:1px solid #e1e1e1;}
+.input_login{ position:absolute; display:none; left:100px; top:50px; width:780px;height:102px; background:#BDBDBD; font-size:14px; color:#222; z-index:980;}
+
+
+#re .face_img {
+    background: #E5E5E1;
+    border: 1px solid #AAA;
+    float: left;
+    height: 178px;
+    left: 0;
+    bottom:145px;
+    padding: 2px;
+    position: absolute;
+    width: 305px;
+    overflow: hidden;
+    display:none;
+}
+
+.face_cat_wrap{
+    width:410px;height:22px;
+}
+.face_cat{
+    width:80px; height:20px; line-height:20px; text-align:center; font-size:12px; float:left; border:solid 1px #A8A8A8; cursor:pointer;
+}
+.faces{
+    width:310px; height:auto; min-height:100px;
+}
+.faces img{
+    width:20px; height:20px; padding:2px; margin:2px; border:solid 1px #7E7E7E; display:block; float:left;
+}
+.bigimg{
+    width:100px; height:100px; padding:5px; position:absolute; top:10px; right:0;
+}
+
+
+.hot_huifu {
+    width:auto;
+    border: 1px solid #CAD9EA;
+    padding: 5px 0px;
+    background: #F3F5F7;
+    border-top: 2px solid #CAD9EA;
+}
+.hot_huifuT {
+    font-size: 18px;
+    font-weight: bold;
+    color: #03F;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #CAD9EA;
+    padding-left: 10px;
+}
+.floor {
+    margin: 0;
+    padding-top: 8px;
+    background: #F3F5F7;
+    border: none;
+}
+.floor .user {
+    padding-left: 9px;
+    position: relative;
+    padding: 6px 0 0 10px;
+    float: left;
+}
+.user img {
+    padding: 2px; border:solid 1px #ddd; background:#FFFFFF;
+    width: 45px;
+    height: 45px;
+}
+.floor_box {
+    word-break: break-rall;
+    white-space: normal;
+    padding-left: 6px;
+    padding-bottom: 0px;
+    border-bottom: 1px dotted #DDD;
+}
+.floor .author {
+    padding: 1px 2px;
+    height: 20px;
+    line-height: 20px;
+    overflow:hidden;
+}
+.floor .case {
+    font-size: 14px;
+    padding: 8px 0 8px 4px;
+    word-break: break-all;
+    table-layout: fixed;
+    word-warp: break-word;
+    line-height: 22px;
+    color: black;
+    font-family: "微软雅黑","宋体";
+    height:auto;
+}
+.floor .case img{
+    display:inline-block;
+    height: 24px;
+    vertical-align: top;
+}
+
+.user_name{
+    width: 100px;
+    color:#4E84AE;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.clearfix {
+    clear: both;
+}
+
+.dev_info, .dev_info a{
+    color: #999 !important;
+    text-decoration: none;
+
+    font-size: 12px;
+}

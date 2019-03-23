@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout">
+<head>
+   <title th:text="${pageTitle}"></title>
+    <link rel="stylesheet" th:href="@{styles_1/collection.css}" />
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-9 left-content">
+            <div class="row">
+                <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  ><a th:href="${'/projectVideo_1?project='+project}"> <span style="color:#4184f3" th:text="${project}"></span>集锦</a> > <span th:text="${game}"></span>集锦</div>
+            </div>
+            <div class="collection-gallery">
+                <div class="row">
+                    <div class="col-md-12 title">
+                        <img class="icon-24" th:src="${'image_1/icon/'+projectEnglish+'.png'}"/>
+                        <b><span th:text="${game}"></span>集锦</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 collection-item" th:each="v:${page.content}">
+                        <a th:href="${v.link}" target="_blank"><img class="img-responsive" th:src="${webImageBase + (v.image!=''?v.image:(projectEnglish+'-default.png'))}"/></a>
+                        <a th:href="${v.link}" th:text="${v.name}" target="_blank"></a>
+                    </div>
+                </div>
+                <div th:replace="layout/pagination :: pagination"></div>
+            </div>
+        </div>
+        <div class="col-md-3 right-content">
+            <div th:replace="layout/right :: channel"></div>
+            <div th:replace="layout/right :: gameCollection"></div>
+            <div th:replace="layout/right :: gameVideo"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

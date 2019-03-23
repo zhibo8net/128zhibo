@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout">
+<head>
+    <title th:text="${news.title}+'新闻资讯'"></title>
+    <link rel="stylesheet" th:href="@{/styles_1/news.css}" />
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-9 left-content">
+            <div class="row">
+             <div class="col-md-12 breadcrumbs"><a href="/">首页</a> > <a href="/news_1">新闻资讯</a></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 th:text="${news.title}"></h3>
+                    <p th:text="${#dates.format(news.addTime, 'yyyy-MM-dd')}"></p>
+                    <div id="news-content" th:utext="${news.content}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 right-content">
+            <div th:replace="layout/right :: channel"></div>
+            <div th:replace="layout/right :: gameCollection"></div>
+            <div th:replace="layout/right :: gameVideo"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

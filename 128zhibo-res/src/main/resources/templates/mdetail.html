@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>直播8手机版</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico"/>
+    <meta name="description" th:content="${newsPageDesc}" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="../v2test/inside/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="../v2test/inside/css/mobile.css"/>
+    <link rel="stylesheet" type="text/css" href="../v2test/inside/css/pinglun.css"/> -->
+
+    <link rel="stylesheet" type="text/css" th:href="@{../styles_1/inside/css/reset.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{../styles_1/inside/css/mobile.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{../styles_1/inside/css/pinglun.css}" />
+    <!-- <script src="https://hm.baidu.com/hm.js?3212511d67978fc36e99a8ba103a1cc8"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <script th:src="@{../js_1/pl.js?version=11111}"></script>
+
+    <!-- <script src="//static4style.qiumibao.com/libs/angular.js/1.3.0-beta.8/angular.js" type="text/javascript"></script>
+    <script src="//static4style.qiumibao.com/txt_m_js%2Fangular-sanitize.js" type="text/javascript"></script>
+    <script src="//static4style.qiumibao.com/libs/angular.js/1.3.0-beta.8/angular-cookies.js" type="text/javascript"></script>
+    <script src="/static/js/ng-infinite-scroll.js" type="text/javascript"></script>
+    <script src="/static/js/ng-realvik-scroll.js" type="text/javascript"></script>
+    <script src="/static/js/pinglunApp.js" type="text/javascript"></script>
+    <script src="/static/js/lazyload.js" type="text/javascript"></script> -->
+    <!-- AFP两段式代码-公用代码 -->
+    <!--<script type="text/javascript" src="//afpmm.alicdn.com/g/mm/afp-cdn/JS/w.js"></script>-->
+</head>
+
+<body class="ng-scope" style="">
+    <div class="nav">
+        <a href="http://www.zhibo8.net/mindex.html">直播8</a>
+    </div>
+    <span class="getId" style="display:none;" th:text="${news.id}"></span>
+    <h1 th:text="${news.title}"></h1>
+    <p style="font-size: 12px; margin-bottom: 5px; color: #7E7E7E; text-align: center;" th:text="${news.createTime}"></p>
+    <div class="signals" th:utext="${news.content}">
+
+    </div>
+
+    <div class="ng-scope">
+        <!-- ngInclude: '/static/template/loader.html' -->
+        <div ng-include="'/static/template/loader.html'" class="ng-scope">
+            <!-- <button  ng-click="refresh()">{{all_num}} - {{pageno}} 点击刷新  {{status}}</button> -->
+
+            <!--  手机客户端广告  -->
+            <style type="text/css" class="ng-scope">
+                .down_fixed {
+                    margin-top: 49px;
+                }
+
+                .m_adv {
+                    display: none;
+                    width: 100%;
+                    height: auto;
+                    font-size: 10px;
+                    position: fixed;
+                    z-index: 9999;
+                    top: 0;
+                    background: rgba(0, 0, 0, .8);
+                    color: #fff;
+                    text-align: center;
+                    font-family: "黑体";
+                }
+
+                .logo_down {
+                    float: left;
+                    width: 32px;
+                    height: 32px;
+                    margin: 7px 0 7px 12px;
+                }
+
+                .m_adv .tip_down {
+                    float: left;
+                    margin: 7px 0 0 0;
+                    padding: 0 12px;
+                    text-align: left;
+                }
+
+                .m_adv .tip_down span {
+                    display: block;
+                }
+
+                .m_adv .app_down {
+                    line-height: 18px;
+                    font-size: 1.3em;
+                }
+
+                .m_adv .app_tip {
+                    line-height: 16px;
+                    font-size: 1em;
+                }
+
+                .m_adv .ic_close {
+                    float: right;
+                    height: 49px;
+                    width: 18px;
+                    margin: 0 10px 0 14px;
+                    background: url(http://tu.qiumibao.com/img/ic_close.png) no-repeat center center;
+                    background-size: 14px;
+                }
+
+                .m_adv .jump_down {
+                    float: right;
+                    width: 60px;
+                    height: 28px;
+                    line-height: 28px;
+                    text-align: center;
+                    margin-top: 10px;
+                    font-size: 1.2em;
+                    background: #2E9FFF;
+                    border-radius: 4px;
+                    color: #fff;
+                    text-decoration: none;
+                }
+            </style>
+
+
+
+
+        </div>
+        <!-- ngInclude: '/static/template/user_info.html' -->
+        <div id="user_info_wrap" ng-include="'/static/template/user_info.html'" class="ng-scope">
+
+            <!--ng-click="showuserbox($event, $element)"-->
+            <!-- ngIf: username -->
+            <div id="userinfo" style="display:none;" class="ng-scope">您好，<a href="http://www.zhibo8.net/mindex.html"
+                    class="ng-binding">黄河哈哈</a>！<a rel="#overlay" href="javascript:void(0);" onclick="logout()">退出</a></div><!-- end ngIf: username -->
+            <div id="logindiv" ng-show="!userid" class="ng-scope ng-hide">
+                <span class="login-info">登录后才能发表评论和回复</span> <span class="login-btn-area"><a href="../mlogin.html" class="l-b-l">登录</a>
+                    | <a class="l-b-r" href="../mlogin.html">注册</a></span>
+
+                <!--<span style="line-height: 25px; color:red;">请使用 <span onclick="location.href='https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101169587&amp;state=test&amp;scope=get_user_info,add_share,get_info,add_t&amp;redirect_uri=http%3A%2F%2Fpl.zhibo8.cc%2Fusercenter%2Foauth%2Findex.php%3FredirectURL%3D'+location.href" class="rad5" style="background-color:#5BC0DE;padding:3px 5px 3px 6px;color:#fff;cursor:pointer;margin-right:10px;"> QQ账号登录 </span> |
+
+	<span onclick="location.href='https://api.weibo.com/oauth2/authorize?client_id=1475264871&amp;response_type=code&amp;redirect_uri=http%3A%2F%2Fpl.zhibo8.cc%2Fusercenter%2Foauth%2Fweibo.php%3FredirectURL%3D'+location.href" class="rad5" style="background-color:#D9534F;padding:3px 5px 3px 6px;color:#fff;cursor:pointer;margin-left:10px;"> 微博账号登录 </span>
+	　或者用论坛账号<a ng-click="showloginbox($event, $element)" href="javascript:;" style="color:blue;">登录</a>，登录后才能发表评论和回复</span>-->
+            </div>
+
+
+            <style class="ng-scope">
+                #logindiv{
+                width:100%; height:auto; line-height:40px; position: relative;text-indent:10px;
+            }
+            #userinfo{
+                width:100%; height:auto; line-height:40px;text-indent:10px;
+            }
+            #re .face_img{
+                display: block;
+            }
+            #face_cat .current{
+                background: #ffffff;
+            }
+            .faces img{
+                cursor: pointer;
+            }
+            .close_btn{
+                height: auto; width: auto; padding: 0 5px; line-height: 20px; font-size: 12px; position: absolute; top: 2px; right: 2px; border: solid #666666 1px; background: #ffffff; cursor: pointer;
+            }
+            .bigimg{
+                top:40px;
+            }
+        </style>
+        </div>
+        <!-- ngInclude: '/static/template/pinglun_list.html' -->
+        <div ng-include="'/static/template/pinglun_list.html'" class="ng-scope">
+
+            <div class="pllist ng-scope">
+                <div id="re">
+                    <div id="re_box" class="input_l_rel">
+                        <div class="input">
+                            <a class="face_button" title="点击选择你要添加的表情"></a>
+                            <div class="plate_03">发表评论:</div>
+                            <!-- <div class="plate_03 ng-hide">对<span style="color: red;" class="ng-binding">【】</span>发表回复:</div> -->
+                            <textarea id="post_content" ng-click="hideeditortip()" name="content" ng-keydown="keyprocess($event);"
+                                rows="8" ng-model="$parent.pl_content" class="ng-pristine ng-valid"></textarea>
+                            <!-- ngIf: !userid -->
+                            <div id="nouserinfo" ng-if="!userid" style="z-index:9;padding: 30px 5px 10px 0; background:#fff; width:100%; height: 72px; position:absolute; left:0; top:20px;text-align:center;"
+                                class="ng-scope">
+                                <div>
+                                    <div class="login-info">登录后才能发表评论和回复</div>
+                                    <div class="login-btn-area"><a href="../mlogin.html"
+                                            class="l-b-l">登录</a> | <a class="l-b-r" href="../mlogin.html">注册</a></div>
+                                </div>
+                            </div>
+
+                            <div id="editortip" ng-if="isshoweditortip" style="width:90%; line-height:130%; color:#A6CAF0; position:absolute; left:10px; top:30px; text-align:left;"
+                                class="ng-scope">
+                                <p ng-click="hideeditortip()">1.发言请遵守国家法律法规.<br />2.禁止发布任何宣传、广告、侮辱攻击他人、刷屏等信息.</p>
+                            </div>
+                            <input id="submit_btn" ng-click="postpinglun()" type="button" name="submit" value="回 复" />
+                            <span style="color: #008000" class="ng-binding"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="ng-binding nowplnum">已有<span class="num">***</span>条评论。 <a href="javascript:void(0);" class="reloadData" ng-click="refresh()">刷新评论</a></div>
+
+                <div id="pllist" class="pllist">
+                    <!-- <table ng-repeat="p in loadlist|filter:filterRoom" cellspacing="0" cellpadding="0" border="0" style="width: 100%;"
+                        class="ng-scope">
+                        <tbody>
+                            <tr>
+                                <td class="commentTextList" valign="top">
+                                    <div class="comment">
+                                        <div class="info">
+                                            <div>
+                                                <a href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3086405"
+                                                    target="_blank" class="user_name ng-binding">小挚风轻云淡</a>
+                                                <div class="right ng-binding">
+                                                    <span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="134541070"
+                                                        uid="0" ng-click="updown(p.id, 'up')">顶(<font class="up_cnt ng-binding">2</font>)</span>&nbsp;&nbsp;<span
+                                                        style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="134541070"
+                                                        uid="0" ng-click="updown(p.id, 'down')">踩(<font class="down_cnt ng-binding">0</font>)</span>&nbsp;&nbsp;<a
+                                                        class="reply" cid="134541070" href="javascript:void(0);"
+                                                        ng-click="reply(p.id, p.username)">回复</a>&nbsp;&nbsp;<span
+                                                        style="cursor:pointer; color:#4E84AE;" class="report_btn" cid="134541070"
+                                                        uid="0">举报</span> 112楼
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="word ng-binding" ng-bind-html="deliberatelyTrustDangerousSnippet(p.content)"
+                                            div-scroll="realvik()" isloaded="true">才踢了两三场球，穆就被定义为罪人，这有失偏颇了吧。不是为谁洗白，一支也曾睡醒不用看比分4比0的球队也曾与穆有过蜜月期，上季也拿到联赛第二，这就成为罪人了？现在的主帅真有点难，拉涅利率莱斯特城夺冠后，第二季成绩为何下滑直接导致下课，这是什么原因？难道经历一季主帅就脑短路技战术都不行了？个人觉得就是因为夺冠了，创业容易守业难，主帅更想提高球队，要求可能更严历，主帅和队友思想不统一，矛盾产生后，这才是下课的重要因素吧。</p>
+                                        <a class="dev_info ng-binding" href="http://www.zhibo8.cc/shouji.htm" target="_blank">2019-01-01
+                                            14:54:20</a>
+
+                                        <div ng-if="p.children.length>0" class="ng-scope">
+                                            <div class="yinyong  light" ng-class="{true: 'yinyong', false: 'yinyong light'}[child.level%2==0]"
+                                                ng-repeat="child in clist">
+                                                <div class="info">
+                                                    <div class="left">
+                                                        <a href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3692767"
+                                                            target="_blank" class="user_name ng-binding">情非得已_ptZn</a>
+                                                    </div>
+                                                    <div class="right">
+                                                        <a class="reply" cid="134541751" href="#re" ng-click="reply(child.id, child.username)">回复</a>
+                                                        <span style="cursor:pointer; color:#4E84AE;" class="report_btn"
+                                                            cid="134541751">举报</span>
+                                                    </div>
+                                                </div>
+                                                <p class="word ng-binding" ng-bind-html="deliberatelyTrustDangerousSnippet(child.content)"
+                                                    div-scroll="realvik()" isloaded="true">球员与穆帅都没错 只是不契合而已
+                                                    好教练➕好球员不等于好成绩 和平分手是最好的选择</p>
+                                                <a class="dev_info ng-binding" href="http://www.zhibo8.cc/shouji.htm"
+                                                    target="_blank">2019-01-01
+                                                    14:54:20</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                </div>
+
+                <div ng-click="loadMore()" style="cursor: pointer;border: solid 1px #888;text-align: CENTER;font-size: 1.2em;line-height: 50px;height: 50px;margin-top: 10px;"
+                    class="loadMore"> 加载更多 </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

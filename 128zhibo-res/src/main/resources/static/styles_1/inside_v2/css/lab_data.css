@@ -1,0 +1,34 @@
+/*商城*/
+.topic{width:100%;text-align:center;}
+.topic .t-more img{max-width:100%;}
+.topic .t-list{padding:0 10px;margin-top:10px;}
+.topic .t-list:nth-child(2){margin-top:0;}
+.topic .t-list img{max-width:100%;}
+
+ul.sje a:after,ul.sje a:before{content:'';display:block;clear:both;}
+ul.sje a{display:inline;}
+ul.sje li{display:block;padding:5px 10px 5px 10px;border-bottom:1px solid #f2f2f2;}
+ul.sje li .sje-img{width:105px;max-width:130px;height:auto;}
+ul.sje li .sje-w{padding-left:105px;margin-left:8px}
+ul.sje li .sje-w .sje-h2{margin:3px 0;font-size:16px;line-height:20px;height:40px;display:-webkit-box;overflow:hidden;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.sje-w .sje-w-m{margin:10px 0 8px 0;overflow:hidden;color:#ff5943;font-size:16px;font-weight:bold;line-height:20px;}
+.sje-w .sje-w-m .m-price{padding-right:5px;}
+.sje-w .sje-w-m .old-price{display:inline-block;*display:inline;*zoom:1;line-height:10px;font-size:14px;color:#C5C5C5;border-left:1px solid #C5C5C5;padding-left:3px;}
+.sje-w .sje-w-b{overflow:hidden;font-size:12px;color:#C5C5C5;line-height:20px;}
+.sje-w .sje-w-m .source{width:20px;}
+
+.coupon{position:relative;float:left;display:inline-block;*display:inline;*zoom:1;font-size:12px;height:16px;line-height:16px;border:1px solid #ff5943;border-radius:2px 0 0 2px;}
+.coupon .coupon-logo{float:left;background:#FF5943;color:#fff;border-radius:2px 0 0 2px;padding:0 3px;}
+.coupon .coupon-word{float:left;padding:0 12px 0 5px;color:#ff5943;}
+.coupon .coupon-word:after{content:"";display:block;position:absolute;top:2px;right:-5px;width:10px;height:10px;border:1px solid #FF5943;border-right:none;border-bottom:none;border-radius:50%;background:#fff;z-index:2;
+							transform:rotate(-45deg);-ms-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-webkit-transfrom:rotate(-45deg);-o-transform:rotate(-45deg);}
+
+/*动图*/
+.d-content{margin-top:15px;}
+.d-list{padding:0 10px;}
+.d-list .d-time{position:relative;overflow:hidden;font-size:14px;height:20px;line-height:20px;}
+.d-list .d-time .d-fl{float:left;}
+.d-list .d-mk{display:inline-block;*display:inline;*zoom:1;width:10px;height:10px;border-radius:50%;border:1px solid #D7D7D7;background:#fff;margin-right:6px;margin-top:3px;}
+.d-list .d-ent{margin:-5px 0 -5px 5px;padding:10px 0 20px 24px;border-left:1px solid #D7D7D7;}
+.d-list .d-ent .d-tlt{margin:0px 0px 10px;font-size:16px;}
+.d-list .d-ent img{min-height:80px;max-width:100%;}

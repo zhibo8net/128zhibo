@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout">
+<head>
+    <title th:text="${pageTitle}"></title>
+    <link rel="stylesheet" th:href="@{/styles_1/ended.css}" />
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-9 left-content">
+            <div class="row">
+                <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  > <a th:href="${'/projectVideo_1?project='+entity.project}"><span style="color:#4184f3" th:text="${entity.project + '集锦'}"></span> </a>>  <span th:text="${entity.name}"></span></div>
+            </div>
+            <div class="row collection-title">
+                <div class="col-md-12">
+                    <b><img th:src="@{/image_1/icon/video-list.png}" class="icon-24"/><span>视频集锦</span></b>
+                    <p th:each="v:${entity.videos}" th:if="${v.type=='集锦'}"><a th:href="${v.link}" th:text="${v.name}" target="_blank"></a></p>
+                    <b><img th:src="@{/image_1/icon/video-list.png}" class="icon-24"/><span>比赛录像</span></b>
+                    <p th:each="v:${entity.videos}" th:if="${v.type=='录像'}"><a th:href="${v.link}" th:text="${v.name}" target="_blank"></a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 right-content">
+            <div th:replace="layout/right :: channel"></div>
+            <div th:replace="layout/right :: projectCollection"></div>
+            <div th:replace="layout/right :: projectVideo"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

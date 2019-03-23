@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- 频道相关icon -->
+    <link rel="apple-touch-icon" sizes="72x72" href="" />
+    <title>直播8手机版</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles_1/inside_v2/css/footballStyle.css" /> -->
+    <link rel="stylesheet" th:href="@{../styles_1/inside_v2/css/footballStyle.css?v=1.0}" />
+    <!--评论-->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles_1/inside/css/reset.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles_1/inside/css/mobile.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles_1/inside/css/pinglun.css" /> -->
+    <link rel="stylesheet" type="text/css" th:href="@{../styles_1/inside/css/pinglun.css?v=1.0}" />
+    <!--竞猜-->
+    <!-- <link rel="stylesheet" type="text/css" href="../v2test/inside/css/jingcai.css" /> -->
+    <!--more_lab-->
+    <!-- <link rel="stylesheet" type="text/css" href="../v2test/inside_v2/css/lab_data.css" /> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+    <script th:src="@{../js_1/pl.js?v=1.1}"></script>
+    <script th:src="@{../js_1/mwrap.js?v=1.1}"></script>
+    <!-- <script src="../static/js_1/pl.js"></script>
+    <script src="../static/js_1/mwrap.js"></script> -->
+    <!-- <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script> -->
+    <!-- <script type="text/javascript" src="http://static4style.qiumibao.com/txt_m_js%2Fiscroll.js"></script>
+    <script type="text/javascript" src="http://static4style.qiumibao.com/txt_m_js%2Favalon.js"></script> -->
+    <!-- <script type="text/javascript" src="../v2test/inside/js/football_statics.js"></script> -->
+
+    <!-- <script src="http://static4style.qiumibao.com/libs/angular.js/1.3.0-rc.5/angular.min.js" type="text/javascript"></script> -->
+    <!-- <script src="http://static4style.qiumibao.com/txt_m_js%2Fangular-sanitize.js" type="text/javascript"></script> -->
+    <!-- <script src="http://static4style.qiumibao.com/libs/angular-cookies/1.2.16/angular-cookies.js" type="text/javascript"></script> -->
+    <!-- <script src="http://static4style.qiumibao.com/txt_m_js%2Fng-infinite-scroll.js" type="text/javascript"></script> -->
+    <!-- <script src="http://static4style.qiumibao.com/txt_m_js%2Fng-realvik-scroll.js" type="text/javascript"></script> -->
+    <!-- <script type="text/javascript" src="../v2test/inside/js/tools_gt.js"></script> -->
+    <!-- <script type="text/javascript" src="../v2test/inside/js/handlerPopup.js"></script> -->
+    <!-- <script src="../v2test/inside/js/pinglunApp.js" type="text/javascript"></script> -->
+    <!-- <script src="../v2test/inside/js/ext.js" type="text/javascript"></script> -->
+    <!--竞猜 -->
+    <!-- <script src="../v2test/inside/js/jingcai.js"></script> -->
+    <!--gif图    -->
+    <!-- <script type="text/javascript" src="../v2test/inside/js/dynamicIcon.js"></script> -->
+</head>
+
+<body>
+
+    <body style="">
+        <!-- noscript -->
+        <noscript>
+            <a class="noScript" href="#" title="页面需要开启JavaScript体验">页面需要开启JavaScript体验</a>
+        </noscript>
+        <span class="getId" style="display:none;" th:text="${matchDTO.id}"></span>
+        <!-- wrap -->
+        <section>
+            <div class="main_wrap show">
+                <!-- header -->
+                <header>
+                    <div class="m_top">
+                        <!-- <div class="fr fr_feedback"><a href="http://m.zhibo8.cc/feedback/" class="feedback">反馈</a></div> -->
+                        <div class="m_logo"><a href="javascript:history.go(-1);" class="back"></a><a href="https://www.zhibo8.net/mindex.html"
+                                class="m_refresh"></a></div>
+                    </div>
+                </header>
+                <aside>
+                    <div class="match_mode" avalonctrl="speed">
+                        <div class="home_team">
+                            <div class="inner">
+                                <div class="team_box">
+                                    <img onerror="this.src='http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/zhudui.png'"
+                                        th:src="${matchDTO.masterTeamLink}" />
+                                </div>
+                                <span class="fore_team_name team_host" th:text="${matchDTO.masterTeamName}"></span>
+                                <input name="template_id" value="1" type="hidden" />
+                            </div>
+                        </div>
+                        <div class="f_center">
+                            <div><span class="team_score" avalonctrl="interact"><span class="host_score">0</span>:<span
+                                        class="visit_score">0</span></span></div>
+                            <p class="game_time bifen_status" th:text="${matchDTO.playDateStr}"></p>
+                        </div>
+                        <div class="guest_team">
+                            <div class="inner">
+                                <div class="team_box">
+                                    <img onerror="this.src='http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/kedui.png'"
+                                        th:src="${matchDTO.masterTeamLink}" />
+                                </div>
+                                <span class="fore_team_name team_guest" th:text="${matchDTO.guestTeamName}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode_line">
+                        <div class="host_good"><a></a><span th:text="${matchDTO.masterTeamSupport}">0</span></div>
+                        <div class="match_mode_status">
+                            <h1>视频直播</h1>
+                        </div>
+                        <div class="guest_good"><a></a><span th:text="${matchDTO.masterTeamSupport}">0</span></div>
+                    </div>
+                    <dl class="match_mode_line">
+                        <dt class="line_width" style="width: 50%;">
+                        </dt>
+                        <dd>
+                        </dd>
+                    </dl>
+                </aside>
+                <nav>
+                    <div class="live_nav">
+                        <ul class="live_nav_items" data-sudaclick="topnavtab">
+                            <li class="on" id="select_1"><a title="直播" href="javascript:;">直播</a></li>
+                            <li id="select_2"><a title="首发" href="javascript:;">首发</a></li>
+                            <li id="select_3"><a title="数据" href="javascript:;">数据</a></li>
+                            <li id="select_4"><a title="评论" href="javascript:;">评论<span class="pinglun_num"></span></a></li>
+                            <li id="select_11"><a title="赔率" href="javascript:;">赔率</a></li>
+                            <li id="select_5"><a title="竞猜" href="javascript:;">竞猜</a></li>
+                            <li id="select_6"><a title="商城" href="javascript:;">商城</a></li>
+                            <li id="select_7" style="display: none;"><a title="动图" href="javascript:;">动图</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- / nav -->
+                <!-- card 流 -->
+                <section id="section_1">
+                    <div class="card_wrap" id="j_recommend_list" data-sudaclick="live_all">
+                    </div>
+                    <div id="loading" style="text-align: center;">暂无直播数据</div>
+                </section>
+
+                <!--首发-->
+                <section id="section_2" class="dis_none">
+                    <div avalonctrl="lineup">
+                        <!--ms-if-->
+                        <!--ms-if-->
+                    </div>
+
+                    <!--repeat1850042406479102176884779328069-->
+                    <!--repeat1850042406479102176884779328069:end-->
+                    <p class="no_data_2">暂无数据</p>
+                </section>
+
+                <!--统计-->
+                <section id="section_3" class="dis_none">
+                    <p class="no_data_3">暂无数据</p>
+                </section>
+                <!-- card 流 -->
+                <!--评论-->
+                <section id="section_4" style="display: none; padding-top: 10px;" class="ng-scope">
+                    <style class="ng-scope">
+                        #logindiv{
+                                    width:100%; height:auto; line-height:40px; position: relative;text-indent:10px;font-size: 14px;
+                                }
+                                #userinfo{
+                                    width:100%; height:auto; line-height:40px;text-indent:10px; font-size: 14px;
+                                }
+                                #re .face_img{
+                                    display: block;
+                                }
+                                #face_cat .current{
+                                    background: #ffffff;
+                                }
+                                .faces img{
+                                    cursor: pointer;
+                                }
+                                .close_btn{
+                                    height: auto; width: auto; padding: 0 5px; line-height: 20px; font-size: 12px; position: absolute; top: 2px; right: 2px; border: solid #666666 1px; background: #ffffff; cursor: pointer;
+                                }
+                                .bigimg{
+                                    top:40px;
+                                }
+                            </style>
+                    <div id="userinfo" style="display:none;" class="ng-scope">您好，<a href="http://www.zhibo8.net/mindex.html"
+                            class="ng-binding">****</a>！<a href="javascript:void(0);" onclick="locationToRe()">
+                            <font style="color:red;">开始发表评论</font>
+                        </a> <a rel="#overlay" href="javascript:void(0);" ng-click="logout()">退出</a></div>
+                    <div id="logindiv" ng-show="!userid" class="ng-scope">
+                        <span class="login-info">登录后才能发表评论和回复</span> <span class="login-btn-area"><a href="../mlogin.html"
+                                class="l-b-l">登录</a> | <a class="l-b-r" href="../mlogin.html">注册</a></span>
+                    </div>
+                    <div class="ng-scope">
+                        <div class="pllist ng-scope">
+                            <div id="re">
+                                <div id="re_box" class="input_l_rel">
+                                    <div class="input">
+                                        <a class="face_button" title="点击选择你要添加的表情" ng-mouseover="show_smiley_box(true)"></a>
+                                        <div class="plate_03" ng-show="!replyname">发表评论:</div>
+                                        <div class="plate_03 ng-hide" style="display:none;">对<span style="color: red;"
+                                                class="ng-binding">【】</span>发表回复:</div>
+                                        <textarea id="post_content" ng-click="hideeditortip()" name="content"
+                                            ng-keydown="keyprocess($event);" rows="8" ng-model="$parent.pl_content"
+                                            class="ng-pristine ng-valid"></textarea>
+                                        <!-- ngIf: !userid -->
+                                        <div id="nouserinfo" ng-if="!userid" style="z-index:9;padding: 30px 5px 10px 0; background:#fff; width:100%; height: 72px; position:absolute; left:0; top:20px;text-align:center;"
+                                            class="ng-scope">
+                                            <div>
+                                                <div class="login-info">登录后才能发表评论和回复</div>
+                                                <div class="login-btn-area"><a href="../mlogin.html" class="l-b-l">登录</a>
+                                                    | <a class="l-b-r" href="../mlogin.html">注册</a></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- ngIf: isshoweditortip -->
+                                        <div id="editortip" ng-if="isshoweditortip" style="width:90%; line-height:130%; color:#A6CAF0; position:absolute; left:10px; top:30px; text-align:left;"
+                                            class="ng-scope">
+                                            <p ng-click="hideeditortip()">1.发言请遵守国家法律法规.<br />2.禁止发布任何宣传、广告、侮辱攻击他人、刷屏等信息.</p>
+                                            <!-- ngIf: is_rookie==1 -->
+                                        </div>
+                                        <input id="submit_btn" ng-click="postpinglun()" type="button" name="submit"
+                                            value="回 复" />
+                                        <span style="color: #008000" class="ng-binding"></span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                            <div class="ng-binding nowplnum">已有<span class="num">****</span>条评论。 <a href="javascript:void(0);"
+                                    class="reloadData" onclick="refresh()">刷新评论</a></div>
+
+                            <div id="pllist" class="pllist">
+
+                            </div>
+                            <div class="loadMore" ng-click="loadMore()" style="cursor: pointer; border: solid 1px #888; text-align: CENTER; font-size: 1.2em; line-height: 50px; height: 50px; margin-top: 10px;"
+                                ng-show="enable_show_load_btn"> 加载更多 </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!--弹幕-->
+                <!-- <div class="dm_box">
+                    <div id="dmbox">
+                        <canvas id="danmu2" width="750" height="120" style="width: 375px; height: 60px; margin-top: 14px;"></canvas>
+                        <div class="box_room">
+                            <div class="room dm_room1">
+                                <a href="javascript:void(0);">球迷房间</a>
+                            </div>
+                            <div class="room dm_room2">
+                                <a href="javascript:void(0);">彩民房间</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dm_close"><a href="javascript:;">关</a></div>
+                    <div class="dm_pinglun">
+                        <a href="javascript:;"><img src="//bbsimg.zhibo8.cc/bbsimg/20180601123531_7629.png"></a>
+                    </div>
+                </div>
+                <div class="dm_tan"><a href="javascript:;" class="tan">弹</a></div>
+                <div class="input_area" style="display:none;">
+                    <div class="input_top">
+                        <div class="close_send"></div>
+                    </div>
+                    <div class="input_info"><textarea type="text"></textarea></div>
+                    <div class="send_info"><a href="javascript:;">发送</a></div>
+                </div> -->
+
+
+                <!--竞猜 -->
+                <section id="section_5" style="display:none;" avalonctrl="guess">
+                    <p class="no_data_3">暂无数据</p>
+                    <!-- <div class="jc">
+                        <ul class="guess_blur">
+                            <li>
+                                <div class="jcli_tit" style="cursor:pointer;">暂无竞猜，点击加载。</div>
+                            </li>
+                        </ul>
+                    </div> -->
+                </section>
+
+                <!--赔率-->
+                <section id="section_11" style="display:none;">
+                    <p class="no_data_3">暂无数据</p>
+                    <!-- <iframe src="" width="100%"></iframe> -->
+                </section>
+
+                <!--商城-->
+                <section id="section_6" style="display:none;">
+                    <p class="no_data_3">暂无数据</p>
+                </section>
+
+                <!--动图-->
+                <section id="section_7" style="display:none;">暂无数据</section>
+
+                <section id="section_none" style="display:none;">
+                    暂无数据
+                </section>
+
+
+                <!-- 登录界面-->
+
+                <!-- 视频信号 -->
+
+                <!--投注 -->
+
+                <!--赛事信息-->
+                <div id="match" class="dis_none">
+                    <p id="saishi">167306</p>
+                    <p id="host">西悉尼漫步者</p>
+                    <p id="guest">墨尔本城</p>
+                    <p id="date_time">2019-01-01</p>
+                    <p id="host">曼联</p>
+                    <p id="guest">利物浦</p>
+                    <p id="date_time">2017-01-16</p>
+                    <p id="title">文字直播</p>
+                    <p id="game_time">2019-01-01 16:50</p>
+                    <p id="filename">2019-zuqiu-0101167306</p>
+                    <p id="total_score_h"></p>
+                    <p id="total_score_v"></p>
+                </div>
+
+                <footer>
+                    <div class="footer" data-sudaclick="bottom">
+                    </div>
+                </footer>
+            </div>
+        </section>
+        <div id="overDiv" class="dis_none"> </div>
+        <!-- 文字直播竞猜显示模板 -->
+        <div id="liveguess" style="display:none;width:0;height:0;overflow:hidden;" avalonctrl="liveguess">
+            <!--repeat70631565208232828878667843369401:end-->
+        </div>
+
+        <!-- <script type="text/javascript" src="../v2test/inside/js/ajax.js"></script>
+        <script type="text/javascript" src="../v2test/inside/js/danmu.js"></script> -->
+        <!-- <script type="text/javascript" src="../v2test/inside_v2/js/mainctrl_fb.js"></script> -->
+        <!--<script type="text/javascript" src="../v2test/inside_v2/js/reward.js"></script>-->
+        <!-- <script type="text/javascript" src="../v2test/inside_v2/js/tab_data.js"></script> -->
+        <div id="tj" style="display: none;">
+            <!-- script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5713192'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5713192' type='text/javascript'%3E%3C/script%3E"));</script -->
+        </div>
+    </body>
+</body>
+
+</html>
