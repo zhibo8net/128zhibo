@@ -124,6 +124,12 @@ public class MatchAdminEndpoint extends BaseEndPoint {
             Date unlockTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(matchAdminDTO.unlockDateStr + " " + matchAdminDTO.unlockTimeStr);
             match.unlockTime = unlockTime;
         }
+        if(StringUtils.isNotEmpty(matchAdminDTO.playTime)){
+            Date playDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(matchAdminDTO.playTime);
+            match.playDate=playDate;
+        }else{
+            match.playDate=new Date();
+        }
 
         match.addTime = new Date();
         matchService.create(match);

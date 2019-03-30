@@ -86,125 +86,23 @@ public class IndexService {
 
         List<DailyLivesDTO> dailyLives = dailyLivesCache.getIfPresent("dailyLives");
 
-        //暂时不使用缓存
-        if ((dailyLives != null) && true) {
-
-            return dailyLives;
-
-        } else {
+        if(dailyLives==null||dailyLives.size()==0){
             dailyLives = queryDailyLives();
 
             dailyLivesCache.put("dailyLives", dailyLives);
 
             return dailyLives;
+        }else{
+            return dailyLives;
         }
 
     }
 
-//    @Scheduled(cron = "0 0/5 * * * *")
-//    @Transactional
-    public void refreshCache() {// 每5分钟刷新一次缓存
-
-        List<DailyLivesDTO> dailyLives = queryDailyLives();
-        dailyLivesCache.put("dailyLives", dailyLives);
-    }
-
-    public MatchDTO findMatchDTO(Long id){
-        LiveSource liveSource = liveSourceDao.findByActive(1);
-        Pattern p = Pattern.compile(".*(" + liveSource.channels.replace(",", "|") + ").*");
 
 
-        Match m=   matchDao.findById(id);
-            MatchDTO mdto = BeanMapper.map(m, MatchDTO.class);
-        if(m.guestTeam!=null){
-            mdto.guestTeamName=m.guestTeam.teamZh;
-            if(StringUtils.isNotEmpty(m.masterTeam.teamImgLink)){
-                mdto.guestTeamLink=m.guestTeam.teamImgLink;
-            }
-        }
-        if(m.masterTeam!=null){
-            mdto.masterTeamName=m.masterTeam.teamZh;
-            if(StringUtils.isNotEmpty(m.masterTeam.teamImgLink)){
-                mdto.masterTeamLink=m.masterTeam.teamImgLink;
-            }
-            mdto.teamFlag="TRUE";
-        }
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm");
-        if(m.playDate!=null){
-            mdto.playDateStr=sdf.format(m.playDate);
-        }
-            mdto.lives = Lists.newArrayList();
-
-            for(Live l : m.lives) {
-                if(l.name.contains("CCTV5")) {
-                    mdto.emphasis = 1;
-                }
-                Matcher matcher = p.matcher(l.name);
-                if(matcher.matches()) {
-                    String tv = matcher.group(1);
-                    if(tv.equals("QQ")) {
-                        tv = "QQ直播";
-                    }
-                    LiveDTO liveDTO = null;
-                    for(LiveDTO ld : mdto.lives) {
-                        if(ld.name.equals(tv)) {
-                            liveDTO = ld;
-                        }
-                    }
-                    if(liveDTO == null) {
-                        liveDTO = new LiveDTO();
-                        liveDTO.name = tv;
-                        mdto.lives.add(liveDTO);
-                    }
-                    //链接重复的，只添加一次
-                    boolean existed = false;
-                    for(SignalDTO s : liveDTO.signals) {
-                        if(s.link.equals(l.link)) {
-                            existed = true;
-                        }
-                    }
-                    if(!existed) {
-                        int signalsIndex = liveDTO.signals.size() + 1;
-                        SignalDTO signalDTO = new SignalDTO();
-                        signalDTO.name = l.name;
-                        signalDTO.indexName = "信号" + signalsIndex;
-                        signalDTO.link = l.link;
-                        signalDTO.videoLink=l.videoLink;
-                        signalDTO.liveId=l.id;
-                        signalDTO.gameId=l.gameId;
-                        signalDTO.playFlag=l.playFlag;
-                        liveDTO.signals.add(signalDTO);
-                    }
-                }
-            }
-
-
-         return mdto;
-
-
-    }
     public List<DailyLivesDTO> queryDailyLives() {
-        LiveSource liveSource = liveSourceDao.findByActive(1);
-        
-        Pattern p = Pattern.compile(".*(" + liveSource.channels.replace(",", "|") + ").*");
-        
-        boolean onlyHaveLive = configDao.findByCkey("只显示有信号的场次").cvalue.equals("1");
-        
-        List<Ad> commonAd = adDao.findByType("通用");
-        List<Ad> advancedAd = adDao.findByType("高级");
 
-        List<AdDTO> commonDTOs = Lists.newArrayList();
-        for (Ad ad : commonAd) {
-            commonDTOs.add(BeanMapper.map(ad, AdDTO.class));
-        }
 
-        List<AdDTO> advancedDTOs = Lists.newArrayList();
-        long currentTimeMills = new Date().getTime();
-        for (Ad ad : advancedAd) {
-            if (ad.endDate.getTime() > currentTimeMills) {
-                advancedDTOs.add(BeanMapper.map(ad, AdDTO.class));
-            }
-        }
 
         List<DailyLivesDTO> result = Lists.newArrayList();
 
@@ -219,16 +117,14 @@ public class IndexService {
         long twoHourBeforeNowMills = twoHourBeforeNow.getTime().getTime();
         do {
             DailyLivesDTO dailylives = new DailyLivesDTO();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             String dateStr = sdf.format(todayCal.getTime()) + " " + weeks[todayCal.get(Calendar.DAY_OF_WEEK) - 1];
             dailylives.dateStr = dateStr;
-
+            dailylives.playDateStr=dateFormat.format(todayCal.getTime());
             List<Match> matches = matchDao.findByPlayDateStrOrderByPlayDateAsc(dateStrForQueryFormat.format(todayCal.getTime()));
             matchLoop:
             for (Match m : matches) {
-//                if(StringUtils.isBlank(m.name)) {
-//                    continue matchLoop;
-//                }
                 //只有当前时间之前2小时之后开球的比赛才显示（例：现在9点，则7点后开球的才显示）
                 if(m.playDate.getTime() > twoHourBeforeNowMills) {
 
@@ -250,31 +146,20 @@ public class IndexService {
                     mdto.lives = Lists.newArrayList();
                     
                     for(Live l : m.lives) {
-                        if(gameList.contains(m.game)) {
-                            mdto.emphasis = 1;
-                        }
-                        Matcher matcher = p.matcher(l.name);
-                        if(matcher.matches()) {
-                            String tv = matcher.group(1);
-                            if(tv.equals("QQ")) {
-                                tv = "QQ直播";
-                            }
-                            LiveDTO liveDTO = null;
-                            for(LiveDTO ld : mdto.lives) {
-                                if(ld.name.equals(tv)) {
-                                    liveDTO = ld;
-                                }
-                            }
-                            if(liveDTO == null) {
-                                liveDTO = new LiveDTO();
-                                liveDTO.name = tv;
+
+
+                            LiveDTO liveDTO = new LiveDTO();
+
+                                liveDTO.name = l.name;
+                                liveDTO.link=l.link;
                                 mdto.lives.add(liveDTO);
-                            }
+
                             //链接重复的，只添加一次
                             boolean existed = false;
                             for(SignalDTO s : liveDTO.signals) {
                                 if(s.link.equals(l.link)) {
                                     existed = true;
+                                    break ;
                                 }
                             }
                             if(!existed) {
@@ -289,44 +174,9 @@ public class IndexService {
                                 signalDTO.gameId=l.gameId;
                                 liveDTO.signals.add(signalDTO);
                             }
-                        }
-                    }
 
-                    // 添加全局广告
-                    for (AdDTO c : commonDTOs) {
-                        mdto.ads.add(c);
                     }
-
-                    // 添加高级广告
-                    for (AdDTO c : advancedDTOs) {
-                        boolean match = true;
-                        String[] teams = c.teams.split("\\|");
-                        for (String t : teams) {
-                            if (!mdto.name.contains(t)) {
-                                match = false;
-                            }
-                        }
-                        if (match) {
-                            mdto.ads.add(c);
-                        }
-                    }
-
-                    // 根据广告，为比赛添加“重要”（整体变红）
-                    for (AdDTO a : mdto.ads) {
-                        if (a.important == 1) {
-                            mdto.important = 1;
-                        }
-                    }
-
-                    // 根据配置的「只显示有信号的场次」的值
-                    if(onlyHaveLive) {
-                        if(mdto.lives.size() > 0) {
-                            dailylives.matches.add(mdto);
-                        }
-                    }else {
                         dailylives.matches.add(mdto);
-                    }
-                    
                 }
             }
 
@@ -400,17 +250,14 @@ public class IndexService {
         return result;
     }
     
-    public Map<String, PageAd> pageAds(){
-        Map<String, PageAd> result = Maps.newHashMap();
+    public List<PageAd> pageAds(){
 
         List<PageAd> list = (List<PageAd>) CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_page_ads");
         if(list==null||list.size()==0){
             list= (List<PageAd>)pageAdDao.findAll();
             CacheUtils.IndexCache.put("ZHIBO8_INDEX_page_ads",list);
         }
-        for(PageAd pa : list) {
-            result.put(pa.adKey, pa);
-        }
-        return result;
+
+        return list;
     }
 }

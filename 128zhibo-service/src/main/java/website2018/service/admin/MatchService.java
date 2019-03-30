@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,7 @@ import website2018.exception.ServiceException;
 import website2018.repository.AdDao;
 import website2018.repository.LiveDao;
 import website2018.repository.MatchDao;
+import website2018.utils.DateUtils;
 
 @Service
 public class MatchService {
@@ -67,6 +69,9 @@ public class MatchService {
 
     @Transactional
     public void create(Match match) {
+        for(Live live:match.lives){
+            live.match=match;
+        }
         matchDao.save(match);
     }
 
@@ -78,7 +83,9 @@ public class MatchService {
         if (orginalMatch == null) {
             throw new ServiceException("比赛不存在", ErrorCode.BAD_REQUEST);
         }
-
+        orginalMatch.playDateStr=match.playDateStr;
+        orginalMatch.playDate= DateUtils.getDate(StringUtils.isNoneBlank(orginalMatch.playDateStr)?orginalMatch.playDateStr:DateUtils.getDefaultDateStr(new Date()),"yyyy-MM-dd");
+        orginalMatch.playTime=match.playTime;
         orginalMatch.sinaLiveUrl=match.sinaLiveUrl;
         orginalMatch.sinaShujuUrl=match.sinaShujuUrl;
         orginalMatch.matchStreamUrl=match.matchStreamUrl;

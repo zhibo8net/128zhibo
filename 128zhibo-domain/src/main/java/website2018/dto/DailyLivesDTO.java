@@ -7,7 +7,7 @@ import com.google.common.collect.Lists;
 public class DailyLivesDTO {
 
     public String dateStr;
-
+    public String playDateStr;
     public List<MatchDTO> matches = Lists.newArrayList();
 
 }

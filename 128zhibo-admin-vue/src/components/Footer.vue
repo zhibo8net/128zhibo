@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="row foot-bar">
-    <div class="col-md-12">Copyright © 2006-2018 备案号:沪ICP备13048152号-1 友情链接AD:5583670 直播吧 All Rights Reserved.</div>
+    <div class="col-md-12">Copyright © 2018-2020 备案号:沪ICP备13048152号-1 友情链接AD:5583670 80直播吧 All Rights Reserved.</div>
   </div>
 </div>
 </template>

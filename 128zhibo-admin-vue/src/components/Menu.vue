@@ -1,57 +1,58 @@
 <template>
   <div>
-    <ul class="menu">
+    <ul class="menu" style="height:450px;">
       <li :class="{'active' : path == '/liveSourceList' || path.startsWith('/liveSourceForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/liveSourceList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 直播源管理</a>
+        <a href="javascript:void(0);" v-on:click="href('/liveSourceList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 抓取频率</a>
       </li>
       <li :class="{'active' : path == '/matchList' || path.startsWith('/matchForm')}">
         <a href="javascript:void(0);" v-on:click="href('/matchList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 比赛管理</a>
       </li>
 
-      <li :class="{'active' : path == '/issueList' || path.startsWith('/issueForm')|| path.startsWith('/userForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/issueList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 竞猜管理</a>
-      </li>
-      <li :class="{'active' : path == '/problemDbList' || path.startsWith('/problemDbForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/problemDbList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 竞猜题库管理</a>
-      </li>
-      <li :class="{'active' : path == '/adList' || path.startsWith('/adForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/adList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 比赛广告管理</a>
+      <!--<li :class="{'active' : path == '/issueList' || path.startsWith('/issueForm')|| path.startsWith('/userForm')}">-->
+        <!--<a href="javascript:void(0);" v-on:click="href('/issueList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 竞猜管理</a>-->
+      <!--</li>-->
+      <!--<li :class="{'active' : path == '/problemDbList' || path.startsWith('/problemDbForm')}">-->
+        <!--<a href="javascript:void(0);" v-on:click="href('/problemDbList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 竞猜题库管理</a>-->
+      <!--</li>-->
+      <!--<li :class="{'active' : path == '/adList' || path.startsWith('/adForm')}">-->
+        <!--<a href="javascript:void(0);" v-on:click="href('/adList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 比赛广告管理</a>-->
+      <!--</li>-->
+      <li :class="{'active' : path == '/leagueList' || path.startsWith('/leagueForm')}">
+        <a href="javascript:void(0);" v-on:click="href('/leagueList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 联赛管理</a>
       </li>
       <li :class="{'active' : path == '/teamList' || path.startsWith('/teamForm')}">
         <a href="javascript:void(0);" v-on:click="href('/teamList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 球队管理</a>
       </li>
-      <li :class="{'active' : path == '/leagueList' || path.startsWith('/leagueForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/leagueList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 联赛管理</a>
-      </li>
-      <li :class="{'active' : path == '/videoList' || path.startsWith('/videoForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/videoList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 视频管理</a>
-      </li>
-      <li :class="{'active' : path == '/newsList' || path.startsWith('/newsForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/newsList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 新闻管理</a>
-      </li>
-      <li :class="{'active' : path == '/sensitiveList' || path.startsWith('/sensitiveForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/sensitiveList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 铭感词管理</a>
-      </li>
-      <li :class="{'active' : path == '/imageList' || path.startsWith('/imageForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/imageList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 组图管理</a>
-      </li>
+
+      <!--<li :class="{'active' : path == '/videoList' || path.startsWith('/videoForm')}">-->
+        <!--<a href="javascript:void(0);" v-on:click="href('/videoList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 视频管理</a>-->
+      <!--</li>-->
+      <!--<li :class="{'active' : path == '/newsList' || path.startsWith('/newsForm')}">-->
+        <!--<a href="javascript:void(0);" v-on:click="href('/newsList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 新闻管理</a>-->
+      <!--</li>-->
+      <!--<li :class="{'active' : path == '/sensitiveList' || path.startsWith('/sensitiveForm')}">-->
+        <!--<a href="javascript:void(0);" v-on:click="href('/sensitiveList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 铭感词管理</a>-->
+      <!--</li>-->
+      <!--<li :class="{'active' : path == '/imageList' || path.startsWith('/imageForm')}">-->
+        <!--<a href="javascript:void(0);" v-on:click="href('/imageList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 组图管理</a>-->
+      <!--</li>-->
       <!--<li :class="{'active' : path == '/teleList' || path.startsWith('/teleForm')}">-->
         <!--<a href="javascript:void(0);" v-on:click="href('/teleList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 电视管理</a>-->
       <!--</li>-->
       <li :class="{'active' : path == '/pageAdList' || path.startsWith('/pageAdForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/pageAdList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 页面广告管理</a>
+        <a href="javascript:void(0);" v-on:click="href('/pageAdList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 广告位管理</a>
       </li>
       <li :class="{'active' : path == '/friendLinkList' || path.startsWith('/friendLinkForm')}">
         <a href="javascript:void(0);" v-on:click="href('/friendLinkList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 友情链接管理</a>
       </li>
-      <li :class="{'active' : path == '/replaceWordList' || path.startsWith('/replaceWordForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/replaceWordList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 替换词管理</a>
-      </li>
-      <li :class="{'active' : path == '/configList' || path.startsWith('/configForm')}">
-        <a href="javascript:void(0);" v-on:click="href('/configList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 配置管理</a>
-      </li>
+      <!--<li :class="{'active' : path == '/replaceWordList' || path.startsWith('/replaceWordForm')}">-->
+        <!--<a href="javascript:void(0);" v-on:click="href('/replaceWordList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 替换词管理</a>-->
+      <!--</li>-->
+      <!--<li :class="{'active' : path == '/configList' || path.startsWith('/configForm')}">-->
+        <!--<a href="javascript:void(0);" v-on:click="href('/configList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 配置管理</a>-->
+      <!--</li>-->
       <li :class="{'active' : path == '/accountList' || path.startsWith('/accountForm')}" v-if="isSuper">
-        <a href="javascript:void(0);" v-on:click="href('/accountList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 用户账号管理</a>
+        <a href="javascript:void(0);" v-on:click="href('/accountList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 账号管理</a>
       </li>
       <li :class="{'active' : path == '/logList' || path.startsWith('/logForm')}" v-if="isSuper">
         <a href="javascript:void(0);" v-on:click="href('/logList')"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 登录日志</a>

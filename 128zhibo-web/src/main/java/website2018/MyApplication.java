@@ -36,8 +36,7 @@ public class MyApplication {
     public FilterRegistrationBean restFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new RestFilter(accountService));
-        registrationBean.addUrlPatterns("/test1.html");
-        registrationBean.addUrlPatterns("/test2.html");
+        registrationBean.addUrlPatterns("/api/web/*");
         registrationBean.addUrlPatterns("/api/admin/*");
         registrationBean.addUrlPatterns("/admin_1/php/upload_json.php");
         registrationBean.addUrlPatterns("/api/matchRank/*");
@@ -52,63 +51,12 @@ public class MyApplication {
         registrationBean.setOrder(1);
         return registrationBean;
     }
-    @Bean
+   @Bean
     public FilterRegistrationBean webFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new WebFilter());
         registrationBean.addUrlPatterns("/");
-        registrationBean.addUrlPatterns("/live_1.html");
-        registrationBean.addUrlPatterns("/match_1/*");
-        registrationBean.addUrlPatterns("/projectVideo_1.html");
-        registrationBean.addUrlPatterns("/gameVideo_1.html");
-        registrationBean.addUrlPatterns("/recording_1.html");
-        registrationBean.addUrlPatterns("/news_1.html");
-        registrationBean.addUrlPatterns("/news_1/*");
-        registrationBean.addUrlPatterns("/image_1.html");
-        registrationBean.addUrlPatterns("/projectImage_1.html");
-        registrationBean.addUrlPatterns("/viewImage_1/*");
-        registrationBean.addUrlPatterns("/video_1/*");
-        registrationBean.addUrlPatterns("/nba_video.html");
-        registrationBean.addUrlPatterns("/footer_video.html");
-        registrationBean.addUrlPatterns("/news_detail/*");
-        registrationBean.addUrlPatterns("/nba_news.html");
-        registrationBean.addUrlPatterns("/footer_news.html");
-        registrationBean.addUrlPatterns("/match_old_1/*");
-        registrationBean.addUrlPatterns("/checkUser.html");
-        registrationBean.addUrlPatterns("/checkUser");
-        registrationBean.addUrlPatterns("/live_1");
-        registrationBean.addUrlPatterns("/match_1/*");
-        registrationBean.addUrlPatterns("/projectVideo_1");
-        registrationBean.addUrlPatterns("/gameVideo_1");
-        registrationBean.addUrlPatterns("/recording_1");
-        registrationBean.addUrlPatterns("/news_1");
-        registrationBean.addUrlPatterns("/news_1/*");
-        registrationBean.addUrlPatterns("/image_1");
-        registrationBean.addUrlPatterns("/projectImage_1");
-        registrationBean.addUrlPatterns("/viewImage_1/*");
-        registrationBean.addUrlPatterns("/video_1/*");
-        registrationBean.addUrlPatterns("/nba_video");
-        registrationBean.addUrlPatterns("/footer_video");
-        registrationBean.addUrlPatterns("/news_detail/*");
-        registrationBean.addUrlPatterns("/live_play_inner/*");
-        registrationBean.addUrlPatterns("/nba_news");
-        registrationBean.addUrlPatterns("/footer_news");
-        registrationBean.addUrlPatterns("/prospect");
-        registrationBean.addUrlPatterns("/prospect.html");
-        registrationBean.addUrlPatterns("/download.html");
-        registrationBean.addUrlPatterns("/userPage.html");
-        registrationBean.addUrlPatterns("/mindex.html");
-        registrationBean.addUrlPatterns("/mlogin.html");
-        registrationBean.addUrlPatterns("/mdetail/*");
-        registrationBean.addUrlPatterns("/mwrap/*");
-        registrationBean.addUrlPatterns("/mnews.html");
-        registrationBean.addUrlPatterns("/mvideo.html");
-        registrationBean.addUrlPatterns("/jingcai.html");
-        registrationBean.addUrlPatterns("/jingcainotice.html");
 
-
-        registrationBean.addUrlPatterns("/test1.html");
-        registrationBean.addUrlPatterns("/test2.html");
         return registrationBean;
     }
 

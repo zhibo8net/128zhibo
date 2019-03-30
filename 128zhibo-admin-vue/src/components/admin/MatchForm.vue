@@ -1,58 +1,63 @@
 <template>
   <div>
     <form v-on:submit.prevent>
-      <div :class="{'form-group':true, 'has-error':errors.has('新浪直播源')}">
-        <label>新浪直播源</label>
-        <input type="text" class="form-control" placeholder="输入新浪直播源" v-model="match.sinaLiveUrl" name="新浪直播源">
-        <span class="help-block" v-show="errors.has('新浪直播源')">{{ errors.first('新浪直播源') }}</span>
-      </div>
-      <div :class="{'form-group':true, 'has-error':errors.has('新浪数据源')}">
-        <label>新浪数据源</label>
-        <input type="text" class="form-control" placeholder="输入新浪数据源" v-model="match.sinaShujuUrl" name="新浪数据源">
-        <span class="help-block" v-show="errors.has('新浪数据源')">{{ errors.first('新浪数据源') }}</span>
-      </div>
-      <div :class="{'form-group':true, 'has-error':errors.has('新浪数据源')}">
-        <label>sstream365据源</label>
-        <input type="text" class="form-control" placeholder="sstream365据源" v-model="match.matchStreamUrl" name="sstream365据源">
-        <span class="help-block" v-show="errors.has('sstream365据源')">{{ errors.first('sstream365据源') }}</span>
+      <!--<div :class="{'form-group':true, 'has-error':errors.has('新浪直播源')}">-->
+        <!--<label>新浪直播源</label>-->
+        <!--<input type="text" class="form-control" placeholder="输入新浪直播源" v-model="match.sinaLiveUrl" name="新浪直播源">-->
+        <!--<span class="help-block" v-show="errors.has('新浪直播源')">{{ errors.first('新浪直播源') }}</span>-->
+      <!--</div>-->
+      <!--<div :class="{'form-group':true, 'has-error':errors.has('新浪数据源')}">-->
+        <!--<label>新浪数据源</label>-->
+        <!--<input type="text" class="form-control" placeholder="输入新浪数据源" v-model="match.sinaShujuUrl" name="新浪数据源">-->
+        <!--<span class="help-block" v-show="errors.has('新浪数据源')">{{ errors.first('新浪数据源') }}</span>-->
+      <!--</div>-->
+      <div :class="{'form-group':true, 'has-error':errors.has('直播日期')}">
+      <label>直播日期：如2019-01-01</label>
+      <input type="text" class="form-control" placeholder="直播日期" v-model="match.playDateStr"  v-validate="'required'" name="直播日期">
+      <span class="help-block" v-show="errors.has('直播日期')">{{ errors.first('直播日期') }}</span>
+    </div>
+      <div :class="{'form-group':true, 'has-error':errors.has('直播时间')}">
+        <label>直播时间：如 2019-01-01 12:30</label>
+        <input type="text" class="form-control" placeholder="直播时间" v-model="match.playTime"  v-validate="'required'" name="直播时间">
+        <span class="help-block" v-show="errors.has('直播时间')">{{ errors.first('直播时间') }}</span>
       </div>
       <div :class="{'form-group':true, 'has-error':errors.has('比赛对阵')}">
         <label>比赛对阵</label>
         <input type="text" class="form-control" placeholder="输入比赛对阵" v-model="match.name" v-validate="'required'" name="比赛对阵">
         <span class="help-block" v-show="errors.has('比赛对阵')">{{ errors.first('比赛对阵') }}</span>
       </div>
-      <div :class="{'form-group':true, 'has-error':errors.has('锁定状态')}">
-        <label>锁定状态</label>
-        <select class="form-control" name="锁定状态" v-model="match.locked">
-            <option value="1">已锁定</option>
-            <option value="0">未锁定</option>
-        </select>
-        <span class="help-block" v-show="errors.has('锁定状态')">{{ errors.first('锁定状态') }}</span>
-      </div>
-      <div :class="{'form-group':true, 'has-error':errors.has('解锁时间')}">
-        <label>解锁时间</label>
-        <input type="date" placeholder="输入解锁时间" v-model="match.unlockDateStr" name="解锁时间">
-        <input type="time" placeholder="输入解锁时间" v-model="match.unlockTimeStr" name="解锁时间">
-        <span class="help-block" v-show="errors.has('解锁时间')">{{ errors.first('解锁时间') }}</span>
-      </div>
+      <!--<div :class="{'form-group':true, 'has-error':errors.has('锁定状态')}">-->
+        <!--<label>锁定状态</label>-->
+        <!--<select class="form-control" name="锁定状态" v-model="match.locked">-->
+            <!--<option value="1">已锁定</option>-->
+            <!--<option value="0">未锁定</option>-->
+        <!--</select>-->
+        <!--<span class="help-block" v-show="errors.has('锁定状态')">{{ errors.first('锁定状态') }}</span>-->
+      <!--</div>-->
+      <!--<div :class="{'form-group':true, 'has-error':errors.has('解锁时间')}">-->
+        <!--<label>解锁时间</label>-->
+        <!--<input type="date" placeholder="输入解锁时间" v-model="match.unlockDateStr" name="解锁时间">-->
+        <!--<input type="time" placeholder="输入解锁时间" v-model="match.unlockTimeStr" name="解锁时间">-->
+        <!--<span class="help-block" v-show="errors.has('解锁时间')">{{ errors.first('解锁时间') }}</span>-->
+      <!--</div>-->
       <div :class="{'form-group':true, 'has-error':errors.has('所属项目')}">
         <label>所属项目</label>
         <input type="text" class="form-control" placeholder="输入所属项目" v-model="match.project" v-validate="'required'" name="所属项目">
         <span class="help-block" v-show="errors.has('所属项目')">{{ errors.first('所属项目') }}</span>
       </div>
-      <div :class="{'form-group':true, 'has-error':errors.has('所属赛事')}">
-        <label>所属赛事</label>
-        <input type="text" class="form-control" placeholder="输入所属赛事" v-model="match.game" v-validate="'required'" name="所属赛事">
-        <span class="help-block" v-show="errors.has('所属赛事')">{{ errors.first('所属赛事') }}</span>
+      <div :class="{'form-group':true, 'has-error':errors.has('所属联赛')}">
+        <label>所属联赛</label>
+        <input type="text" class="form-control" placeholder="输入所属联赛" v-model="match.game" v-validate="'required'" name="所属联赛">
+        <span class="help-block" v-show="errors.has('所属联赛')">{{ errors.first('所属联赛') }}</span>
       </div>
-      <div :class="{'form-group':true, 'has-error':errors.has('是否重要')}">
-        <label>是否重要</label>
-        <select class="form-control" name="是否重要" v-model="match.emphasis">
-            <option value="1">是</option>
-            <option value="0">否</option>
-        </select>
-        <span class="help-block" v-show="errors.has('是否重要')">{{ errors.first('是否重要') }}</span>
-      </div>
+      <!--<div :class="{'form-group':true, 'has-error':errors.has('是否重要')}">-->
+        <!--<label>是否重要</label>-->
+        <!--<select class="form-control" name="是否重要" v-model="match.emphasis">-->
+            <!--<option value="1">是</option>-->
+            <!--<option value="0">否</option>-->
+        <!--</select>-->
+        <!--<span class="help-block" v-show="errors.has('是否重要')">{{ errors.first('是否重要') }}</span>-->
+      <!--</div>-->
       <h3>直播</h3>
       <div>
         <div v-for="l in match.lives">
@@ -72,20 +77,20 @@
         </div>
         <button v-on:click="addLive"> + </button>
       </div>
-      <h3>广告</h3>
-      <div>
-        <div v-for="ad in match.ads">
-          <label>广告名称</label>
-          <input type="text" class="liveInput" v-model="ad.name">
-          <label>频道链接</label>
-          <input type="text" class="liveInput" v-model="ad.link">
-          <br>
-          <label>是否高亮</label>
-          <input type="text" class="liveInput" v-model="ad.light">
-          <button v-on:click="removeAd(ad)" class="del-image-btn">删除</button>
-        </div>
-        <button v-on:click="addAd"> + </button>
-      </div>
+      <!--<h3>广告</h3>-->
+      <!--<div>-->
+        <!--<div v-for="ad in match.ads">-->
+          <!--<label>广告名称</label>-->
+          <!--<input type="text" class="liveInput" v-model="ad.name">-->
+          <!--<label>频道链接</label>-->
+          <!--<input type="text" class="liveInput" v-model="ad.link">-->
+          <!--<br>-->
+          <!--<label>是否高亮</label>-->
+          <!--<input type="text" class="liveInput" v-model="ad.light">-->
+          <!--<button v-on:click="removeAd(ad)" class="del-image-btn">删除</button>-->
+        <!--</div>-->
+        <!--<button v-on:click="addAd"> + </button>-->
+      <!--</div>-->
       <button type="button" class="btn btn-default" v-on:click="submit()">提交</button>
     </form>
   </div>
@@ -178,6 +183,8 @@ export default {
         this.$set(match, 'id', matchEntity.id)
         this.$set(match, 'name', matchEntity.name)
         this.$set(match, 'locked', matchEntity.locked)
+      this.$set(match, 'playDateStr', matchEntity.playDateStr)
+      this.$set(match, 'playTime', matchEntity.playTime)
         this.$set(match, 'unlockTime', matchEntity.unlockTime)
         this.$set(match, 'unlockDateStr', matchEntity.unlockDateStr)
         this.$set(match, 'unlockTimeStr', matchEntity.unlockTimeStr)

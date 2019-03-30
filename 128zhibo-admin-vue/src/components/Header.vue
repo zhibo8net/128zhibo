@@ -1,11 +1,11 @@
 <template>
 <div>
   <div class="row top-bar">
-    <div class="col-md-12"><h1>直播吧后台管理系统</h1></div>
+    <div class="col-md-12"><h1>80直播吧后台管理系统</h1></div>
   </div>
   <div class="row user-bar">
     <div class="col-md-12" v-if="mobile">
-      <span class="pull-right">欢迎你，{{ mobile }} 
+      <span class="pull-right">欢迎你，{{ mobile }}
       <a href="javascript:void(0)" v-on:click="href('/resetPassword')">修改密码</a>
       <a href="javascript:void(0)" v-on:click="logout">退出登录</a>
       </span>

@@ -3,7 +3,7 @@
   <div class="row">
     <div id="login-content" class="col-md-4 col-md-offset-4">
       <div class="login-title text-center">
-        直播吧后台管理系统
+        80直播吧管理系统
       </div>
       <form class="form-horizontal">
         <div :class="{'form-group':true, 'has-error':errors.has('手机号码')}">

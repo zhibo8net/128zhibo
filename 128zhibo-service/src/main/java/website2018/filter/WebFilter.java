@@ -40,14 +40,14 @@ public class WebFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
-        List<Tele> teles = CacheUtils.getListTele();
-        request.setAttribute("teles", teles);
-
-        List<FriendLink> friendLinks = CacheUtils.getListFriendLink();
-        request.setAttribute("friendLinks", friendLinks);
-
-        webImageBase=CacheUtils.getWebImageBase();
-        request.setAttribute("webImageBase", webImageBase);
+//        List<Tele> teles = CacheUtils.getListTele();
+//        request.setAttribute("teles", teles);
+//
+//        List<FriendLink> friendLinks = CacheUtils.getListFriendLink();
+//        request.setAttribute("friendLinks", friendLinks);
+//
+//        webImageBase=CacheUtils.getWebImageBase();
+//        request.setAttribute("webImageBase", webImageBase);
         
         filterChain.doFilter(request, response);
     }

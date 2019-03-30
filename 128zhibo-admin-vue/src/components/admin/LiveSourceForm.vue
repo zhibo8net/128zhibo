@@ -1,10 +1,10 @@
 <template>
   <div>
     <form>
-      <div :class="{'form-group':true, 'has-error':errors.has('抓取频道')}">
-        <label>抓取频道</label>
-        <input type="text" class="form-control" placeholder="输入抓取频道" v-model="liveSource.name" v-validate="'required'" name="抓取频道" readonly>
-        <span class="help-block" v-show="errors.has('抓取频道')">{{ errors.first('抓取频道') }}</span>
+      <div :class="{'form-group':true, 'has-error':errors.has('数据源')}">
+        <label>数据源</label>
+        <input type="text" class="form-control" placeholder="输入数据源" v-model="liveSource.name" v-validate="'required'" name="数据源" readonly>
+        <span class="help-block" v-show="errors.has('数据源')">{{ errors.first('数据源') }}</span>
       </div>
       <div :class="{'form-group':true, 'has-error':errors.has('抓取网址')}">
         <label>抓取网址</label>
@@ -24,16 +24,16 @@
         <input type="number" class="form-control" placeholder="输入抓取间隔" v-model="liveSource.fetchInterval" v-validate="'required'" name="抓取间隔">
         <span class="help-block" v-show="errors.has('抓取间隔')">{{ errors.first('抓取间隔') }}</span>
       </div>
-      <div :class="{'form-group':true, 'has-error':errors.has('频道匹配')}">
-        <label>频道匹配（用|分隔）</label>
-        <input type="text" class="form-control" placeholder="输入频道匹配" v-model="liveSource.channels" v-validate="'required'" name="频道匹配">
-        <span class="help-block" v-show="errors.has('频道匹配')">{{ errors.first('频道匹配') }}</span>
-      </div>
-      <div :class="{'form-group':true, 'has-error':errors.has('站内频道匹配')}">
-        <label>站内频道匹配（用|分隔）</label>
-        <input type="text" class="form-control" placeholder="输入站内频道匹配" v-model="liveSource.innerPlayChannels"  name="站内频道匹配">
-        <span class="help-block" v-show="errors.has('站内频道匹配')">{{ errors.first('站内频道匹配') }}</span>
-      </div>
+      <!--<div :class="{'form-group':true, 'has-error':errors.has('频道匹配')}">-->
+        <!--<label>频道匹配（用|分隔）</label>-->
+        <!--<input type="text" class="form-control" placeholder="输入频道匹配" v-model="liveSource.channels" v-validate="'required'" name="频道匹配">-->
+        <!--<span class="help-block" v-show="errors.has('频道匹配')">{{ errors.first('频道匹配') }}</span>-->
+      <!--</div>-->
+      <!--<div :class="{'form-group':true, 'has-error':errors.has('站内频道匹配')}">-->
+        <!--<label>站内频道匹配（用|分隔）</label>-->
+        <!--<input type="text" class="form-control" placeholder="输入站内频道匹配" v-model="liveSource.innerPlayChannels"  name="站内频道匹配">-->
+        <!--<span class="help-block" v-show="errors.has('站内频道匹配')">{{ errors.first('站内频道匹配') }}</span>-->
+      <!--</div>-->
       <button type="button" class="btn btn-default" v-on:click="submit()">提交</button>
     </form>
   </div>

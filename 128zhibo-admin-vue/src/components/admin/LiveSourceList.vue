@@ -1,11 +1,11 @@
 <template>
   <div>
-      <h2>直播源管理</h2>
+      <h2>抓取频率</h2>
       <table class="table">
         <thead>
           <tr>
             <th>数据源</th>
-            <th>匹配频道</th>
+            <!--<th>匹配频道</th>-->
             <th>抓取频率</th>
             <th>链接</th>
             <th>状态</th>
@@ -15,10 +15,10 @@
         <tbody>
           <tr v-for="a in page.content">
             <td>{{ a.name }} </td>
-            <td>{{ a.channels }}</td>
+            <!--<td>{{ a.channels }}</td>-->
             <td>{{ a.fetchInterval }}分钟</td>
             <td>{{ a.link }}</td>
-            <td><span class="active" v-if="a.active==1">活动中</span> </td>
+            <td><span class="active" v-if="a.active==1">活动中</span> <span v-else>非活动中</span></td>
             <td>
               <button type="button" class="btn btn-info" v-on:click="edit(a)">编辑</button>
               <button type="button" class="btn btn-danger" v-on:click="remove(a)">删除</button>
