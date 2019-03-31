@@ -1,0 +1,28 @@
+08:54:02.722 logback-spider [main] WARN  o.s.b.a.t.AbstractTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+08:54:10.508 logback-spider [main] WARN  o.s.b.a.f.FreeMarkerAutoConfiguration - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+08:56:00.103 logback-spider [pool-4-thread-1] WARN  website2018.spider.LiveSpider - 当前直播源是24直播，未到抓取时间，不抓取
+08:56:05.554 logback-spider [LiveSpider - 1553993700702] WARN  website2018.spider.LiveSpider - 未能从24直播抓取首页比赛
+08:57:00.146 logback-spider [pool-4-thread-1] WARN  website2018.spider.LiveSpider - 当前直播源是24直播，未到抓取时间，不抓取
+08:58:00.131 logback-spider [pool-4-thread-1] WARN  website2018.spider.LiveSpider - 当前直播源是24直播，未到抓取时间，不抓取
+08:59:00.126 logback-spider [pool-4-thread-1] WARN  website2018.spider.LiveSpider - 当前直播源是24直播，未到抓取时间，不抓取
+09:00:00.322 logback-spider [pool-4-thread-1] WARN  website2018.spider.LiveSpider - 当前直播源是24直播，未到抓取时间，不抓取
+09:03:09.473 logback-spider [main] WARN  o.s.b.a.t.AbstractTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+09:03:18.967 logback-spider [main] WARN  o.s.b.a.f.FreeMarkerAutoConfiguration - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+09:04:00.374 logback-spider [pool-4-thread-1] WARN  website2018.spider.LiveSpider - 当前直播源是24直播，未到抓取时间，不抓取
+09:05:00.129 logback-spider [pool-4-thread-1] WARN  website2018.spider.LiveSpider - 当前直播源是24直播，未到抓取时间，不抓取
+09:06:10.952 logback-spider [pool-4-thread-1] WARN  website2018.spider.LiveSpider - 当前直播源是24直播，未到抓取时间，不抓取
+09:07:15.745 logback-spider [main] WARN  o.s.b.a.t.AbstractTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+09:07:20.587 logback-spider [main] WARN  o.s.b.a.f.FreeMarkerAutoConfiguration - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+09:08:11.080 logback-spider [pool-4-thread-1] WARN  website2018.spider.LiveSpider - 当前直播源是24直播，未到抓取时间，不抓取
+09:10:23.703 logback-spider [main] WARN  o.s.b.a.t.AbstractTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+09:10:29.324 logback-spider [main] WARN  o.s.b.a.f.FreeMarkerAutoConfiguration - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+09:12:00.030 logback-spider [pool-4-thread-1] WARN  website2018.spider.LiveSpider - 当前直播源是24直播，未到抓取时间，不抓取
+09:14:50.237 logback-spider [LiveSpider - 1553994782081] WARN  website2018.spider.LiveSpider - 未能从24直播抓取首页比赛
+09:14:50.282 logback-spider [LiveSpider - 1553994873949] WARN  website2018.spider.LiveSpider - 未能从24直播抓取首页比赛
+09:14:50.328 logback-spider [LiveSpider - 1553994677832] WARN  website2018.spider.LiveSpider - 未能从24直播抓取首页比赛
+09:15:00.007 logback-spider [pool-4-thread-1] WARN  website2018.spider.LiveSpider - 当前直播源是24直播，未到抓取时间，不抓取
+09:16:01.739 logback-spider [LiveSpider - 1553994960154] WARN  website2018.spider.LiveSpider - 未能从24直播抓取首页比赛
+09:19:38.747 logback-spider [main] WARN  o.s.b.a.t.AbstractTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+09:19:49.641 logback-spider [main] WARN  o.s.b.a.f.FreeMarkerAutoConfiguration - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+09:20:22.757 logback-spider [LiveSpider - 1553995200512] WARN  website2018.spider.LiveSpider - 未能从24直播抓取首页比赛
+09:21:01.544 logback-spider [LiveSpider - 1553995260032] WARN  website2018.spider.LiveSpider - 未能从24直播抓取首页比赛

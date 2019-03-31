@@ -10,6 +10,7 @@ public class MatchDTO {
     public String playTime;
     public String project;
     public String game;
+    public String rotation;
     public String name;
     public Long id;
 

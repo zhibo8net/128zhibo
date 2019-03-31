@@ -131,7 +131,30 @@ public class TeamCheckService {
         return null;
 
     }
+    public Team saveTeam(Team team){
+        return teamDao.save(team);
+    }
+    public Team checkTeamSaveTeam(String teamZh, String project,String image) {
+        try {
 
+
+            Team t=  checkTeamNotSave(teamZh, project);
+            if(t!=null){
+                return t;
+            }
+
+            Team tm = new Team();
+            tm.addTime = new Date();
+            tm.updateTime = new Date();
+            tm.teamZh = teamZh;
+            logger.info("保存球队{}", tm.teamZh);
+            return teamDao.save(tm);
+
+        } catch (Exception e) {
+            logger.error("检查球队异常",e);
+        }
+        return null;
+    }
 
     public Team checkTeamSaveTeam(String teamZh, String project) {
         try {

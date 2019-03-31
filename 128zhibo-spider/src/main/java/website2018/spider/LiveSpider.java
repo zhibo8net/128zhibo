@@ -8,6 +8,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,6 +17,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.orm.jpa.EntityManagerFactoryUtils;
 import org.springframework.orm.jpa.EntityManagerHolder;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -36,6 +39,35 @@ import website2018.utils.SpringContextHolder;
 public class LiveSpider extends BaseSpider {
     private static Logger logger = LoggerFactory.getLogger(LiveSpider.class);
 
+    private static List<String> football=Lists.newArrayList();
+    {
+        football.add("中超");
+        football.add("英超");
+        football.add("西甲");
+        football.add("德甲");
+        football.add("意甲");
+        football.add("法甲");
+        football.add("中甲");
+        football.add("欧冠");
+        football.add("欧联杯");
+        football.add("亚冠");
+
+    }
+    private static List<String> basketball=Lists.newArrayList();
+    {
+        basketball.add("NBA");
+        basketball.add("CBA");
+        basketball.add("NCAA");
+        basketball.add("篮球公园");
+        basketball.add("NBA最前线");
+        basketball.add("男篮世预赛");
+        basketball.add("WNBA");
+        basketball.add("CBA季前赛");
+        basketball.add("篮球友谊赛");
+        basketball.add("NBA季前赛");
+
+    }
+
     @Autowired
     LiveSourceDao liveSourceDao;
 
@@ -56,7 +88,8 @@ public class LiveSpider extends BaseSpider {
 
     @Autowired
     BaoWeiService baoWeiService;
-
+    @Value("${upload.webImageBase}")
+    public String baseDir;
     @Scheduled(cron = "0 0/3 * * * *")
     @Transactional
     public void runSchedule() throws Exception {
@@ -125,6 +158,8 @@ public class LiveSpider extends BaseSpider {
                 fetchFromAzhibo(entitys, channels, playChannels);
             } else if (liveSource.name.equals("无插件直播")) {
                 fetchFromWuchajian(entitys, channels, liveSource.link, playChannels);
+            }else if(liveSource.name.equals("24直播")){
+                fetchFro24mZhibo();
             }
         } catch (Exception e) {
             logger.error(e.getLocalizedMessage(), e);
@@ -164,6 +199,129 @@ public class LiveSpider extends BaseSpider {
             }
         } else {
             maybeExistedEntity = new Match();
+        }
+    }
+    public void fetchFro24mZhibo() throws Exception {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+        String  doc = readDocFromByJsoupReqJson("http://47.75.166.143:8080/front/tmatch/getTodayMatch");
+
+        // 如果返回值不为空，即获得网页没有超时
+        if (doc != null) {
+            JSONObject jsonObject = JSONObject.fromObject(doc);
+
+            JSONObject jsonObjData=jsonObject.getJSONObject("data");
+
+            if(jsonObjData==null){
+                return;
+            }
+            List<String> listStr=Lists.newArrayList();
+            listStr.add("todayMatchs");
+            listStr.add("tomorrowMatchs");
+            listStr.add("thirdMatchs");
+            listStr.add("fourMatchs");
+            listStr.add("fiveMatchs");
+            listStr.add("sixMatchs");
+            listStr.add("sevenMatchs");
+            List<JSONObject> jsonObjectList=Lists.newArrayList();
+            for(String str:listStr){
+                JSONObject jsonToday=jsonObjData.getJSONObject(str);
+                if(jsonToday!=null){
+                    jsonObjectList.add(jsonToday);
+                }
+            }
+
+            for(JSONObject object:jsonObjectList){
+                try {
+                    List<Match> matchList=Lists.newArrayList();
+                    String pld=object.getString("date");
+                   if( StringUtils.isEmpty(pld)){
+                        continue;
+                    }
+                    String playDate=pld.split(" ")[0].replace("年","-").replace("月", "-").replace("日","");
+                    JSONArray jsonArray = JSONArray.fromObject(object.get("match"));
+                    if (jsonArray == null) {
+                         continue;
+                    }
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        try {
+
+
+                        JSONObject jsonMatchObj = jsonArray.getJSONObject(i);
+
+                        String source=jsonMatchObj.getString("htmlUrl");
+                        if(StringUtils.isEmpty(source)){
+                            continue;
+                        }
+                        Match maybeExistedEntity = matchDao.findBySource(source);
+                        if (maybeExistedEntity == null) {
+                            maybeExistedEntity = new Match();
+                        }
+                        String matchProjct=jsonMatchObj.getString("matchName");
+                        String project = "其他";
+                        if (basketball.contains(matchProjct)) {
+                            project = "篮球";
+                        } else if (football.contains(matchProjct)) {
+                            project = "足球";
+                        }
+                        String timeStr=jsonMatchObj.getString("startTime");
+                        Date plDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(playDate + " " + timeStr);
+
+                            String rotation=jsonMatchObj.getString("rotation");
+                        maybeExistedEntity.playDate = plDate;
+                        maybeExistedEntity.playDateStr = playDate;
+                        maybeExistedEntity.playTime = timeStr;
+                        maybeExistedEntity.project = project;
+                        maybeExistedEntity.game = matchProjct;
+                         maybeExistedEntity.rotation = rotation;
+
+                            String hometeam=jsonMatchObj.getString("hometeam");
+                            String visitingTeam=jsonMatchObj.getString("visitingTeam");
+                        maybeExistedEntity.name =hometeam + " VS " + visitingTeam;
+                            String hometeamImage=jsonMatchObj.getString("matchImage1");
+                            String visitingTeamImage=jsonMatchObj.getString("matchImage2");
+                            Team team1 = teamService.checkTeamSaveTeam(hometeam, project, hometeamImage);
+                            if(StringUtils.isEmpty(team1.teamImgLink)){
+                                String imageFilePath = downloadFile("http://47.75.166.143:8080/" + hometeamImage);
+                               if(StringUtils.isNotEmpty(imageFilePath)){
+                                   team1.teamImgLink=baseDir+imageFilePath;
+                                   teamService.saveTeam(team1);
+                               }
+
+                            }
+
+                            Team team2 = teamService.checkTeamSaveTeam(visitingTeam, project, visitingTeamImage);
+                            if(StringUtils.isEmpty(team2.teamImgLink)) {
+                                String imageFilePath = downloadFile("http://47.75.166.143:8080/" + visitingTeamImage);
+                                if(StringUtils.isNotEmpty(imageFilePath)){
+                                    team2.teamImgLink=baseDir+imageFilePath;
+                                    teamService.saveTeam(team2);
+                                }
+                            }
+                            maybeExistedEntity.masterTeam = team1;
+                            maybeExistedEntity.guestTeam = team2;
+
+                        maybeExistedEntity.source = source;
+                        maybeExistedEntity.locked = 0;
+                        maybeExistedEntity.emphasis = 0;
+                        maybeExistedEntity.addTime = new Date();
+                            matchList.add(maybeExistedEntity);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            continue;
+                        }
+                    }
+
+                   matchDao.save(matchList);
+                    }catch (Exception e){
+                    logger.error("抓取24直播错误{}",object.toString());
+                    e.printStackTrace();
+
+                }
+
+            }
+
         }
     }
 

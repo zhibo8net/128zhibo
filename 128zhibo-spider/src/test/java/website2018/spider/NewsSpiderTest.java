@@ -11,13 +11,11 @@ import website2018.MyApplication;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class NewsSpiderTest {
-    @Autowired
-    NewsSpider spider;
 
     @Test
     public void fetchNews() throws Exception {
         MyApplication.DONT_RUN_SCHEDULED = true;
-        spider.fetchNews();
+
     }
     
 }

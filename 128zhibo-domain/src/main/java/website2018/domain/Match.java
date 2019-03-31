@@ -22,6 +22,7 @@ public class Match extends BaseEntity {
     public String playTime;
     public String project;
     public String game;
+    public String rotation;
     public String name;
     public int locked;// 是否锁定
     public Date unlockTime;// 解锁时间
