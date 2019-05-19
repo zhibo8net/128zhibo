@@ -23,6 +23,8 @@ import website2018.base.BaseService;
 import website2018.domain.Match;
 import website2018.dto.admin.MatchAdminDTO;
 import website2018.dto.admin.MatchAdminDTOForList;
+import website2018.exception.ErrorCode;
+import website2018.exception.ServiceException;
 import website2018.service.admin.MatchService;
 
 // Spring Restful MVC Controller的标识, 直接输出内容，不调用template引擎.
@@ -119,19 +121,24 @@ public class MatchAdminEndpoint extends BaseEndPoint {
         assertAdmin();
 
         Match match = BeanMapper.map(matchAdminDTO, Match.class);
-        
+        try{
+
+
         if(StringUtils.isNotEmpty(matchAdminDTO.unlockDateStr) && StringUtils.isNotEmpty(matchAdminDTO.unlockTimeStr)) {
             Date unlockTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(matchAdminDTO.unlockDateStr + " " + matchAdminDTO.unlockTimeStr);
             match.unlockTime = unlockTime;
         }
         if(StringUtils.isNotEmpty(matchAdminDTO.playTime)){
-            Date playDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(matchAdminDTO.playTime);
+            Date playDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(matchAdminDTO.playDateStr+" "+matchAdminDTO.playTime);
             match.playDate=playDate;
         }else{
             match.playDate=new Date();
         }
-
+        }catch ( Exception e){
+            throw new ServiceException("直播时间格式错误", ErrorCode.BAD_MESSAGE_REQUEST);
+        }
         match.addTime = new Date();
+        match.status="ENABLE";
         matchService.create(match);
         
         logService.log("添加比赛", "/matchForm/" + match.id);

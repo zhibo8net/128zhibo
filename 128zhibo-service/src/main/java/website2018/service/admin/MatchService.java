@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import website2018.domain.Ad;
 import website2018.domain.Live;
 import website2018.domain.Match;
+import website2018.domain.Team;
 import website2018.exception.ErrorCode;
 import website2018.exception.ServiceException;
 import website2018.repository.AdDao;
 import website2018.repository.LiveDao;
 import website2018.repository.MatchDao;
+import website2018.service.KeyUrlService;
+import website2018.service.TeamCheckService;
 import website2018.utils.DateUtils;
 
 @Service
@@ -33,7 +36,10 @@ public class MatchService {
     
     @Autowired
     AdDao adDao;
-
+    @Autowired
+    TeamCheckService teamService;
+    @Autowired
+    KeyUrlService keyUrlService;
     @Transactional(readOnly = true)
     public List<Match> findAll(Specification spec) {
         return matchDao.findAll(spec);
@@ -70,7 +76,25 @@ public class MatchService {
     @Transactional
     public void create(Match match) {
         for(Live live:match.lives){
+            live.link=keyUrlService.getKeyUrl(live.link);
             live.match=match;
+        }
+        if(match.guestTeam==null&&match.masterTeam==null){
+          String matchName[]=  match.name.split("VS");
+            if(matchName.length>=2){
+                Team team1=teamService.checkTeamSaveTeam(matchName[0], match.project);
+                match.masterTeam=team1;
+                Team team2=teamService.checkTeamSaveTeam(matchName[1], match.project);
+                match.guestTeam=team2;
+            }else{
+                String matchname[]=  match.name.split("vs");
+                if(matchname.length>=2){
+                    Team team1=teamService.checkTeamSaveTeam(matchname[0], match.project);
+                    match.masterTeam=team1;
+                    Team team2=teamService.checkTeamSaveTeam(matchname[1], match.project);
+                    match.guestTeam=team2;
+                }
+            }
         }
         matchDao.save(match);
     }
@@ -84,7 +108,7 @@ public class MatchService {
             throw new ServiceException("比赛不存在", ErrorCode.BAD_REQUEST);
         }
         orginalMatch.playDateStr=match.playDateStr;
-        orginalMatch.playDate= DateUtils.getDate(StringUtils.isNoneBlank(orginalMatch.playDateStr)?orginalMatch.playDateStr:DateUtils.getDefaultDateStr(new Date()),"yyyy-MM-dd");
+        orginalMatch.playDate= DateUtils.getDate((match.playDateStr+" "+match.playTime),"yyyy-MM-dd HH:mm");
         orginalMatch.playTime=match.playTime;
         orginalMatch.sinaLiveUrl=match.sinaLiveUrl;
         orginalMatch.sinaShujuUrl=match.sinaShujuUrl;
@@ -103,6 +127,7 @@ public class MatchService {
         orginalMatch.lives.clear();
         // 添加新的直播数据
         for (Live live : match.lives) {
+            live.link=keyUrlService.getKeyUrl(live.link);
             orginalMatch.lives.add(live);
             live.match = orginalMatch;
         }

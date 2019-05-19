@@ -3,6 +3,7 @@ package website2018.spider;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -244,6 +245,7 @@ public class LiveSpider extends BaseSpider {
                     if (jsonArray == null) {
                          continue;
                     }
+                    List<Match> updateMatch=matchDao.findByPlayDateStrOrderByPlayDateAsc(playDate);
                     for (int i = 0; i < jsonArray.size(); i++) {
                         try {
 
@@ -254,6 +256,14 @@ public class LiveSpider extends BaseSpider {
                         if(StringUtils.isEmpty(source)){
                             continue;
                         }
+                            Iterator<Match> it = updateMatch.iterator();
+                            while(it.hasNext()){
+                                Match match = it.next();
+                                if(StringUtils.equals(match.source,source)){
+                                    it.remove();
+                                }
+                            }
+
                         Match maybeExistedEntity = matchDao.findBySource(source);
                         if (maybeExistedEntity == null) {
                             maybeExistedEntity = new Match();
@@ -269,15 +279,24 @@ public class LiveSpider extends BaseSpider {
                         Date plDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(playDate + " " + timeStr);
 
                             String rotation=jsonMatchObj.getString("rotation");
+                            if(StringUtils.isEmpty(rotation)){
+                                rotation="";
+                            }
                         maybeExistedEntity.playDate = plDate;
                         maybeExistedEntity.playDateStr = playDate;
                         maybeExistedEntity.playTime = timeStr;
                         maybeExistedEntity.project = project;
                         maybeExistedEntity.game = matchProjct;
                          maybeExistedEntity.rotation = rotation;
-
+                            maybeExistedEntity.status="ENABLE";
                             String hometeam=jsonMatchObj.getString("hometeam");
                             String visitingTeam=jsonMatchObj.getString("visitingTeam");
+                            if(StringUtils.equals("JRS直播吧",hometeam)){
+                                hometeam="80看球吧";
+                            }
+                            if(StringUtils.equals("JRS直播吧",visitingTeam)){
+                                visitingTeam="80看球吧";
+                            }
                         maybeExistedEntity.name =hometeam + " VS " + visitingTeam;
                             String hometeamImage=jsonMatchObj.getString("matchImage1");
                             String visitingTeamImage=jsonMatchObj.getString("matchImage2");
@@ -314,6 +333,13 @@ public class LiveSpider extends BaseSpider {
                     }
 
                    matchDao.save(matchList);
+
+                    for(Match m:updateMatch){
+                        if(StringUtils.isNotEmpty(m.source)){
+                            m.status="DISABLE";
+                        }
+                    }
+                    matchDao.save(updateMatch);
                     }catch (Exception e){
                     logger.error("抓取24直播错误{}",object.toString());
                     e.printStackTrace();

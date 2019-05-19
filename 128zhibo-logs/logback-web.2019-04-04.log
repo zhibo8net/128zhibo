@@ -1,0 +1,1 @@
+21:40:10.354 logback-web [http-nio-8080-exec-8] ERROR w.api.support.ErrorPageController - {"timestamp":1554385210142,"status":404,"error":"Not Found","message":"No message available","path":"/api/web/indexMatchList%EF%BC%9Fgame=1","from":"0:0:0:0:0:0:0:1"}

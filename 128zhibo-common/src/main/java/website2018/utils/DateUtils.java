@@ -35,5 +35,9 @@ public class DateUtils {
         return new Date();
     }
 
-
+    public static String to16Hex(Date date) {
+        Long ab = date.getTime()/1000;
+        String a = Long.toHexString(ab);
+        return a;
+    }
 }

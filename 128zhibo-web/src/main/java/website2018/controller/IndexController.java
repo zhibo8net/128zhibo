@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,7 +30,14 @@ public class IndexController extends BaseEndPoint {
         return "forward:index.html";
     }
 
-
+    @RequestMapping(value = "/live/{id}", method = RequestMethod.GET)
+    public String liveIndex( @PathVariable Long id, Model model) {
+        return "redirect:"+localhost+"/#/live?matchID="+id;
+    }
+    @RequestMapping(value = "/mlive/{id}", method = RequestMethod.GET)
+    public String liveNobileIndex( @PathVariable Long id, Model model) {
+        return "redirect:"+localhost+"/#/live?matchID="+id;
+    }
     @RequestMapping(value = "/imagefile/**", method = RequestMethod.GET)
     @ResponseBody
     public byte[] imagefile(HttpServletRequest request) throws IOException {

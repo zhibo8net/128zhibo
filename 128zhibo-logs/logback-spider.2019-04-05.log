@@ -1,0 +1,2 @@
+10:17:49.892 logback-spider [main] WARN  o.s.b.a.t.AbstractTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+10:18:08.769 logback-spider [main] WARN  o.s.b.a.f.FreeMarkerAutoConfiguration - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)

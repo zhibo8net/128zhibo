@@ -69,9 +69,7 @@ public class RestFilter extends GenericFilterBean {
                 log.info("Unable to authenticate the token: " + token + ". IP - " + request.getRemoteAddr()
                 + " is not allowed");
             }
-        } else {
-            log.info("Unable to authenticate the token: " + token + ". Key is broken");
-        }
+        } 
 
         chain.doFilter(request, response);
     }

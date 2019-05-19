@@ -51,6 +51,8 @@ public class IndexService {
     // 缓存数据
     private Cache<String, List<DailyLivesDTO>> dailyLivesCache;
 
+    // 缓存数据
+    private Cache<String,MatchDTO> matchCache;
     @Autowired
     VideoQueryer videoQueryer;
     
@@ -80,16 +82,18 @@ public class IndexService {
     @PostConstruct
     public void init() {
         dailyLivesCache = CacheBuilder.newBuilder().maximumSize(10).expireAfterWrite(5, TimeUnit.MINUTES).build();
+        matchCache = CacheBuilder.newBuilder().maximumSize(100000).expireAfterWrite(5, TimeUnit.MINUTES).build();
+
     }
 
-    public List<DailyLivesDTO> dailyLives() {
+    public List<DailyLivesDTO>  dailyLives(String game) {
 
-        List<DailyLivesDTO> dailyLives = dailyLivesCache.getIfPresent("dailyLives");
+        List<DailyLivesDTO> dailyLives = dailyLivesCache.getIfPresent("dailyLives"+game);
 
         if(dailyLives==null||dailyLives.size()==0){
-            dailyLives = queryDailyLives();
+            dailyLives = queryDailyLives(game);
 
-            dailyLivesCache.put("dailyLives", dailyLives);
+            dailyLivesCache.put("dailyLives"+game, dailyLives);
 
             return dailyLives;
         }else{
@@ -99,11 +103,15 @@ public class IndexService {
     }
 
     public MatchDTO findMatchDTO(Long id){
-
+//        MatchDTO  matchDTO =  matchCache.getIfPresent("MATCH_DTO" + id);
+//        if(matchDTO!=null){
+//            return matchDTO;
+//        }
         Match m=   matchDao.findById(id);
         if(m==null){
             return null;
         }
+
         MatchDTO mdto = BeanMapper.map(m, MatchDTO.class);
         if(m.guestTeam!=null){
             mdto.guestTeamName=m.guestTeam.teamZh;
@@ -126,13 +134,20 @@ public class IndexService {
 
         for(Live l : m.lives) {
 
+            LiveDTO liveDTO =null;
+                for(LiveDTO ld: mdto.lives){
+                    if(StringUtils.equals(ld.name,l.name)){
+                        liveDTO=ld;
+                        break;
+                    }
+                }
 
-            LiveDTO liveDTO = new LiveDTO();
-
-            liveDTO.name = l.name;
-            liveDTO.link=l.link;
-            mdto.lives.add(liveDTO);
-
+            if(liveDTO==null) {
+                liveDTO=new LiveDTO();
+                liveDTO.name = l.name;
+                liveDTO.link = l.link;
+                mdto.lives.add(liveDTO);
+            }
             //链接重复的，只添加一次
             boolean existed = false;
             for(SignalDTO s : liveDTO.signals) {
@@ -155,13 +170,13 @@ public class IndexService {
             }
 
         }
-
+      //  matchCache.put("MATCH_DTO"+id,mdto);
         return mdto;
 
 
     }
 
-    public List<DailyLivesDTO> queryDailyLives() {
+    public List<DailyLivesDTO> queryDailyLives(String game) {
 
 
 
@@ -183,12 +198,18 @@ public class IndexService {
             String dateStr = sdf.format(todayCal.getTime()) + " " + weeks[todayCal.get(Calendar.DAY_OF_WEEK) - 1];
             dailylives.dateStr = dateStr;
             dailylives.playDateStr=dateFormat.format(todayCal.getTime());
-            List<Match> matches = matchDao.findByPlayDateStrOrderByPlayDateAsc(dateStrForQueryFormat.format(todayCal.getTime()));
+            List<Match> matches =Lists.newArrayList();
+            if(StringUtils.isEmpty(game)){
+                matches = matchDao.findByPlayDateStrOrderByPlayDateAsc(dateStrForQueryFormat.format(todayCal.getTime()));
+            }else{
+                matches = matchDao.findByPlayDateStrAndGameOrderByPlayDateAsc(dateStrForQueryFormat.format(todayCal.getTime()),game);
+
+            }
             matchLoop:
             for (Match m : matches) {
 //                //只有当前时间之前2小时之后开球的比赛才显示（例：现在9点，则7点后开球的才显示）
 //                if(m.playDate.getTime() > twoHourBeforeNowMills) {
-
+                if(!StringUtils.equals(m.status,"DISABLE")) {
                     MatchDTO mdto = BeanMapper.map(m, MatchDTO.class);
 
                     if(StringUtils.isNotEmpty(mdto.name)&&"1".equals(m.matchNewFlag)){
@@ -209,11 +230,20 @@ public class IndexService {
                     for(Live l : m.lives) {
 
 
-                            LiveDTO liveDTO = new LiveDTO();
+                        LiveDTO liveDTO =null;
+                        for(LiveDTO ld: mdto.lives){
+                            if(StringUtils.equals(ld.name,l.name)){
+                                liveDTO=ld;
+                                break;
+                            }
+                        }
 
-                                liveDTO.name = l.name;
-                                liveDTO.link=l.link;
-                                mdto.lives.add(liveDTO);
+                        if(liveDTO==null) {
+                            liveDTO=new LiveDTO();
+                            liveDTO.name = l.name;
+                            liveDTO.link = l.link;
+                            mdto.lives.add(liveDTO);
+                        }
 
                             //链接重复的，只添加一次
                             boolean existed = false;
@@ -239,7 +269,7 @@ public class IndexService {
                     }
                         dailylives.matches.add(mdto);
                 }
-          //  }
+            }
 
             result.add(dailylives);
 

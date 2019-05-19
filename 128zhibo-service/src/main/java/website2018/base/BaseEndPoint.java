@@ -76,6 +76,9 @@ public class BaseEndPoint {
     @Value("${upload.uploadPath}")
     public String uploadPath;
 
+    @Value("${preoject.localhost}")
+    public String localhost;
+
     public List<String> projectWhiteList = Lists.newArrayList("篮球", "足球");
     
     public List<String> gameWhiteList = Lists.newArrayList("英超|意甲|西甲|法甲|德甲|中超|欧冠|世界杯|NBA|CBA|其他".split("\\|"));

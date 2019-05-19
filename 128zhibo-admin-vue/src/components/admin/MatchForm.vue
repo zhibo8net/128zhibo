@@ -17,7 +17,7 @@
       <span class="help-block" v-show="errors.has('直播日期')">{{ errors.first('直播日期') }}</span>
     </div>
       <div :class="{'form-group':true, 'has-error':errors.has('直播时间')}">
-        <label>直播时间：如 2019-01-01 12:30</label>
+        <label>直播时间：如12:30</label>
         <input type="text" class="form-control" placeholder="直播时间" v-model="match.playTime"  v-validate="'required'" name="直播时间">
         <span class="help-block" v-show="errors.has('直播时间')">{{ errors.first('直播时间') }}</span>
       </div>
@@ -135,13 +135,14 @@ export default {
             Vue.http.post(g.t('/api/admin/matchs'), JSON.stringify(match)).then(function (response) {
               g.href('/matchList')
             }, function (response) {
-              g.toLogin()
+              g.showMessage(response)
+
             })
           } else {
             Vue.http.put(g.t('/api/admin/matchs/' + match.id), JSON.stringify(match)).then(function (response) {
               g.href('/matchList')
             }, function (response) {
-              g.toLogin()
+              g.showMessage(response)
             })
           }
         }
