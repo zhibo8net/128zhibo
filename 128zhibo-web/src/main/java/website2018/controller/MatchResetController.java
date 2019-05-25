@@ -13,6 +13,8 @@ import website2018.dto.MatchDTO;
 import website2018.service.IndexService;
 import website2018.service.LiveService;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @RestController
 public class MatchResetController extends BaseEndPoint {
@@ -35,10 +37,10 @@ public class MatchResetController extends BaseEndPoint {
 
     }
     @RequestMapping(value = "api/web/match/{id}")
-    public MatchDTO getMatch(@PathVariable Long id) {
+    public MatchDTO getMatch(@PathVariable Long id,HttpServletRequest request) {
 
 
-            MatchDTO matchDTO = indexService.findMatchDTO(id);
+            MatchDTO matchDTO = indexService.findMatchDTO(id,request);
             if (matchDTO == null) {
                 return null;
             }

@@ -7,7 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,6 +81,9 @@ public class IndexService {
     NewsService newsService;
     @Autowired
     LiveDao liveDao;
+
+    @Autowired
+    KeyUrlService keyUrlService;
     @PostConstruct
     public void init() {
         dailyLivesCache = CacheBuilder.newBuilder().maximumSize(10).expireAfterWrite(5, TimeUnit.MINUTES).build();
@@ -102,7 +107,7 @@ public class IndexService {
 
     }
 
-    public MatchDTO findMatchDTO(Long id){
+    public MatchDTO findMatchDTO(Long id,HttpServletRequest request){
 //        MatchDTO  matchDTO =  matchCache.getIfPresent("MATCH_DTO" + id);
 //        if(matchDTO!=null){
 //            return matchDTO;
@@ -131,8 +136,40 @@ public class IndexService {
             mdto.playDateStr=sdf.format(m.playDate);
         }
         mdto.lives = Lists.newArrayList();
+        Map<String, String> sysParamMap = CacheUtils.getSysMap();
+        String interfaceChange=sysParamMap.get("LIVE_ZHIBO_IS_INTERFACE_CHANAGE")==null?"":sysParamMap.get("LIVE_ZHIBO_IS_INTERFACE_CHANAGE");
+        String change=sysParamMap.get("LIVE_ZHIBO_IS_PLAY_CHANAGE")==null?"":sysParamMap.get("LIVE_ZHIBO_IS_PLAY_CHANAGE");
+        String CONTAIN_URL=sysParamMap.get("LIVE_ZHIBO_CONTAIN_URL")==null?"":sysParamMap.get("LIVE_ZHIBO_CONTAIN_URL");
 
         for(Live l : m.lives) {
+
+            if(StringUtils.equals("TRUE",interfaceChange)){
+                l.link=keyUrlService.getKeyUrl(l.link);
+            }
+
+            if(StringUtils.isNotEmpty(l.link)){
+            if(StringUtils.equals("TRUE",change)){
+                List<String> containList= Lists.newArrayList(CONTAIN_URL.split("\\|"));
+                boolean flag=false;
+                for(String str:containList){
+                    if(l.link.indexOf(str)>=0){
+                        flag=true;
+                        break;
+                    }
+                }
+                if(flag){
+
+                    String agent= request.getHeader("user-agent");
+
+                    if(agent.contains("iPhone")||agent.contains("iPod")||agent.contains("iPad")){
+
+                    }else{
+                        l.link= l.link.replace("m3u8","flv");
+                    }
+
+                }
+            }
+            }
 
             LiveDTO liveDTO =null;
                 for(LiveDTO ld: mdto.lives){

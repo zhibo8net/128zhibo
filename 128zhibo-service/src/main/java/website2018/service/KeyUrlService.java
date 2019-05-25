@@ -57,8 +57,12 @@ public class KeyUrlService {
         }
 
         try{
+            String ld ="";
             if(url.indexOf("?")>0) {
-                String ld =url.substring(0,url.indexOf("?"));
+                ld=url.substring(0,url.indexOf("?"));
+            }else{
+                ld=url;
+            }
                 String[] ub=url.split("\\/");
                 String u=ub[ub.length-1].split("\\.")[0];
 
@@ -68,7 +72,7 @@ public class KeyUrlService {
                 sb.append(ld);
                 sb.append("?txTime=").append(txTime).append("&txSecret=").append(txSecret);
                 return sb.toString();
-            }
+
         }catch (Exception e){
             logger.error("播放加密错误{}",e);
         }

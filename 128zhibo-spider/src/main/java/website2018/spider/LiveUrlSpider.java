@@ -31,11 +31,11 @@ public class LiveUrlSpider extends BaseSpider {
     private static Logger logger = LoggerFactory.getLogger(LiveUrlSpider.class);
 
     @Autowired
-KeyUrlService keyUrlService;
+    KeyUrlService keyUrlService;
     @Autowired
     MatchDao matchDao;
 
-    @Scheduled(cron = "0 0/1 * * * *")
+    @Scheduled(cron = "0 0/3 * * * *")
     @Transactional
     public void runSchedule() throws Exception {
             // 启动新线程来抓取
@@ -59,7 +59,7 @@ KeyUrlService keyUrlService;
                         logger.error(e.getLocalizedMessage());
                     }
                 }
-            }, "LiveSpider - " + System.currentTimeMillis());
+            }, "LiveSpiderUrl - " + System.currentTimeMillis());
             t.start();
 
 
@@ -67,9 +67,9 @@ KeyUrlService keyUrlService;
 
     public void fetchLiveUrl(){
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MINUTE, -150);
+        calendar.add(Calendar.MINUTE, -240);
         Date d=calendar.getTime();
-        calendar.add(Calendar.MINUTE, 200);
+        calendar.add(Calendar.MINUTE, 300);
         Date d1=calendar.getTime();
         List<Match> matchList=matchDao.findByPlayDateGreaterThanAndPlayDateLessThan(d,d1);
         for(Match match:matchList){
@@ -80,7 +80,8 @@ KeyUrlService keyUrlService;
                 List<Live> liveList = match.lives;
                 for (Live live : liveList) {
                     String liveUrl = keyUrlService.getKeyUrl(live.link);
-                    if (StringUtils.equals(liveUrl, live.link)) {
+                    if (!StringUtils.equals(liveUrl, live.link)) {
+                        live.link=liveUrl;
                         flag = true;
                     }
                 }

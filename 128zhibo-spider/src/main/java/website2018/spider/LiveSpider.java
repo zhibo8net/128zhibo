@@ -161,6 +161,8 @@ public class LiveSpider extends BaseSpider {
                 fetchFromWuchajian(entitys, channels, liveSource.link, playChannels);
             }else if(liveSource.name.equals("24直播")){
                 fetchFro24mZhibo();
+            }else if(liveSource.name.equals("JSR直播")){
+                fetchFro24mZhibo();
             }
         } catch (Exception e) {
             logger.error(e.getLocalizedMessage(), e);
