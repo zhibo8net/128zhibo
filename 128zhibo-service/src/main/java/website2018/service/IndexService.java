@@ -140,6 +140,10 @@ public class IndexService {
         String interfaceChange=sysParamMap.get("LIVE_ZHIBO_IS_INTERFACE_CHANAGE")==null?"":sysParamMap.get("LIVE_ZHIBO_IS_INTERFACE_CHANAGE");
         String change=sysParamMap.get("LIVE_ZHIBO_IS_PLAY_CHANAGE")==null?"":sysParamMap.get("LIVE_ZHIBO_IS_PLAY_CHANAGE");
         String CONTAIN_URL=sysParamMap.get("LIVE_ZHIBO_CONTAIN_URL")==null?"":sysParamMap.get("LIVE_ZHIBO_CONTAIN_URL");
+        String FILTERS_STREAM = sysParamMap.get("LIVE_ZHIBO_FILTERS_STREAM") == null ? "" : sysParamMap.get("LIVE_ZHIBO_FILTERS_STREAM");
+        String PLAY_CHANGE_IPHONE = sysParamMap.get("LIVE_ZHIBO_PLAY_CHANGE_IPHONE") == null ? "" : sysParamMap.get("LIVE_ZHIBO_PLAY_CHANGE_IPHONE");
+        String PLAY_CHANGE_PC = sysParamMap.get("LIVE_ZHIBO_PLAY_CHANGE_PC") == null ? "" : sysParamMap.get("LIVE_ZHIBO_PLAY_CHANGE_PC");
+        String PLAY_CHANGE_ANDRIOD = sysParamMap.get("LIVE_ZHIBO_PLAY_CHANGE_ANDRIOD") == null ? "" : sysParamMap.get("LIVE_ZHIBO_PLAY_CHANGE_ANDRIOD");
 
         for(Live l : m.lives) {
 
@@ -158,13 +162,31 @@ public class IndexService {
                     }
                 }
                 if(flag){
-
+                    List<String> filtersList = Lists.newArrayList(FILTERS_STREAM.split("\\|"));
+                    boolean filters = false;
+                    for (String str : filtersList) {
+                        if ( l.link.indexOf(str) >= 0) {
+                            filters = true;
+                            break;
+                        }
+                    }
                     String agent= request.getHeader("user-agent");
 
-                    if(agent.contains("iPhone")||agent.contains("iPod")||agent.contains("iPad")){
+                    if (!filters) {
+                        if (agent.contains("iPhone") || agent.contains("iPod") || agent.contains("iPad")) {
+                           if(StringUtils.equals(PLAY_CHANGE_IPHONE,"TRUE")){
+                               l.link = l.link.replace("m3u8", "flv");
+                           }
 
-                    }else{
-                        l.link= l.link.replace("m3u8","flv");
+                        } else if (agent.contains("Android") || agent.contains("android")) {
+                            if(StringUtils.equals(PLAY_CHANGE_ANDRIOD,"TRUE")){
+                                l.link = l.link.replace("m3u8", "flv");
+                            }
+                        } else {
+                            if(StringUtils.equals(PLAY_CHANGE_PC,"TRUE")){
+                                l.link = l.link.replace("m3u8", "flv");
+                            }
+                        }
                     }
 
                 }
